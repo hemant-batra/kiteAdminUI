@@ -1,0 +1,39 @@
+<table style="width: 100%;">
+  <tr *ngIf="session.isActive(); else notAuthenticated">
+    <td>
+      <table class="menuContainer">
+        <tr *ngFor="let menu of session.getMenus()">
+          <td>
+           <a id="menu" (click)="menuClicked(menu.code, $event);" [routerLink]="'/admin/' + menu.path" routerLinkActive="linkActive">{{menu.label}}</a>
+            <!--<div [id]="menu.code" [@subMenuState]="(menu.children != null && session.activatedMenu === menu.code) ? 'show' : 'hide'">-->
+              <div class="animated">
+              <table>
+              <tr *ngFor="let subMenu of session.filterChildren(menu.code, menu.children)">
+                <td>
+                  <a id="submenu" (click)="session.allowNavigation()" [routerLink]="'/admin/' + menu.path + '/' + subMenu.path" routerLinkActive="linkActive">{{subMenu.label}}</a>
+                </td>
+              </tr>
+              </table>
+              </div>
+            <!--</div>-->
+          </td>
+        </tr>
+        <tr><td><span class="span1">&nbsp;</span></td></tr>
+        <tr><td><span class="span2">&nbsp;</span></td></tr>
+      </table>
+    </td>
+    <td style="width: 100%;">
+      <div class="container-fluid" style="padding-left: 10%;">
+        <app-title></app-title>
+        <router-outlet></router-outlet>
+      </div>
+    </td>
+  </tr>
+</table>
+<ng-template #notAuthenticated>
+  <tr>
+    <td style="width: 100%;">
+      <router-outlet></router-outlet>
+    </td>
+  </tr>
+</ng-template>

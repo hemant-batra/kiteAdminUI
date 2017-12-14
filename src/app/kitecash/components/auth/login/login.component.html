@@ -1,0 +1,53 @@
+<div class="container-fluid" style="width: 100%">
+  <div class="row">
+    <div class="col-md-4" style="margin-top:9%;">
+      <table align="right">
+        <tr>
+          <td><img [src]="c.Images.kiteGreen.src" [alt]="c.Images.kiteGreen.altText" class="img-responsive shake-slow"></td>
+          <td><img [src]="c.Images.kiteOrange.src" [alt]="c.Images.kiteOrange.altText" class="img-responsive shake-slow"></td>
+          <td><img [src]="c.Images.kiteBlue.src" [alt]="c.Images.kiteBlue.altText" class="img-responsive shake-slow"></td>
+        </tr>
+        <tr>
+          <td><img [src]="c.Images.kiteOrange.src" [alt]="c.Images.kiteOrange.altText" class="img-responsive shake-slow"></td>
+          <td><img [src]="c.Images.kiteYellow.src" [alt]="c.Images.kiteYellow.altText" class="img-responsive shake-slow"></td>
+          <td><img [src]="c.Images.kiteRed.src" [alt]="c.Images.kiteRed.altText" class="img-responsive shake-slow"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-8" align="center">
+      <br><br><br>
+      <app-title align="center"></app-title>
+      <table class="panel-body loginMargin">
+        <tr>
+          <td class="col-md-2"></td>
+          <td class="col-md-8">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit();">
+              <table>
+                <tr>
+                  <td class="col-md-4"><label for="idValue">{{c.TextLabels.USERNAME}}</label></td>
+                  <td class="col-md-8" formGroupName="identifier"><input type="text" id="idValue" class="form-control required" formControlName="idValue"></td>
+                </tr>
+                <tr *ngIf="util.invalidControl(loginForm.get('identifier').get('idValue'))"><th></th><th class="errorMessage">{{c.Messages.USERNAME_VALIDATION_MESSAGE}}</th></tr>
+                <tr>
+                  <td class="col-md-4"><label for="password">{{c.TextLabels.PASSWORD}}</label></td>
+                  <td class="col-md-8"><input type="password" id="password" class="form-control required" formControlName="password"></td>
+                </tr>
+                <tr *ngIf="util.invalidControl(loginForm.get('password'))"><th></th><th class="errorMessage">{{c.Messages.PASSWORD_VALIDATION_MESSAGE}}</th></tr>
+                <tr>
+                  <td class="col-md-4"></td>
+                  <td class="col-md-8">
+                    <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">
+                      <span class="glyphicon glyphicon-log-in" #glyphicon></span>
+                      &nbsp;
+                      {{c.ButtonLabels.LOGIN}}</button>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </td>
+          <td class="col-md-2"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*
+Link:
+  foreground: white
+  background: #582c83
+Hover:
+  foreground: #582c83
+  background: white
+Active:
+  foreground: #3d1e5b
+  background: #ddcced
+*/
+
+.required {}
+input.ng-invalid.ng-touched.required {
+  border: 1px solid red;
+}
+select.ng-invalid.ng-touched.required {
+  border: 1px solid red;
+}
+textarea.ng-invalid.ng-touched.required {
+  border: 1px solid red;
+}
+.errorMessage {
+  text-align: left;
+  font-weight: normal;
+  color: red;
+  height: 40px;
+}
