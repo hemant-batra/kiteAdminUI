@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://test.kitecash.in:8082'
+  serverUrl: 'http://test.kitecash.in:9282'
 };
