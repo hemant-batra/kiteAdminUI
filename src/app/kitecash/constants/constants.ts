@@ -30,7 +30,7 @@ export const Constants = {
     PASSWORD: 'Password',
     VERSION: 'v1.0.1',
     COPYRIGHT: 'Copyright © 2017 Kite',
-    KITE_ADMIN: 'Kite Admin',
+    KITE_TAB: 'Kite Tab',
     MERCHANT_NAME: 'Merchant Name',
     MERCHANT_EMAIL_ID: 'Merchant Email ID',
     SYSTEM_ACCOUNT_NUMBER: 'System Account Number',
@@ -64,7 +64,7 @@ export const Constants = {
 
   PageTitles: {
     NULL: '',
-    WELCOME_MESSAGE: 'Welcome to Kite Admin!',
+    WELCOME_MESSAGE: 'Welcome to Kite Tab!',
     MANUAL_REFUND: 'Manual Refund',
     MAIL_MERCHANT: 'Say Welcome to Merchant!',
     CHANGE_PASSWORD: 'Change Password'

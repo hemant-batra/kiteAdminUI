@@ -1,5 +1,5 @@
 table {
-  background-color: #582c83;
+  background-color: #346fa1;
   width: 100%;
 }
 td {
@@ -7,22 +7,22 @@ td {
   color: white;
 }
 .format {
-  text-shadow: 5px 5px #3d1e5b;
+  text-shadow: 2px 2px #244d70;
 }
 span {
   color: white;
-  background-color: #582c83;
+  background-color: #346fa1;
   font-size: 10pt;
 }
 th {
   font-size: 10pt;
   text-align: center;
   cursor: pointer;
-  border: 1px solid #582c83;
+  border: 1px solid #346fa1;
   color: white;
 }
 th:hover {
   border: 1px solid white;
   background-color: white;
-  color: #582c83;
+  color: #346fa1;
 }

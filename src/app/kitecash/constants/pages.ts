@@ -9,49 +9,49 @@ import {MailMerchantComponent} from '../components/admin/mail-merchant/mail-merc
  */
 export const paths = [
   {code: 'home', label: '', path: '', component: AdminComponent},
-  {code: 'manualRefund', label: 'Manual Refund *', path: 'manualRefund', component: ManualRefundComponent},
-  {code: 'sendMailToMerchant', label: 'Send Mail to Merchant *', path: 'sendMailToMerchant', component: MailMerchantComponent},
-  {code: 'agentList', label: 'Agent List *', path: 'agentList', component: AdminComponent, children: [
-    {code: 'addAgent', label: 'Add Agent *', path: 'addAgent', component: AdminComponent},
-    {code: 'addKycAgent', label: 'Add KYC Agent *', path: 'addKycAgent', component: AdminComponent},
-    {code: 'updateAgent', label: 'Update Agent *', path: 'updateAgent', component: AdminComponent},
-    {code: 'calculateAgentCommission', label: 'Calculate Agent Commission *', path: 'calculateAgentCommission', component: AdminComponent}
+  {code: 'manualRefund', label: 'Manual Refund', path: 'manualRefund', component: ManualRefundComponent},
+  {code: 'sendMailToMerchant', label: 'Send Mail to Merchant', path: 'sendMailToMerchant', component: MailMerchantComponent},
+  {code: 'agentList', label: 'Agent List', path: 'agentList', component: AdminComponent, children: [
+    {code: 'addAgent', label: 'Add Agent', path: 'addAgent', component: AdminComponent},
+    {code: 'addKycAgent', label: 'Add KYC Agent', path: 'addKycAgent', component: AdminComponent},
+    {code: 'updateAgent', label: 'Update Agent', path: 'updateAgent', component: AdminComponent},
+    {code: 'calculateAgentCommission', label: 'Calculate Agent Commission', path: 'calculateAgentCommission', component: AdminComponent}
   ]},
-  {code: 'userList', label: 'User List *', path: 'userList', component: AdminComponent, children: [
-    {code: 'createRemoveAnInfluencer', label: 'Create/Remove an Influencer *', path: 'createRemoveAnInfluencer', component: AdminComponent},
-    {code: 'suspendUser', label: 'Suspend User *', path: 'suspendUser', component: AdminComponent},
-    {code: 'reactivateUser', label: 'Reactivate User *', path: 'reactivateUser', component: AdminComponent}
+  {code: 'userList', label: 'User List', path: 'userList', component: AdminComponent, children: [
+    {code: 'createRemoveAnInfluencer', label: 'Create/Remove an Influencer', path: 'createRemoveAnInfluencer', component: AdminComponent},
+    {code: 'suspendUser', label: 'Suspend User', path: 'suspendUser', component: AdminComponent},
+    {code: 'reactivateUser', label: 'Reactivate User', path: 'reactivateUser', component: AdminComponent}
   ]},
-  {code: 'verifiedUsersList', label: 'Verified Users List *', path: 'verifiedUsersList', component: AdminComponent},
-  {code: 'systemAccountList', label: 'System Account List *', path: 'systemAccountList', component: AdminComponent, children: [
-    {code: 'addAdmin', label: 'Add New Admin *', path: 'addAdmin', component: AdminComponent}
+  {code: 'verifiedUsersList', label: 'Verified Users List', path: 'verifiedUsersList', component: AdminComponent},
+  {code: 'systemAccountList', label: 'System Account List', path: 'systemAccountList', component: AdminComponent, children: [
+    {code: 'addAdmin', label: 'Add New Admin', path: 'addAdmin', component: AdminComponent}
   ]},
-  {code: 'getAgentAdminsAccountId', label: 'Get Agent Admins Account Id *', path: 'getAgentAdminsAccountId', component: AdminComponent},
-  {code: 'registerSupportExecutive', label: 'Register Support Executive *', path: 'registerSupportExecutive', component: AdminComponent},
-  {code: 'setTemporaryPassword', label: 'Set Temporary Password *', path: 'setTemporaryPassword', component: AdminComponent},
-  {code: 'reverseTransactionsList', label: 'Reverse Transactions List *', path: 'reverseTransactionsList', component: AdminComponent},
-  {code: 'commissionChargeList', label: 'Commission Charge List *', path: 'commissionChargeList', component: AdminComponent, children: [
-    {code: 'addCommissionCharge', label: 'Add Commission Charge *', path: 'addCommissionCharge', component: AdminComponent}
+  {code: 'getAgentAdminsAccountId', label: 'Get Agent Admins Account Id', path: 'getAgentAdminsAccountId', component: AdminComponent},
+  {code: 'registerSupportExecutive', label: 'Register Support Executive', path: 'registerSupportExecutive', component: AdminComponent},
+  {code: 'setTemporaryPassword', label: 'Set Temporary Password', path: 'setTemporaryPassword', component: AdminComponent},
+  {code: 'reverseTransactionsList', label: 'Reverse Transactions List', path: 'reverseTransactionsList', component: AdminComponent},
+  {code: 'commissionChargeList', label: 'Commission Charge List', path: 'commissionChargeList', component: AdminComponent, children: [
+    {code: 'addCommissionCharge', label: 'Add Commission Charge', path: 'addCommissionCharge', component: AdminComponent}
   ]},
-  {code: 'addServiceCharge', label: 'Add Service Charge *', path: 'addServiceCharge', component: AdminComponent},
-  {code: 'pendingRequestsList', label: 'Pending Requests List *', path: 'pendingRequestsList', component: AdminComponent},
-  {code: 'initiateManualFundTransfer', label: 'Initiate Manual Fund Transfer *', path: 'initiateManualFundTransfer', component: AdminComponent, children: [
-    {code: 'bulkFundTransfer', label: 'Bulk Fund Transfer *', path: 'bulkFundTransfer', component: AdminComponent}
+  {code: 'addServiceCharge', label: 'Add Service Charge', path: 'addServiceCharge', component: AdminComponent},
+  {code: 'pendingRequestsList', label: 'Pending Requests List', path: 'pendingRequestsList', component: AdminComponent},
+  {code: 'initiateManualFundTransfer', label: 'Initiate Manual Fund Transfer', path: 'initiateManualFundTransfer', component: AdminComponent, children: [
+    {code: 'bulkFundTransfer', label: 'Bulk Fund Transfer', path: 'bulkFundTransfer', component: AdminComponent}
   ]},
-  {code: 'initiateSystemFundTransfer', label: 'Initiate System Fund Transfer *', path: 'initiateSystemFundTransfer', component: AdminComponent},
-  {code: 'emergencyPaymentRequestsList', label: 'Emergency Payment Requests List *', path: 'emergencyPaymentRequestsList', component: AdminComponent},
-  {code: 'userReportList', label: 'User Report List *', path: 'userReportList', component: AdminComponent},
-  {code: 'userFeedbackList', label: 'User Feedback List *', path: 'userFeedbackList', component: AdminComponent},
-  {code: 'invitationWaitList', label: 'Invitation Wait List *', path: 'invitationWaitList', component: AdminComponent},
-  {code: 'bulkManualFundCheckerList', label: 'Bulk Manual Fund Checker List *', path: 'bulkManualFundCheckerList', component: AdminComponent},
-  {code: 'createReferralCategory', label: 'Create Referral Category *', path: 'createReferralCategory', component: AdminComponent, children: [
-    {code: 'createReferralCode', label: 'Create Referral Code *', path: 'createReferralCode', component: AdminComponent}
+  {code: 'initiateSystemFundTransfer', label: 'Initiate System Fund Transfer', path: 'initiateSystemFundTransfer', component: AdminComponent},
+  {code: 'emergencyPaymentRequestsList', label: 'Emergency Payment Requests List', path: 'emergencyPaymentRequestsList', component: AdminComponent},
+  {code: 'userReportList', label: 'User Report List', path: 'userReportList', component: AdminComponent},
+  {code: 'userFeedbackList', label: 'User Feedback List', path: 'userFeedbackList', component: AdminComponent},
+  {code: 'invitationWaitList', label: 'Invitation Wait List', path: 'invitationWaitList', component: AdminComponent},
+  {code: 'bulkManualFundCheckerList', label: 'Bulk Manual Fund Checker List', path: 'bulkManualFundCheckerList', component: AdminComponent},
+  {code: 'createReferralCategory', label: 'Create Referral Category', path: 'createReferralCategory', component: AdminComponent, children: [
+    {code: 'createReferralCode', label: 'Create Referral Code', path: 'createReferralCode', component: AdminComponent}
   ]},
-  {code: 'sendLaunchNewsLetter', label: 'Send Launch News Letter *', path: 'sendLaunchNewsLetter', component: AdminComponent},
-  {code: 'requestCashOutEmail', label: 'Request Cash Out Email *', path: 'requestCashOutEmail', component: AdminComponent},
-  {code: 'getFraudAccountList', label: 'Get Fraud Account List *', path: 'getFraudAccountList', component: AdminComponent, children: [
-    {code: 'addFraudAccount', label: 'Add Fraud Account *', path: 'addFraudAccount', component: AdminComponent},
-    {code: 'updateFraudAccount', label: 'Update Fraud Account *', path: 'updateFraudAccount', component: AdminComponent}
+  {code: 'sendLaunchNewsLetter', label: 'Send Launch News Letter', path: 'sendLaunchNewsLetter', component: AdminComponent},
+  {code: 'requestCashOutEmail', label: 'Request Cash Out Email', path: 'requestCashOutEmail', component: AdminComponent},
+  {code: 'getFraudAccountList', label: 'Get Fraud Account List', path: 'getFraudAccountList', component: AdminComponent, children: [
+    {code: 'addFraudAccount', label: 'Add Fraud Account', path: 'addFraudAccount', component: AdminComponent},
+    {code: 'updateFraudAccount', label: 'Update Fraud Account', path: 'updateFraudAccount', component: AdminComponent}
   ]}
 ];
 
