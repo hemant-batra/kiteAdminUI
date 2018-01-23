@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       'identifier': new FormGroup({
         'idType': new FormControl('PHONE'),
-        'idValue': new FormControl('7011932844', [Validators.required, Validators.pattern(new RegExp(/^[0-9]{10,10}$/))]),
+        'idValue': new FormControl('9873009342', [Validators.required, Validators.pattern(new RegExp(/^[0-9]{10,10}$/))]),
       }),
-      'password': new FormControl('Kite@1357#', Validators.required)
+      'password': new FormControl('Admpass1#', Validators.required)
     });
   }
   // RegEx for password new RegExp(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/)
