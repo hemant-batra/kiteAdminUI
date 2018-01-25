@@ -56,7 +56,7 @@ export const paths = [
 ];
 
 // TODO remove undefined role code once it is available in the login API response
-// TODO return user name in the login API response
+// TODO return user's full name in the login API response
 /*
   this constant defines the menu items that have to be shown to different user categories
  */

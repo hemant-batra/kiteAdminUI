@@ -1,9 +1,9 @@
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { Injectable, Injector } from '@angular/core';
-import { SessionService } from '../services/common/session.service';
-import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {Injectable, Injector} from '@angular/core';
+import {SessionService} from '../services/common/session.service';
+import {Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {

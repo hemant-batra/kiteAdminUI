@@ -1,9 +1,10 @@
-import {paths, roles} from '../../constants/pages';
+import {roles} from '../../constants/pages';
 import {isUndefined} from 'util';
 
 export class SessionService {
 
   public activatedMenu: HTMLDivElement = null;
+  private userName: string = null;
   private sessionId: string = null;
   private validNavigation = false;
   private userRole: string = null;
@@ -11,6 +12,14 @@ export class SessionService {
 
   isActive() {
     return this.sessionId != null;
+  }
+
+  setUserName(userName: string) {
+    this.userName = userName;
+  }
+
+  getUserName() {
+    return this.userName;
   }
 
   setUserRole(userRole: string) {
@@ -26,17 +35,14 @@ export class SessionService {
   }
 
   allowNavigation() {
-    // console.log('session.allowNavigation()');
     this.validNavigation = true;
   }
 
   disallowNavigation() {
-    // console.log('session.disallowNavigation()');
     this.validNavigation = false;
   }
 
   isNavigationAllowed() {
-    // console.log('session.isNavigationAllowed() ' + this.validNavigation);
     return this.validNavigation;
   }
 

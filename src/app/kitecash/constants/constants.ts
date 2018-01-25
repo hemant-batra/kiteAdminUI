@@ -3,8 +3,10 @@ import {environment} from '../../../environments/environment';
 export const Constants = {
 
   Messages: {
-    USERNAME_VALIDATION_MESSAGE: 'Enter 10 digit mobile number',
-    PASSWORD_VALIDATION_MESSAGE: 'Password is a required field',
+    USERNAME_REQUIRED_MESSAGE: 'Please enter username',
+    USERNAME_INVALID_PATTERN_MESSAGE: 'Username should be a valid email ID',
+    PASSWORD_REQUIRED_MESSAGE: 'Please enter password',
+    PASSWORD_INVALID_PATTERN_MESSAGE: 'Password is not as per the policy',
     INTERNAL_SERVER_ERROR: 'Internal server error. Please contact system administrator',
     LOGOUT_MESSAGE: 'You have successfully logged out from the application',
     NO_MENU_FOUND: 'No menu found for this user',
@@ -26,8 +28,8 @@ export const Constants = {
   },
 
   TextLabels: {
-    USERNAME: 'Username',
-    PASSWORD: 'Password',
+    ENTER_USERNAME: 'Enter Username',
+    ENTER_PASSWORD_FOR: 'Enter password for',
     VERSION: 'v1.0.1',
     COPYRIGHT: 'Copyright © 2017 Kite',
     KITE_TAB: 'Kite Tab',
@@ -45,8 +47,10 @@ export const Constants = {
   },
 
   ButtonLabels: {
+    NEXT: 'Next',
     LOGIN: 'Log In',
     LOGOUT: 'Log Out',
+    FORGOT_PASSWORD: 'Forgot Password',
     CHANGE_PASSWORD: 'Change Password',
     SEND: 'Send',
     RESET: 'Reset',

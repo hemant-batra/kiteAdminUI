@@ -5,7 +5,6 @@ import {Constants} from '../constants/constants';
 import {paths, roles} from '../constants/pages';
 import {HttpClient} from '@angular/common/http';
 import {SessionService} from './common/session.service';
-import {isUndefined} from 'util';
 
 @Injectable()
 export class AuthenticationService {

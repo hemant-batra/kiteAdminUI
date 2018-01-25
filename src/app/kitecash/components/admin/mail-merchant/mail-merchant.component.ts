@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Constants} from '../../../constants/constants';
 import {TitleService} from '../../../services/common/title.service';
 

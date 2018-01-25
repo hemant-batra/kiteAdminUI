@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {TitleService} from '../../../services/common/title.service';
 import {Constants} from '../../../constants/constants';
-import {UtilityService} from '../../../services/common/utility.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HttpService} from '../../../services/common/http.service';
+import {ValidationService} from "../../../services/common/validation.service";
 
 @Component({
   selector: 'app-change-password',
@@ -16,7 +17,8 @@ export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
 
   constructor(private title: TitleService,
-              public util: UtilityService) { }
+              private httpService: HttpService,
+              public validationService: ValidationService) { }
 
   ngOnInit() {
     this.title.init('CHANGE_PASSWORD');
@@ -36,7 +38,7 @@ export class ChangePasswordComponent implements OnInit {
         'newPassword': this.changePasswordForm.get('newPassword')
       });
       this.title.showSpinner();
-      this.util.post(Constants.URL.CHANGE_PASSWORD, form).subscribe(
+      this.httpService.post(Constants.URL.CHANGE_PASSWORD, form).subscribe(
         response => { this.title.setSuccess(Constants.Messages.PASSWORD_CHANGE_SUCCESSFUL), this.changePasswordForm.reset(); },
         error => { this.title.setError(error), this.changePasswordForm.reset(); }
       );

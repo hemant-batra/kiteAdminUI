@@ -29,7 +29,7 @@ export class PageGuard implements CanActivate, CanActivateChild {
          3) Opeing the same page in a new window (CTRL + N)
        */
       console.log('Session is inactive');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/enter-username']);
     } else if (!this.session.isNavigationAllowed()) {
       /* navigate to the invalid access screen if the
          session is active and the user presses the back

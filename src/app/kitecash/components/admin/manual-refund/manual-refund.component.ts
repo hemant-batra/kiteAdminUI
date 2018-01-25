@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Constants} from '../../../constants/constants';
 import {TitleService} from '../../../services/common/title.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UtilityService} from '../../../services/common/utility.service';
+import {HttpService} from '../../../services/common/http.service';
 
 @Component({
   selector: 'app-manual-refund',
@@ -15,7 +15,7 @@ export class ManualRefundComponent implements OnInit {
   manualRefundForm: FormGroup;
 
   constructor (private title: TitleService,
-               public util: UtilityService) {}
+               private httpService: HttpService) {}
 
   ngOnInit() {
     this.title.init('MANUAL_REFUND');
@@ -33,7 +33,7 @@ export class ManualRefundComponent implements OnInit {
 
   onSubmit() {
     this.title.showSpinner();
-    this.util.post(Constants.URL.MANUAL_REFUND, this.manualRefundForm).subscribe(
+    this.httpService.post(Constants.URL.MANUAL_REFUND, this.manualRefundForm).subscribe(
       response => { this.title.setSuccess(response), this.manualRefundForm.reset(); },
       error => { this.title.setError(error), this.manualRefundForm.reset(); }
     );

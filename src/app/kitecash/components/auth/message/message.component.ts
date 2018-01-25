@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data} from '@angular/router';
-import {AuthenticationService} from '../../../services/authentication.service';
 import {Constants} from '../../../constants/constants';
 
 @Component({
@@ -12,8 +11,7 @@ export class MessageComponent implements OnInit {
 
   errorMessage: string;
   loginLabel = Constants.ButtonLabels.LOGIN;
-  constructor(private activatedRoute: ActivatedRoute,
-              private authenticationService: AuthenticationService) { }
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(
