@@ -14,12 +14,10 @@ export class PageGuard implements CanActivate, CanActivateChild {
                private titleService: TitleService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    // console.log('PageGuard.canActivate()');
     return this.canActivateChild(route, state);
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    // console.log('PageGuard.canActivateChild()');
     if (!this.sessionService.isActive()) {
       /* navigate to the login screen when the session
          is inactive irrespective of the page URL that

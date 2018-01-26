@@ -22,7 +22,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     /*
       intercept the HTTP request and add the authorization header to it
      */
-    // console.log('HttpRequestInterceptor set Authorizarion header');
     const authReq = httpRequest.clone({
       headers: httpRequest.headers.set('Authorization', 'session ' + sessionService.getSessionId())
     });

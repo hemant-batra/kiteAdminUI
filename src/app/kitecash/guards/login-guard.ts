@@ -11,7 +11,6 @@ export class LoginGuard implements CanActivate {
                private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    // console.log('LoginGuard.canActivate()');
     /*
       perform logout and show the session expiry page when
       back button is pressed on the admin page
