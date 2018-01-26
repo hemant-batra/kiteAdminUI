@@ -1,9 +1,9 @@
 <table class="panel-heading">
   <tr>
-    <td class="col-md-4 format" align="left">{{ this.dataService.getTextLabel('APPLICATION_NAME') }}</td>
+    <td class="col-md-4 format" align="left">{{this.dataService.getTextLabel('APPLICATION_NAME')}}</td>
     <td class="col-md-5">&nbsp;</td>
-    <th class="col-md-1" *ngIf="sessionService.isActive(); else singleCell" (click)="changePassword()">{{ this.dataService.getButtonLabel('CHANGE_PASSWORD') }}</th>
-    <th class="col-md-1" *ngIf="sessionService.isActive(); else singleCell" (click)="logout()">{{ this.dataService.getButtonLabel('LOGOUT') }}</th>
+    <th class="col-md-1" *ngIf="sessionService.isActive(); else singleCell" (click)="changePassword()">{{this.dataService.getButtonLabel('CHANGE_PASSWORD')}}</th>
+    <th class="col-md-1" *ngIf="sessionService.isActive(); else singleCell" (click)="logout()">{{this.dataService.getButtonLabel('LOGOUT')}}</th>
     <td class="col-md-1"><img class="img-responsive" [src]="this.dataService.getImageSrc('kiteLogoBig')" [alt]="this.dataService.getImageAltText('kiteLogoBig')"></td>
   </tr>
 </table>
