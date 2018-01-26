@@ -39,8 +39,8 @@ import {ForgotPasswordComponent} from './kitecash/components/auth/forgot-passwor
 import {LoginComponent} from './kitecash/components/auth/login/login.component';
 
 const appRoutes = [
-  { path: '', canActivate: [LoginGuard], component: LoginComponent},
-  { path: 'forgotPassword', canActivate: [LoginGuard], component: ForgotPasswordComponent },
+  { path: '', canActivate: [LoginGuard], component: LoginComponent },
+  { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'logout', component: MessageComponent, data: {message: Constants.Messages.LOGOUT_MESSAGE} },
   { path: 'expired', component: MessageComponent, data: {message: Constants.Messages.EXPIRY_MESSAGE} },
   { path: 'invalid', component: MessageComponent, data: {message: Constants.Messages.BACK_BUTTON_MESSAGE} },

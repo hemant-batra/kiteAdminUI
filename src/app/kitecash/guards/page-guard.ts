@@ -24,7 +24,7 @@ export class PageGuard implements CanActivate, CanActivateChild {
          the user is trying to open. This includes:
          1) Opening a valid or invalid URL in the URL bar
          2) Pressing the refresh button
-         3) Opeing the same page in a new window (CTRL + N)
+         3) Opening the same page in a new window (CTRL + N)
        */
       console.log('Session is inactive');
       this.router.navigate(['/enter-username']);
