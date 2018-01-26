@@ -44,6 +44,7 @@ const appRoutes = [
   { path: 'logout', component: MessageComponent, data: {message: Constants.Messages.LOGOUT_MESSAGE} },
   { path: 'expired', component: MessageComponent, data: {message: Constants.Messages.EXPIRY_MESSAGE} },
   { path: 'invalid', component: MessageComponent, data: {message: Constants.Messages.BACK_BUTTON_MESSAGE} },
+  { path: 'myProfile', canActivate: [PageGuard], component: ChangePasswordComponent },
   { path: 'changePassword', canActivate: [PageGuard], component: ChangePasswordComponent },
   { path: 'admin', canActivateChild: [PageGuard], children: paths },
   { path: '**', redirectTo: '/' }

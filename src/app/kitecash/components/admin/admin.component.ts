@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Constants} from '../../constants/constants';
+import {DataService} from '../../services/common/data.service';
 
 @Component({
   selector: 'app-admin',
@@ -7,5 +7,7 @@ import {Constants} from '../../constants/constants';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-  message = Constants.PageTitles.WELCOME_MESSAGE;
+
+ constructor(public dataService: DataService) {}
+
 }

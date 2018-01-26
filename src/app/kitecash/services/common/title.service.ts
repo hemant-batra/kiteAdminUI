@@ -1,6 +1,7 @@
-import {EventEmitter} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Constants} from '../../constants/constants';
 
+@Injectable()
 export class TitleService {
 
   private status: number;

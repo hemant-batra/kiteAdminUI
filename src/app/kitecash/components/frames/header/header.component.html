@@ -1,11 +1,61 @@
-<table class="panel-heading">
+<table class="panel-heading header">
   <tr>
-    <td class="col-md-4 format" align="left">{{this.dataService.getTextLabel('APPLICATION_NAME')}}</td>
+    <td class="col-md-4 format" align="left">{{dataService.getTextLabel('APPLICATION_NAME')}}</td>
     <td class="col-md-4">&nbsp;</td>
-    <th class="col-md-1" *ngIf="sessionService.isActive(); else singleCell" (click)="navigate('/myProfile')">{{this.dataService.getButtonLabel('MY_PROFILE')}}</th>
-    <th class="col-md-1" *ngIf="sessionService.isActive(); else singleCell" (click)="navigate('/changePassword')">{{this.dataService.getButtonLabel('CHANGE_PASSWORD')}}</th>
-    <th class="col-md-1" *ngIf="sessionService.isActive(); else singleCell" (click)="logout()">{{this.dataService.getButtonLabel('LOGOUT')}}</th>
-    <td class="col-md-1"><img class="img-responsive" [src]="this.dataService.getImageSrc('kiteLogoBig')" [alt]="this.dataService.getImageAltText('kiteLogoBig')"></td>
+    <td *ngIf="sessionService.isActive(); else singleCell"
+        align="center"
+        class="col-md-1 link"
+        [title]="dataService.getImageAltText('myProfile')"
+        (mouseover)="invertImage('myProfile');"
+        (mouseout)="restoreImage('myProfile');"
+        (click)="navigate('\myProfile')">
+            <img
+              height="32px"
+              width="32px"
+              class="img-responsive"
+              [title]="dataService.getImageAltText('myProfile')"
+              [src]="dataService.getImageSrc('myProfile')"
+              [alt]="dataService.getImageAltText('myProfile')"
+              (click)="navigate('\myProfile')"
+              #myProfile>
+    </td>
+    <td *ngIf="sessionService.isActive(); else singleCell"
+        align="center"
+        class="col-md-1 link"
+        [title]="dataService.getImageAltText('changePassword')"
+        (mouseover)="invertImage('changePassword');"
+        (mouseout)="restoreImage('changePassword');"
+        (click)="navigate('\changePassword')">
+            <img
+              height="32px"
+              width="32px"
+              class="img-responsive"
+              [title]="dataService.getImageAltText('changePassword')"
+              [src]="dataService.getImageSrc('changePassword')"
+              [alt]="dataService.getImageAltText('changePassword')"
+              (click)="navigate('\changePassword')"
+              #changePassword>
+    </td>
+    <td *ngIf="sessionService.isActive(); else singleCell"
+        align="center"
+        class="col-md-1 link"
+        [title]="dataService.getImageAltText('logout')"
+        (mouseover)="invertImage('logout');"
+        (mouseout)="restoreImage('logout');"
+        (click)="logOut()">
+              <img
+                height="32px"
+                width="32px"
+                class="img-responsive"
+                [title]="dataService.getImageAltText('logout')"
+                [src]="dataService.getImageSrc('logout')"
+                [alt]="dataService.getImageAltText('logout')"
+                (click)="logOut()"
+                #logout>
+    </td>
+    <td align="center" class="col-md-1">
+      <img class="img-responsive" [src]="dataService.getImageSrc('kiteLogoBig')" [alt]="dataService.getImageAltText('kiteLogoBig')">
+    </td>
   </tr>
 </table>
 <ng-template #singleCell><td class="col-md-1"></td></ng-template>

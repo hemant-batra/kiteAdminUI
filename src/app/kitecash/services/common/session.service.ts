@@ -4,7 +4,6 @@ import {isUndefined} from 'util';
 export class SessionService {
 
   private activatedMenu: HTMLDivElement = null;
-  private userName: string = null;
   private sessionId: string = null;
   private validNavigation = false;
   private userRole: string = null;
@@ -16,14 +15,6 @@ export class SessionService {
 
   setActivatedMenu(activatedMenu: HTMLDivElement) {
     this.activatedMenu = activatedMenu;
-  }
-
-  setUserName(userName: string) {
-    this.userName = userName;
-  }
-
-  getUserName() {
-    return this.userName;
   }
 
   isActive() {

@@ -6,6 +6,36 @@ export class DataService {
 
   c = Constants;
 
+  private userName: string = null;
+  private fullName: string = null;
+  private mobileNumber: string = null;
+
+  public setUserName(userName: string) {
+    this.userName = userName;
+  }
+
+  public getUserName() {
+    return this.userName;
+  }
+
+  public setFullName(fullName: string) {
+    this.fullName = fullName;
+  }
+
+  public getFullName() {
+    // return this.fullName;
+    return 'Hemant Batra';
+  }
+
+  public setMobileNumber(mobileNumber: string) {
+    // this.mobileNumber = mobileNumber;
+    return '+91 9717763389';
+  }
+
+  public getMobileNumber() {
+    return this.mobileNumber;
+  }
+
   public getMessage(messageKey: string) {
     return this.c.Messages[messageKey];
   }

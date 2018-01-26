@@ -1,4 +1,11 @@
 <table align="left"><tr>
   <td style="width: 10%">&nbsp;</td>
-  <td style="width: 90%"><h3>{{message}}</h3></td>
+  <td style="width: 90%"><h3>
+    {{dataService.getMessageWithParams('WELCOME_MESSAGE',
+    [{
+      paramName: 'fullName',
+      paramValue: dataService.getFullName()
+    }]
+    )}}
+  </h3></td>
 </tr></table>

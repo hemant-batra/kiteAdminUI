@@ -8,6 +8,7 @@ export const Constants = {
     PASSWORD_REQUIRED_MESSAGE: 'Please enter password',
     PASSWORD_INVALID_PATTERN_MESSAGE: 'Password is not as per the policy',
     INTERNAL_SERVER_ERROR: 'Internal server error. Please contact system administrator',
+    WELCOME_MESSAGE: 'Welcome {fullName}',
     LOGOUT_MESSAGE: 'You have successfully logged out from the application',
     NO_MENU_FOUND: 'No menu found for this user',
     NO_INTERNET: 'Please check your internet connection',
@@ -68,7 +69,6 @@ export const Constants = {
 
   PageTitles: {
     NULL: '',
-    WELCOME_MESSAGE: 'Welcome to Kite Tab!',
     MANUAL_REFUND: 'Manual Refund',
     MAIL_MERCHANT: 'Say Welcome to Merchant!',
     CHANGE_PASSWORD: 'Change Password'
@@ -91,7 +91,14 @@ export const Constants = {
     kiteLogoBig: {src: '/assets/images/KiteLogoBig.png', altText: 'Big Kite Logo'},
     ripple: {src: '/assets/images/Ripple.gif', altText: 'Loading...'},
     preloader_gif: {src: '/assets/images/preloader.gif', altText: 'Loading...'},
-    preloader: {src: '/assets/images/preloader.svg', altText: 'Loading...'}
+    preloader: {src: '/assets/images/preloader.svg', altText: 'Loading...'},
+    hamburger: {src: '/assets/images/hamburger.png', altText: 'Hamburger Menu'},
+    logout: {src: '/assets/images/logout.png', altText: 'Logout'},
+    logout_inverted: {src: '/assets/images/logout_inverted.png', altText: 'Logout'},
+    changePassword: {src: '/assets/images/change_password.png', altText: 'Change Password'},
+    changePassword_inverted: {src: '/assets/images/change_password_inverted.png', altText: 'Change Password'},
+    myProfile: {src: '/assets/images/my_profile.png', altText: 'My Profile'},
+    myProfile_inverted: {src: '/assets/images/my_profile_inverted.png', altText: 'My Profile'}
   },
 
   RegEx: {

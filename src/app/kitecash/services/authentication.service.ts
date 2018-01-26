@@ -1,7 +1,6 @@
 import 'rxjs/Rx';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Constants} from '../constants/constants';
 import {paths, roles} from '../constants/pages';
 import {HttpClient} from '@angular/common/http';
 import {SessionService} from './common/session.service';
