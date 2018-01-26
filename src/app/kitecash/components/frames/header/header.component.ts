@@ -16,14 +16,14 @@ export class HeaderComponent {
               public sessionService: SessionService,
               public dataService: DataService) {}
 
-  changePassword() {
+  navigate(path: string) {
     const activatedMenu = this.sessionService.getActivatedMenu();
     if (activatedMenu !== null) {
       activatedMenu.style.setProperty('height', '0px');
       activatedMenu.style.setProperty('z-index', '-1');
     }
     this.sessionService.allowNavigation();
-    this.router.navigate(['/changePassword']);
+    this.router.navigate([path]);
   }
 
   logout() {

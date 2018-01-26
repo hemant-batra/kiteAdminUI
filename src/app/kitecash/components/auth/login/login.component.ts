@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.doLogin(formGroup.getRawValue()).subscribe(
       (response) =>  {
         this.stopSpinner();
+        this.sessionService.setUserName(this.loginForm.get('userName').value);
         this.sessionService.allowNavigation();
         this.router.navigate(['admin']);
       },
@@ -67,6 +68,7 @@ export class LoginComponent implements OnInit {
   }
 
   forgotPassword() {
+    this.sessionService.setUserName(this.loginForm.get('userName').value);
     this.router.navigate(['forgotPassword']);
   }
 }

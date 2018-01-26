@@ -51,6 +51,7 @@ export const Constants = {
     LOGOUT: 'Log Out',
     FORGOT_PASSWORD: 'Forgot Password',
     CHANGE_PASSWORD: 'Change Password',
+    MY_PROFILE: 'My Profile',
     SEND: 'Send',
     RESET: 'Reset',
     SUBMIT: 'Submit',
