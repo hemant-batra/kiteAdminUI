@@ -4,42 +4,42 @@
       <td><label for="systemAccountNumber">{{c.TextLabels.SYSTEM_ACCOUNT_NUMBER}}</label><span style="color:red;">*</span></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td>
-        <select name="systemAccountNumber" id="systemAccountNumber" class="form-control required" formControlName="systemAccountNumber">
+        <select name="systemAccountNumber" id="systemAccountNumber" class="form-control" formControlName="systemAccountNumber">
           <option value="">{{c.DropDownOptions.PLEASE_SELECT}}</option>
           <option value="1">Value 1</option>
           <option value="2">Value 2</option>
         </select>
       </td>
-      <td class="errorMessage">&nbsp;{{util.getRequiredMessage(manualRefundForm.get('systemAccountNumber'),'SYSTEM_ACCOUNT_NUMBER_REQUIRED_MESSAGE')}}</td>
+      <td class="errorMessage">&nbsp;{{validationService.getRequiredMessage(manualRefundForm.get('systemAccountNumber'),'SYSTEM_ACCOUNT_NUMBER_REQUIRED_MESSAGE')}}</td>
     </tr>
     <tr>
       <td><label for="refundType">{{c.TextLabels.REFUND_TYPE}}</label><span style="color:red;">*</span></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td>
-        <select name="refundType" id="refundType" class="form-control required" formControlName="refundType">
+        <select name="refundType" id="refundType" class="form-control" formControlName="refundType">
           <option value="">{{c.DropDownOptions.PLEASE_SELECT}}</option>
           <option *ngFor="let option of c.DropDownOptions.REFUND_TYPE" value="{{option.value}}">{{option.label}}</option>
         </select>
       </td>
-      <td class="errorMessage">&nbsp;{{util.getRequiredMessage(manualRefundForm.get('refundType'),'REFUND_TYPE_REQUIRED_MESSAGE')}}</td>
+      <td class="errorMessage">&nbsp;{{validationService.getRequiredMessage(manualRefundForm.get('refundType'),'REFUND_TYPE_REQUIRED_MESSAGE')}}</td>
     </tr>
     <tr>
       <td><label for="mobileNumber">{{c.TextLabels.MOBILE_NUMBER}}</label><span style="color:red;">*</span></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <td><input type="text" class="form-control required" name="mobileNumber" id="mobileNumber" formControlName="mobileNumber" maxlength="10"></td>
-      <td class="errorMessage">&nbsp;{{util.getMobileNumberValidationMessage(manualRefundForm.get('mobileNumber'))}}</td>
+      <td><input type="text" class="form-control" name="mobileNumber" id="mobileNumber" formControlName="mobileNumber" maxlength="10"></td>
+      <td class="errorMessage">&nbsp;{{validationService.getMobileNumberValidationMessage(manualRefundForm.get('mobileNumber'))}}</td>
     </tr>
     <tr>
       <td><label for="transactionId">{{c.TextLabels.TRANSACTION_ID}}</label><span style="color:red;">*</span></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <td><input type="text" class="form-control required" name="transactionId" id="transactionId" formControlName="transactionId"></td>
-      <td class="errorMessage">&nbsp;{{util.getRequiredMessage(manualRefundForm.get('transactionId'),'TRANSACTION_ID_REQUIRED_MESSAGE')}}</td>
+      <td><input type="text" class="form-control" name="transactionId" id="transactionId" formControlName="transactionId"></td>
+      <td class="errorMessage">&nbsp;{{validationService.getRequiredMessage(manualRefundForm.get('transactionId'),'TRANSACTION_ID_REQUIRED_MESSAGE')}}</td>
     </tr>
     <tr>
       <td><label for="amount">{{c.TextLabels.AMOUNT}}</label><span style="color:red;">*</span></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <td><input type="text" class="form-control required" name="amount" id="amount" formControlName="amount"></td>
-      <td class="errorMessage">&nbsp;{{util.getAmountValidationMessage(manualRefundForm.get('amount'))}}</td>
+      <td><input type="text" class="form-control" name="amount" id="amount" formControlName="amount"></td>
+      <td class="errorMessage">&nbsp;{{validationService.getAmountValidationMessage(manualRefundForm.get('amount'))}}</td>
     </tr>
     <tr>
       <td><label for="remarks">{{c.TextLabels.REMARKS}}</label></td>

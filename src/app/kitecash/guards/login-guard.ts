@@ -7,7 +7,7 @@ import {SessionService} from '../services/common/session.service';
 export class LoginGuard implements CanActivate {
 
   constructor (private authenticationService: AuthenticationService,
-               private session: SessionService,
+               private sessionService: SessionService,
                private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -16,7 +16,7 @@ export class LoginGuard implements CanActivate {
       perform logout and show the session expiry page when
       back button is pressed on the admin page
      */
-    if (this.session.isActive()) {
+    if (this.sessionService.isActive()) {
       this.authenticationService.doLogout();
       this.router.navigate(['/invalid']);
     }

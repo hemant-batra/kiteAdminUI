@@ -5,7 +5,7 @@ export class TitleService {
 
   private status: number;
   private statusText: string = null;
-  private title: string = null;
+  private titleService: string = null;
 
   private _statusEventEmitter = new EventEmitter();
   private _statusTextEventEmitter = new EventEmitter();
@@ -28,8 +28,8 @@ export class TitleService {
   }
 
   private setTitle(titleCode: string) {
-    this.title = Constants.PageTitles[titleCode];
-    this._titleEventEmitter.emit(this.title);
+    this.titleService = Constants.PageTitles[titleCode];
+    this._titleEventEmitter.emit(this.titleService);
   }
 
   showSpinner() {

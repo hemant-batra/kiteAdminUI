@@ -29,10 +29,10 @@ export const Constants = {
 
   TextLabels: {
     ENTER_USERNAME: 'Enter Username',
-    ENTER_PASSWORD_FOR: 'Enter password for',
+    ENTER_PASSWORD: 'Enter Password',
     VERSION: 'v1.0.1',
     COPYRIGHT: 'Copyright © 2017 Kite',
-    KITE_TAB: 'Kite Tab',
+    APPLICATION_NAME: 'Kite Tab',
     MERCHANT_NAME: 'Merchant Name',
     MERCHANT_EMAIL_ID: 'Merchant Email ID',
     SYSTEM_ACCOUNT_NUMBER: 'System Account Number',
@@ -47,7 +47,6 @@ export const Constants = {
   },
 
   ButtonLabels: {
-    NEXT: 'Next',
     LOGIN: 'Log In',
     LOGOUT: 'Log Out',
     FORGOT_PASSWORD: 'Forgot Password',
@@ -92,5 +91,10 @@ export const Constants = {
     ripple: {src: '/assets/images/Ripple.gif', altText: 'Loading...'},
     preloader_gif: {src: '/assets/images/preloader.gif', altText: 'Loading...'},
     preloader: {src: '/assets/images/preloader.svg', altText: 'Loading...'}
+  },
+
+  RegEx: {
+    EMAIL_ID: new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/),
+    PASSWORD: new RegExp(/^((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,160})$/)
   }
 };

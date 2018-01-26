@@ -12,24 +12,24 @@ export class HttpRequestInterceptor implements HttpInterceptor {
                private router: Router) {}
 
   intercept (httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let session: SessionService;
+    let sessionService: SessionService;
     try {
-      session = <SessionService>this.injector.get(SessionService);
+      sessionService = <SessionService>this.injector.get(SessionService);
     } catch (err) {
       console.log('Error in acquiring session ID inside HTTP interceptor: ' + err.message);
-      return this.handler(httpRequest, next, session);
+      return this.handler(httpRequest, next, sessionService);
     }
     /*
       intercept the HTTP request and add the authorization header to it
      */
     // console.log('HttpRequestInterceptor set Authorizarion header');
     const authReq = httpRequest.clone({
-      headers: httpRequest.headers.set('Authorization', 'session ' + session.getSessionId())
+      headers: httpRequest.headers.set('Authorization', 'session ' + sessionService.getSessionId())
     });
-    return this.handler(authReq, next, session);
+    return this.handler(authReq, next, sessionService);
   }
 
-  private handler(httpRequest: HttpRequest<any>, next: HttpHandler, session: SessionService): Observable<HttpEvent<any>> {
+  private handler(httpRequest: HttpRequest<any>, next: HttpHandler, sessionService: SessionService): Observable<HttpEvent<any>> {
     return next.handle(httpRequest).catch(
       err => {
         /* show the session expiry page when the intercepted
@@ -40,8 +40,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         if (err['status'] === 440) {
           if (httpRequest.url !== environment.serverUrl + '/logout') {
             console.log('HttpRequestInterceptor session is expired in response');
-            session.setSessionId(null);
-            session.setMenus([]);
+            sessionService.setSessionId(null);
+            sessionService.setMenus([]);
             this.router.navigate(['/expired']);
           }
         }

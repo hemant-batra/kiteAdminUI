@@ -9,11 +9,11 @@ import {Router} from '@angular/router';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  constructor(private session: SessionService,
+  constructor(private sessionService: SessionService,
               private router: Router) {}
 
   ngOnInit() {
-    if (this.session.getUserName() === null) {
+    if (this.sessionService.getUserName() === null) {
       this.router.navigate(['']);
     }
   }

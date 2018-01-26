@@ -3,6 +3,7 @@ import {Constants} from '../../../constants/constants';
 import {TitleService} from '../../../services/common/title.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpService} from '../../../services/common/http.service';
+import {ValidationService} from "../../../services/common/validation.service";
 
 @Component({
   selector: 'app-manual-refund',
@@ -14,11 +15,12 @@ export class ManualRefundComponent implements OnInit {
   c = Constants;
   manualRefundForm: FormGroup;
 
-  constructor (private title: TitleService,
-               private httpService: HttpService) {}
+  constructor (private titleService: TitleService,
+               private httpService: HttpService,
+               public validationService: ValidationService) {}
 
   ngOnInit() {
-    this.title.init('MANUAL_REFUND');
+    this.titleService.init('MANUAL_REFUND');
     this.manualRefundForm = new FormGroup({
       'mobileNumber': new FormControl(null, [Validators.required, Validators.pattern(new RegExp(/^[0-9]{10,10}$/))]),
       'systemAccountNumber': new FormControl(null, [Validators.required]),
@@ -32,10 +34,10 @@ export class ManualRefundComponent implements OnInit {
   }
 
   onSubmit() {
-    this.title.showSpinner();
+    this.titleService.showSpinner();
     this.httpService.post(Constants.URL.MANUAL_REFUND, this.manualRefundForm).subscribe(
-      response => { this.title.setSuccess(response), this.manualRefundForm.reset(); },
-      error => { this.title.setError(error), this.manualRefundForm.reset(); }
+      response => { this.titleService.setSuccess(response), this.manualRefundForm.reset(); },
+      error => { this.titleService.setError(error), this.manualRefundForm.reset(); }
     );
   }
 

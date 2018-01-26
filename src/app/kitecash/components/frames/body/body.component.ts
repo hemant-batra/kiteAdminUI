@@ -15,18 +15,18 @@ import {SessionService} from '../../../services/common/session.service';
 })
 export class BodyComponent {
 
-  constructor(public session: SessionService) {}
+  constructor(public sessionService: SessionService) {}
 
   menuClicked(menuCode: string, event: MouseEvent) {
-    this.session.allowNavigation();
-    if (this.session.activatedMenu !== null) {
-      this.session.activatedMenu.style.setProperty('height', '0px');
-      this.session.activatedMenu.style.setProperty('z-index', '-1');
+    this.sessionService.allowNavigation();
+    if (this.sessionService.getActivatedMenu() !== null) {
+      this.sessionService.getActivatedMenu().style.setProperty('height', '0px');
+      this.sessionService.getActivatedMenu().style.setProperty('z-index', '-1');
     }
-    this.session.activatedMenu = <HTMLDivElement>(event['target']['nextElementSibling']);
-    this.session.activatedMenu.style.setProperty('height', this.session.activatedMenu.children[0].clientHeight + 'px');
+    this.sessionService.setActivatedMenu(<HTMLDivElement>(event['target']['nextElementSibling']));
+    this.sessionService.getActivatedMenu().style.setProperty('height', this.sessionService.getActivatedMenu().children[0].clientHeight + 'px');
     setTimeout(() => {
-      this.session.activatedMenu.style.setProperty('z-index', '0');
+      this.sessionService.getActivatedMenu().style.setProperty('z-index', '0');
     }, 500);
   }
 }

@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {AuthenticationService} from '../../../services/authentication.service';
-import {Constants} from '../../../constants/constants';
 import {Router} from '@angular/router';
 import {SessionService} from '../../../services/common/session.service';
+import {DataService} from '../../../services/common/data.service';
 
 @Component({
   selector: 'app-header',
@@ -11,16 +11,18 @@ import {SessionService} from '../../../services/common/session.service';
 })
 export class HeaderComponent {
 
-  c = Constants;
-
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              public session: SessionService) {}
+              public sessionService: SessionService,
+              public dataService: DataService) {}
 
   changePassword() {
-    this.session.activatedMenu.style.setProperty('height', '0px');
-    this.session.activatedMenu.style.setProperty('z-index', '-1');
-    this.session.allowNavigation();
+    const activatedMenu = this.sessionService.getActivatedMenu();
+    if (activatedMenu !== null) {
+      activatedMenu.style.setProperty('height', '0px');
+      activatedMenu.style.setProperty('z-index', '-1');
+    }
+    this.sessionService.allowNavigation();
     this.router.navigate(['/changePassword']);
   }
 

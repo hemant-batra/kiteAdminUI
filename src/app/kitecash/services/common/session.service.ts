@@ -3,15 +3,19 @@ import {isUndefined} from 'util';
 
 export class SessionService {
 
-  public activatedMenu: HTMLDivElement = null;
+  private activatedMenu: HTMLDivElement = null;
   private userName: string = null;
   private sessionId: string = null;
   private validNavigation = false;
   private userRole: string = null;
   private menus: {code: string; label: string; path: string; children: {code: string; label: string; path: string}[]}[] = null;
 
-  isActive() {
-    return this.sessionId != null;
+  getActivatedMenu() {
+    return this.activatedMenu;
+  }
+
+  setActivatedMenu(activatedMenu: HTMLDivElement) {
+    this.activatedMenu = activatedMenu;
   }
 
   setUserName(userName: string) {
@@ -20,6 +24,10 @@ export class SessionService {
 
   getUserName() {
     return this.userName;
+  }
+
+  isActive() {
+    return this.sessionId != null;
   }
 
   setUserRole(userRole: string) {

@@ -3,7 +3,8 @@ import {TitleService} from '../../../services/common/title.service';
 import {Constants} from '../../../constants/constants';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpService} from '../../../services/common/http.service';
-import {ValidationService} from "../../../services/common/validation.service";
+import {ValidationService} from '../../../services/common/validation.service';
+import {DataService} from '../../../services/common/data.service';
 
 @Component({
   selector: 'app-change-password',
@@ -12,16 +13,15 @@ import {ValidationService} from "../../../services/common/validation.service";
 })
 export class ChangePasswordComponent implements OnInit {
 
-  c = Constants;
-
   changePasswordForm: FormGroup;
 
-  constructor(private title: TitleService,
+  constructor(private titleService: TitleService,
               private httpService: HttpService,
-              public validationService: ValidationService) { }
+              public validationService: ValidationService,
+              public dataService: DataService) { }
 
   ngOnInit() {
-    this.title.init('CHANGE_PASSWORD');
+    this.titleService.init('CHANGE_PASSWORD');
     this.changePasswordForm = new FormGroup({
       'oldPassword': new FormControl(null, [Validators.required]),
       'newPassword': new FormControl(null, [Validators.required]),
@@ -31,16 +31,16 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit() {
     if (this.changePasswordForm.get('newPassword').value !== this.changePasswordForm.get('confirmNewPassword').value) {
-      this.title.setError(Constants.Messages.NEW_AND_CONFIRM_NEW_PASSWORDS_MISMATCH);
+      this.titleService.setError(Constants.Messages.NEW_AND_CONFIRM_NEW_PASSWORDS_MISMATCH);
     } else {
       const form = new FormGroup({
         'oldPassword': this.changePasswordForm.get('oldPassword'),
         'newPassword': this.changePasswordForm.get('newPassword')
       });
-      this.title.showSpinner();
+      this.titleService.showSpinner();
       this.httpService.post(Constants.URL.CHANGE_PASSWORD, form).subscribe(
-        response => { this.title.setSuccess(Constants.Messages.PASSWORD_CHANGE_SUCCESSFUL), this.changePasswordForm.reset(); },
-        error => { this.title.setError(error), this.changePasswordForm.reset(); }
+        response => { this.titleService.setSuccess(Constants.Messages.PASSWORD_CHANGE_SUCCESSFUL), this.changePasswordForm.reset(); },
+        error => { this.titleService.setError(error), this.changePasswordForm.reset(); }
       );
     }
   }

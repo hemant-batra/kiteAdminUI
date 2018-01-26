@@ -1,0 +1,58 @@
+<br><br><br><br><br>
+<table width="100%">
+  <tr>
+    <td width="10%">&nbsp;</td>
+    <td width="20%">
+      <table>
+        <tr>
+          <td><img [src]="dataService.getImageSrc('kiteGreen')" [alt]="dataService.getImageAltText('kiteGreen')" class="img-responsive shake-slow"></td>
+          <td><img [src]="dataService.getImageSrc('kiteOrange')" [alt]="dataService.getImageAltText('kiteOrange')" class="img-responsive shake-slow"></td>
+          <td><img [src]="dataService.getImageSrc('kiteBlue')" [alt]="dataService.getImageAltText('kiteBlue')" class="img-responsive shake-slow"></td>
+        </tr>
+        <tr>
+          <td><img [src]="dataService.getImageSrc('kiteOrange')" [alt]="dataService.getImageAltText('kiteOrange')" class="img-responsive shake-slow"></td>
+          <td><img [src]="dataService.getImageSrc('kiteYellow')" [alt]="dataService.getImageAltText('kiteYellow')" class="img-responsive shake-slow"></td>
+          <td><img [src]="dataService.getImageSrc('kiteRed')" [alt]="dataService.getImageAltText('kiteRed')" class="img-responsive shake-slow"></td>
+        </tr>
+      </table>
+    </td>
+    <td width="10%">&nbsp;</td>
+    <td width="50%">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit();">
+        <table width="100%">
+          <tr>
+            <td width="20%"></td>
+            <td width="40%" class="errorMessage">&nbsp;{{loginForm.getError('serverError')}}&nbsp;</td>
+            <td width="40%"></td>
+          </tr>
+          <tr>
+            <td width="20%"></td>
+            <td width="40%" style="text-align: right;"><input type="email" placeholder="{{dataService.getTextLabel('ENTER_USERNAME')}}" id="userName" class="form-control" formControlName="userName"></td>
+            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validationService.getUsernameValidationMessage(loginForm.get('userName'))}}</td>
+          </tr>
+          <tr>
+            <td width="20%"></td>
+            <td width="40%" style="text-align: right;"><input type="password" placeholder="{{dataService.getTextLabel('ENTER_PASSWORD')}}" id="password" class="form-control" formControlName="password"></td>
+            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validationService.getPasswordValidationMessage(loginForm.get('password'))}}</td>
+          </tr>
+          <tr>
+            <td width="20%"></td>
+            <td width="40%" style="text-align: center;">
+              <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">
+                <span class="glyphicon glyphicon-log-in" #glyphicon></span>
+                &nbsp;
+                <span [innerHtml]="dataService.getButtonLabel('LOGIN')"></span></button>
+              &nbsp;
+              <button class="btn btn-default" type="button" [innerHtml]="dataService.getButtonLabel('FORGOT_PASSWORD')" (click)="forgotPassword();" [disabled]="!loginForm.get('userName').valid">
+              </button>
+            </td>
+            <td width="40%" class="col-md-4"></td>
+          </tr>
+          <tr><td colspan="3"></td></tr>
+          <tr><td colspan="3"></td></tr>
+        </table>
+      </form>
+    </td>
+    <td width="10%">&nbsp;</td>
+  </tr>
+</table>

@@ -11,16 +11,16 @@ export class MailMerchantComponent implements OnInit {
 
   c = Constants;
 
-  constructor (private title: TitleService) {}
+  constructor (private titleService: TitleService) {}
 
   ngOnInit() {
-    this.title.init('MAIL_MERCHANT');
+    this.titleService.init('MAIL_MERCHANT');
   }
 
   onSubmit() {
-    this.title.showSpinner();
+    this.titleService.showSpinner();
     setTimeout(() => {
-      this.title.setSuccess('Transaction has been successfully processed');
+      this.titleService.setSuccess('Transaction has been successfully processed');
     }, 2000);
   }
 }

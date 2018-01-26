@@ -9,7 +9,7 @@ import {Constants} from '../constants/constants';
 export class PageGuard implements CanActivate, CanActivateChild {
 
   constructor (private router: Router,
-               private session: SessionService,
+               private sessionService: SessionService,
                private authenticationService: AuthenticationService,
                private titleService: TitleService) {}
 
@@ -20,7 +20,7 @@ export class PageGuard implements CanActivate, CanActivateChild {
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // console.log('PageGuard.canActivateChild()');
-    if (!this.session.isActive()) {
+    if (!this.sessionService.isActive()) {
       /* navigate to the login screen when the session
          is inactive irrespective of the page URL that
          the user is trying to open. This includes:
@@ -30,7 +30,7 @@ export class PageGuard implements CanActivate, CanActivateChild {
        */
       console.log('Session is inactive');
       this.router.navigate(['/enter-username']);
-    } else if (!this.session.isNavigationAllowed()) {
+    } else if (!this.sessionService.isNavigationAllowed()) {
       /* navigate to the invalid access screen if the
          session is active and the user presses the back
          button
@@ -39,7 +39,7 @@ export class PageGuard implements CanActivate, CanActivateChild {
       this.authenticationService.doLogout();
       this.router.navigate(['/invalid']);
     } else {
-      this.session.disallowNavigation();
+      this.sessionService.disallowNavigation();
       this.titleService.init(Constants.PageTitles.NULL);
     }
     return true;

@@ -5,57 +5,58 @@ import {Constants} from '../constants/constants';
 import {paths, roles} from '../constants/pages';
 import {HttpClient} from '@angular/common/http';
 import {SessionService} from './common/session.service';
+import {DataService} from './common/data.service';
+import {isUndefined} from 'util';
 
 @Injectable()
 export class AuthenticationService {
 
   constructor(private httpClient: HttpClient,
-              private session: SessionService) {}
+              private sessionService: SessionService,
+              private dataService: DataService) {}
 
   // TODO handle preflight OPTIONS request at the server side
   doLogin(jsObj) {
-    // console.log('authenticationService.login()');
-    return this.httpClient.post(Constants.URL.LOGIN, jsObj)
+    return this.httpClient.post(this.dataService.getURL('LOGIN'), jsObj)
       .map(
         (response) => {
           const additionalInfo = response['additionalInfo'];
           const userRole = additionalInfo.userRole;
-          this.session.setUserRole(userRole);
-          this.session.setMenus(roles[userRole].map(
+          this.sessionService.setUserRole(userRole);
+          this.sessionService.setMenus(roles[userRole].map(
             role => paths.find(
               path => path.code === role.code
             )
           ));
-          if (this.session.getMenus().length === 0) {
-            return Constants.Messages.NO_MENU_FOUND;
+          if (this.sessionService.getMenus().length === 0) {
+            return this.dataService.getMessage('NO_MENU_FOUND');
           }
-          this.session.setSessionId(additionalInfo.sessionId);
+          this.sessionService.setSessionId(additionalInfo.sessionId);
           console.log('----- Login Successful -----');
-          console.log('Session ID = ' + this.session.getSessionId());
+          console.log('Session ID = ' + this.sessionService.getSessionId());
           return null;
         }
       )
       .catch(
         (error) => {
           try {
-            if (error['error'].errorList == null) {
-              return Observable.throw(Constants.Messages.NO_INTERNET);
+            if (isUndefined(error['error'].errorList)) {
+              return Observable.throw(this.dataService.getMessage('NO_INTERNET'));
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
             console.log('Login Error ' + err.message);
-            return Observable.throw(Constants.Messages.INTERNAL_SERVER_ERROR);
+            return Observable.throw(this.dataService.getMessage('INTERNAL_SERVER_ERROR'));
           }
         }
       );
   }
 
   doLogout() {
-    // console.log('authenticationService.doLogout()');
-    if (this.session.isActive()) {
-      this.httpClient.put(Constants.URL.LOGOUT, null).subscribe();
-      this.session.setSessionId(null);
-      this.session.setMenus([]);
+    if (this.sessionService.isActive()) {
+      this.httpClient.put(this.dataService.getURL('LOGOUT'), null).subscribe();
+      this.sessionService.setSessionId(null);
+      this.sessionService.setMenus([]);
       console.log('----- Logout Successful -----');
     }
   }
