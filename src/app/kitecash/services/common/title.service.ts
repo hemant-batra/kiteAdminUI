@@ -1,8 +1,10 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Constants} from '../../constants/constants';
+import {DataService} from './data.service';
 
 @Injectable()
 export class TitleService {
+
+  constructor(private dataService: DataService) {}
 
   private status: number;
   private statusText: string = null;
@@ -29,7 +31,7 @@ export class TitleService {
   }
 
   private setTitle(titleCode: string) {
-    this.titleService = Constants.PageTitles[titleCode];
+    this.titleService = this.dataService.getPageTitle(titleCode);
     this._titleEventEmitter.emit(this.titleService);
   }
 

@@ -27,12 +27,12 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td width="40%" style="text-align: right;"><input type="email" placeholder="{{dataService.getTextLabel('ENTER_USERNAME')}}" id="userName" class="form-control" formControlName="userName"></td>
+            <td width="40%" style="text-align: right;"><input type="email" placeholder="{{dataService.textLabels().ENTER_USERNAME}}" id="userName" class="form-control" formControlName="userName"></td>
             <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validationService.getUsernameValidationMessage(loginForm.get('userName'))}}</td>
           </tr>
           <tr>
             <td width="20%"></td>
-            <td width="40%" style="text-align: right;"><input type="password" placeholder="{{dataService.getTextLabel('ENTER_PASSWORD')}}" id="password" class="form-control" formControlName="password"></td>
+            <td width="40%" style="text-align: right;"><input type="password" placeholder="{{dataService.textLabels().ENTER_PASSWORD}}" id="password" class="form-control" formControlName="password"></td>
             <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validationService.getPasswordValidationMessage(loginForm.get('password'))}}</td>
           </tr>
           <tr>
@@ -41,9 +41,9 @@
               <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">
                 <span class="glyphicon glyphicon-log-in" #glyphicon></span>
                 &nbsp;
-                <span [innerHtml]="dataService.getButtonLabel('LOGIN')"></span></button>
+                <span [innerHtml]="dataService.buttonLabels().LOGIN"></span></button>
               &nbsp;
-              <button class="btn btn-default" type="button" [innerHtml]="dataService.getButtonLabel('FORGOT_PASSWORD')" (click)="forgotPassword();" [disabled]="!loginForm.get('userName').valid">
+              <button class="btn btn-default" type="button" [innerHtml]="dataService.buttonLabels().FORGOT_PASSWORD" (click)="forgotPassword();" [disabled]="!loginForm.get('userName').valid">
               </button>
             </td>
             <td width="40%" class="col-md-4"></td>

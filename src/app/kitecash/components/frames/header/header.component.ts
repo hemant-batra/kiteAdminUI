@@ -3,6 +3,7 @@ import {AuthenticationService} from '../../../services/authentication.service';
 import {Router} from '@angular/router';
 import {SessionService} from '../../../services/common/session.service';
 import {DataService} from '../../../services/common/data.service';
+import {NavigationService} from '../../../services/common/navigation.service';
 
 @Component({
   selector: 'app-header',
@@ -18,15 +19,16 @@ export class HeaderComponent {
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
               public sessionService: SessionService,
-              public dataService: DataService) {}
+              public dataService: DataService,
+              public navigationService: NavigationService) {}
 
   navigate(path: string) {
-    const activatedMenu = this.sessionService.getActivatedMenu();
+    const activatedMenu = this.navigationService.getActivatedMenu();
     if (activatedMenu !== null) {
       activatedMenu.style.setProperty('height', '0px');
       activatedMenu.style.setProperty('z-index', '-1');
     }
-    this.sessionService.allowNavigation();
+    this.navigationService.allowNavigation();
     this.router.navigate([path]);
   }
 

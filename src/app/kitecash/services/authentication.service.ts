@@ -6,12 +6,14 @@ import {HttpClient} from '@angular/common/http';
 import {SessionService} from './common/session.service';
 import {DataService} from './common/data.service';
 import {isUndefined} from 'util';
+import {NavigationService} from './common/navigation.service';
 
 @Injectable()
 export class AuthenticationService {
 
   constructor(private httpClient: HttpClient,
               private sessionService: SessionService,
+              private navigationService: NavigationService,
               private dataService: DataService) {}
 
   // TODO handle preflight OPTIONS request at the server side
@@ -22,13 +24,13 @@ export class AuthenticationService {
           const additionalInfo = response['additionalInfo'];
           const userRole = additionalInfo.userRole;
           this.dataService.setUserRole(userRole);
-          this.sessionService.setMenus(roles[userRole].map(
+          this.navigationService.setMenus(roles[userRole].map(
             role => paths.find(
               path => path.code === role.code
             )
           ));
-          if (this.sessionService.getMenus().length === 0) {
-            return this.dataService.getMessage('NO_MENU_FOUND');
+          if (this.navigationService.getMenus().length === 0) {
+            return this.dataService.messages().NO_MENU_FOUND;
           }
           this.sessionService.setSessionId(additionalInfo.sessionId);
           console.log('----- Login Successful -----');
@@ -40,12 +42,12 @@ export class AuthenticationService {
         (error) => {
           try {
             if (isUndefined(error['error'].errorList)) {
-              return Observable.throw(this.dataService.getMessage('NO_INTERNET'));
+              return Observable.throw(this.dataService.messages().NO_INTERNET);
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
             console.log('Login Error ' + err.message);
-            return Observable.throw(this.dataService.getMessage('INTERNAL_SERVER_ERROR'));
+            return Observable.throw(this.dataService.messages().INTERNAL_SERVER_ERROR);
           }
         }
       );
@@ -55,10 +57,8 @@ export class AuthenticationService {
     if (this.sessionService.isActive()) {
       this.httpClient.put(this.dataService.getURL('LOGOUT'), null).subscribe();
       this.sessionService.setSessionId(null);
-      this.sessionService.setMenus([]);
+      this.navigationService.setMenus([]);
       console.log('----- Logout Successful -----');
     }
   }
-
-
 }

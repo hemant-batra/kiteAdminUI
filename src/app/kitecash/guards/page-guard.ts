@@ -1,17 +1,20 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot} from '@angular/router';
-import {SessionService} from '../services/common/session.service';
+import {NavigationService} from '../services/common/navigation.service';
 import {AuthenticationService} from '../services/authentication.service';
 import {TitleService} from '../services/common/title.service';
-import {Constants} from '../constants/constants';
+import {SessionService} from '../services/common/session.service';
+import {DataService} from '../services/common/data.service';
 
 @Injectable()
 export class PageGuard implements CanActivate, CanActivateChild {
 
   constructor (private router: Router,
-               private sessionService: SessionService,
+               private navigationService: NavigationService,
                private authenticationService: AuthenticationService,
-               private titleService: TitleService) {}
+               private titleService: TitleService,
+               private sessionService: SessionService,
+               private dataService: DataService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     return this.canActivateChild(route, state);
@@ -28,7 +31,7 @@ export class PageGuard implements CanActivate, CanActivateChild {
        */
       console.log('Session is inactive');
       this.router.navigate(['/enter-username']);
-    } else if (!this.sessionService.isNavigationAllowed()) {
+    } else if (!this.navigationService.isNavigationAllowed()) {
       /* navigate to the invalid access screen if the
          session is active and the user presses the back
          button
@@ -37,8 +40,8 @@ export class PageGuard implements CanActivate, CanActivateChild {
       this.authenticationService.doLogout();
       this.router.navigate(['/invalid']);
     } else {
-      this.sessionService.disallowNavigation();
-      this.titleService.init(Constants.PageTitles.NULL);
+      this.navigationService.disallowNavigation();
+      this.titleService.init(this.dataService.getPageTitle('NULL'));
     }
     return true;
   }

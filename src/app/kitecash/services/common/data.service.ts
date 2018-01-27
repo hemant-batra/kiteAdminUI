@@ -45,8 +45,8 @@ export class DataService {
     return '+91 9717763389';
   }
 
-  public getMessage(messageKey: string) {
-    return this.c.Messages[messageKey];
+  public messages() {
+    return this.c.Messages;
   }
 
   public getMessageWithParams(messageKey: string, params: {paramName: string; paramValue: string}[]) {
@@ -57,24 +57,24 @@ export class DataService {
     return message;
   }
 
-  public getTextLabel(labelKey: string) {
-    return this.c.TextLabels[labelKey];
+  public textLabels() {
+    return this.c.TextLabels;
   }
 
-  public getButtonLabel(labelKey: string) {
-    return this.c.ButtonLabels[labelKey];
+  public buttonLabels() {
+    return this.c.ButtonLabels;
   }
 
-  public getDropDownOptions(optionKey: string) {
-    return this.c.DropDownOptions[optionKey];
+  public dropDownOptions() {
+    return this.c.DropDownOptions;
   }
 
-  public getPageTitle(titleKey: string) {
-    return this.c.PageTitles[titleKey];
+  public pageTitles() {
+    return this.c.PageTitles;
   }
 
-  public getURL(urlKey: string) {
-    return this.c.URL[urlKey];
+  public urls() {
+    return this.c.URL;
   }
 
   public getImageSrc(imageKey: string) {
@@ -85,7 +85,7 @@ export class DataService {
     return this.c.Images[imageKey]['altText'];
   }
 
-  public getRegEx(regExKey: string) {
-    return this.c.RegEx[regExKey];
+  public regEx() {
+    return this.c.RegEx;
   }
 }

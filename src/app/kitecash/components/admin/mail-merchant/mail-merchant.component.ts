@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Constants} from '../../../constants/constants';
 import {TitleService} from '../../../services/common/title.service';
+import {DataService} from '../../../services/common/data.service';
 
 @Component({
   selector: 'app-mail-merchant',
@@ -9,9 +9,8 @@ import {TitleService} from '../../../services/common/title.service';
 })
 export class MailMerchantComponent implements OnInit {
 
-  c = Constants;
-
-  constructor (private titleService: TitleService) {}
+  constructor (private titleService: TitleService,
+               public dataService: DataService) {}
 
   ngOnInit() {
     this.titleService.init('MAIL_MERCHANT');

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TitleService} from '../../../services/common/title.service';
 import {Subscription} from 'rxjs/Subscription';
-import {DataService} from "../../../services/common/data.service";
+import {DataService} from '../../../services/common/data.service';
 
 @Component({
   selector: 'app-title',

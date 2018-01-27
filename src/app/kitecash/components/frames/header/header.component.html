@@ -1,6 +1,6 @@
 <table class="panel-heading header">
   <tr>
-    <td class="col-md-4 format" align="left">{{dataService.getTextLabel('APPLICATION_NAME')}}</td>
+    <td class="col-md-4 format" align="left">{{dataService.textLabels().APPLICATION_NAME}}</td>
     <td class="col-md-4">&nbsp;</td>
     <td *ngIf="sessionService.isActive(); else singleCell"
         align="center"

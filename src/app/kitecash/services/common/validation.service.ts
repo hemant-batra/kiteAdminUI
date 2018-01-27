@@ -1,6 +1,5 @@
 import {FormControl} from '@angular/forms';
 import {Injectable} from '@angular/core';
-import {Constants} from '../../constants/constants';
 import {DataService} from './data.service';
 
 @Injectable()
@@ -17,10 +16,10 @@ export class ValidationService {
       return;
     }
     if (errors['required']) {
-      return this.dataService.getMessage('USERNAME_REQUIRED_MESSAGE');
+      return this.dataService.messages().USERNAME_REQUIRED_MESSAGE;
     }
     if (errors['pattern']) {
-      return this.dataService.getMessage('USERNAME_INVALID_PATTERN_MESSAGE');
+      return this.dataService.messages().USERNAME_INVALID_PATTERN_MESSAGE;
     }
   }
 
@@ -33,7 +32,7 @@ export class ValidationService {
       return;
     }
     if (errors['required']) {
-      return this.dataService.getMessage('PASSWORD_REQUIRED_MESSAGE');
+      return this.dataService.messages().PASSWORD_REQUIRED_MESSAGE;
     }
   }
 
@@ -46,7 +45,7 @@ export class ValidationService {
       return null;
     }
     if (errors['required']) {
-      return Constants.Messages[messageKey];
+      return this.dataService.getMessage(messageKey);
     }
     return null;
   }
@@ -60,10 +59,10 @@ export class ValidationService {
       return null;
     }
     if (errors['required']) {
-      return this.dataService.getMessage('MOBILE_NUMBER_REQUIRED_MESSAGE');
+      return this.dataService.messages().MOBILE_NUMBER_REQUIRED_MESSAGE;
     }
     if (errors['pattern']) {
-      return this.dataService.getMessage('MOBILE_NUMBER_PATTERN_MESSAGE');
+      return this.dataService.messages().MOBILE_NUMBER_PATTERN_MESSAGE;
     }
     return null;
   }
@@ -77,10 +76,10 @@ export class ValidationService {
       return null;
     }
     if (errors['required']) {
-      return this.dataService.getMessage('AMOUNT_REQUIRED_MESSAGE');
+      return this.dataService.messages().AMOUNT_REQUIRED_MESSAGE;
     }
     if (errors['pattern']) {
-      return this.dataService.getMessage('AMOUNT_NUMERIC_MESSAGE');
+      return this.dataService.messages().AMOUNT_NUMERIC_MESSAGE;
     }
     return null;
   }

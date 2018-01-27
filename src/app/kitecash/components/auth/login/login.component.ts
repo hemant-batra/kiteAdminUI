@@ -5,6 +5,7 @@ import {SessionService} from '../../../services/common/session.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {DataService} from '../../../services/common/data.service';
+import {NavigationService} from '../../../services/common/navigation.service';
 
 @Component({
   selector: 'app-login',
@@ -21,11 +22,12 @@ export class LoginComponent implements OnInit {
               public dataService: DataService,
               private sessionService: SessionService,
               public validationService: ValidationService,
+              private navigationService: NavigationService,
               private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      'userName': new FormControl(null, [Validators.required, Validators.pattern(this.dataService.getRegEx('EMAIL_ID'))]),
+      'userName': new FormControl(null, [Validators.required, Validators.pattern(this.dataService.regEx().EMAIL_ID)]),
       'password': new FormControl(null, Validators.required)
     });
   }
@@ -44,7 +46,7 @@ export class LoginComponent implements OnInit {
       (response) =>  {
         this.stopSpinner();
         this.dataService.setUserName(this.loginForm.get('userName').value);
-        this.sessionService.allowNavigation();
+        this.navigationService.allowNavigation();
         this.router.navigate(['admin']);
       },
       (error) => {

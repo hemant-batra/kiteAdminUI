@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Constants} from '../../../constants/constants';
+import {DataService} from '../../../services/common/data.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,5 +7,5 @@ import {Constants} from '../../../constants/constants';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  textLabels = Constants.TextLabels;
+  constructor(public dataService: DataService) {}
 }

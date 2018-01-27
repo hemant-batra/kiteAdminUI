@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {TitleService} from '../../../services/common/title.service';
-import {Constants} from '../../../constants/constants';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpService} from '../../../services/common/http.service';
 import {ValidationService} from '../../../services/common/validation.service';
@@ -18,7 +17,7 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private titleService: TitleService,
               private httpService: HttpService,
               public validationService: ValidationService,
-              public dataService: DataService) { }
+              public dataService: DataService) {}
 
   ngOnInit() {
     this.titleService.init('CHANGE_PASSWORD');
@@ -31,15 +30,15 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit() {
     if (this.changePasswordForm.get('newPassword').value !== this.changePasswordForm.get('confirmNewPassword').value) {
-      this.titleService.setError(Constants.Messages.NEW_AND_CONFIRM_NEW_PASSWORDS_MISMATCH);
+      this.titleService.setError(this.dataService.messages().NEW_AND_CONFIRM_NEW_PASSWORDS_MISMATCH);
     } else {
       const form = new FormGroup({
         'oldPassword': this.changePasswordForm.get('oldPassword'),
         'newPassword': this.changePasswordForm.get('newPassword')
       });
       this.titleService.showSpinner();
-      this.httpService.post(Constants.URL.CHANGE_PASSWORD, form).subscribe(
-        response => { this.titleService.setSuccess(Constants.Messages.PASSWORD_CHANGE_SUCCESSFUL), this.changePasswordForm.reset(); },
+      this.httpService.post(this.dataService.urls().CHANGE_PASSWORD, form).subscribe(
+        response => { this.titleService.setSuccess(this.dataService.messages().PASSWORD_CHANGE_SUCCESSFUL), this.changePasswordForm.reset(); },
         error => { this.titleService.setError(error), this.changePasswordForm.reset(); }
       );
     }
