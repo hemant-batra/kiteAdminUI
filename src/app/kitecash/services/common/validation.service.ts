@@ -45,7 +45,7 @@ export class ValidationService {
       return null;
     }
     if (errors['required']) {
-      return this.dataService.getMessage(messageKey);
+      return this.dataService.messages()[messageKey];
     }
     return null;
   }

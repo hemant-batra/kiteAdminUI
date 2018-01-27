@@ -19,6 +19,7 @@ import {TitleService} from './kitecash/services/common/title.service';
 import {SessionService} from './kitecash/services/common/session.service';
 import {HttpService} from './kitecash/services/common/http.service';
 import {DataService} from './kitecash/services/common/data.service';
+import {NavigationService} from './kitecash/services/common/navigation.service';
 // components
 import {AppComponent} from './kitecash/components/app.component';
 import {HeaderComponent} from './kitecash/components/frames/header/header.component';
@@ -32,7 +33,7 @@ import {TitleComponent} from './kitecash/components/frames/title/title.component
 import {ChangePasswordComponent} from './kitecash/components/auth/change-password/change-password.component';
 import {ForgotPasswordComponent} from './kitecash/components/auth/forgot-password/forgot-password.component';
 import {LoginComponent} from './kitecash/components/auth/login/login.component';
-import {NavigationService} from './kitecash/services/common/navigation.service';
+import {MyProfileComponent} from './kitecash/components/auth/my-profile/my-profile.component';
 
 const appRoutes = [
   { path: '', canActivate: [LoginGuard], component: LoginComponent },
@@ -40,7 +41,7 @@ const appRoutes = [
   { path: 'logout', component: MessageComponent, data: {message: Constants.Messages.LOGOUT_MESSAGE} },
   { path: 'expired', component: MessageComponent, data: {message: Constants.Messages.EXPIRY_MESSAGE} },
   { path: 'invalid', component: MessageComponent, data: {message: Constants.Messages.BACK_BUTTON_MESSAGE} },
-  { path: 'myProfile', canActivate: [PageGuard], component: ChangePasswordComponent },
+  { path: 'myProfile', canActivate: [PageGuard], component: MyProfileComponent },
   { path: 'changePassword', canActivate: [PageGuard], component: ChangePasswordComponent },
   { path: 'admin', canActivateChild: [PageGuard], children: paths },
   { path: '**', redirectTo: '/' }
@@ -59,7 +60,8 @@ const appRoutes = [
     MailMerchantComponent,
     ChangePasswordComponent,
     ForgotPasswordComponent,
-    LoginComponent
+    LoginComponent,
+    MyProfileComponent
   ],
   imports: [
     HttpClientModule,

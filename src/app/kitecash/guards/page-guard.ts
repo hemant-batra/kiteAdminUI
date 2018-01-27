@@ -41,7 +41,7 @@ export class PageGuard implements CanActivate, CanActivateChild {
       this.router.navigate(['/invalid']);
     } else {
       this.navigationService.disallowNavigation();
-      this.titleService.init(this.dataService.getPageTitle('NULL'));
+      this.titleService.init(this.dataService.pageTitles().NULL);
     }
     return true;
   }

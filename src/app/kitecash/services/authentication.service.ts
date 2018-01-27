@@ -18,7 +18,7 @@ export class AuthenticationService {
 
   // TODO handle preflight OPTIONS request at the server side
   doLogin(jsObj) {
-    return this.httpClient.post(this.dataService.getURL('LOGIN'), jsObj)
+    return this.httpClient.post(this.dataService.urls().LOGIN, jsObj)
       .map(
         (response) => {
           const additionalInfo = response['additionalInfo'];
@@ -55,7 +55,7 @@ export class AuthenticationService {
 
   doLogout() {
     if (this.sessionService.isActive()) {
-      this.httpClient.put(this.dataService.getURL('LOGOUT'), null).subscribe();
+      this.httpClient.put(this.dataService.urls().LOGOUT, null).subscribe();
       this.sessionService.setSessionId(null);
       this.navigationService.setMenus([]);
       console.log('----- Logout Successful -----');

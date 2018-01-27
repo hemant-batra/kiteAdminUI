@@ -45,6 +45,9 @@ export const Constants = {
     OLD_PASSWORD: 'Old Password',
     NEW_PASSWORD: 'New Password',
     CONFIRM_NEW_PASSWORD: 'Confirm New Password',
+    USER_NAME: 'Login Name',
+    FULL_NAME: 'Full Name',
+    USER_ROLE: 'User Role',
   },
 
   ButtonLabels: {
@@ -71,7 +74,8 @@ export const Constants = {
     NULL: '',
     MANUAL_REFUND: 'Manual Refund',
     MAIL_MERCHANT: 'Say Welcome to Merchant!',
-    CHANGE_PASSWORD: 'Change Password'
+    CHANGE_PASSWORD: 'Change Password',
+    MY_PROFILE: 'My Profile'
   },
 
   URL: {

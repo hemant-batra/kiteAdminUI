@@ -37,12 +37,12 @@ export class DataService {
   }
 
   public getMobileNumber() {
-    return this.mobileNumber;
+    // return this.mobileNumber;
+    return '+91 9717763389';
   }
 
   public setMobileNumber(mobileNumber: string) {
-    // this.mobileNumber = mobileNumber;
-    return '+91 9717763389';
+    this.mobileNumber = mobileNumber;
   }
 
   public messages() {

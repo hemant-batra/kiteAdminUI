@@ -31,7 +31,7 @@ export class TitleService {
   }
 
   private setTitle(titleCode: string) {
-    this.titleService = this.dataService.getPageTitle(titleCode);
+    this.titleService = this.dataService.pageTitles()[titleCode];
     this._titleEventEmitter.emit(this.titleService);
   }
 
