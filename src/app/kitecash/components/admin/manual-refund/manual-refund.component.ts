@@ -36,8 +36,14 @@ export class ManualRefundComponent implements OnInit {
   onSubmit() {
     this.titleService.showSpinner();
     this.httpService.post(this.dataService.urls().MANUAL_REFUND, this.manualRefundForm).subscribe(
-      response => { this.titleService.setSuccess(response), this.manualRefundForm.reset(); },
-      error => { this.titleService.setError(error), this.manualRefundForm.reset(); }
+      response => {
+        this.titleService.setSuccess(response);
+        this.manualRefundForm.reset();
+        },
+      error => {
+        this.titleService.setError(error);
+        this.manualRefundForm.reset();
+      }
     );
   }
 

@@ -38,8 +38,15 @@ export class ChangePasswordComponent implements OnInit {
       });
       this.titleService.showSpinner();
       this.httpService.post(this.dataService.urls().CHANGE_PASSWORD, form).subscribe(
-        response => { this.titleService.setSuccess(this.dataService.messages().PASSWORD_CHANGE_SUCCESSFUL), this.changePasswordForm.reset(); },
-        error => { this.titleService.setError(error), this.changePasswordForm.reset(); }
+        () => {
+          const message = this.dataService.messages().PASSWORD_CHANGE_SUCCESSFUL;
+          this.titleService.setSuccess(message);
+          this.changePasswordForm.reset();
+        },
+        error => {
+          this.titleService.setError(error);
+          this.changePasswordForm.reset();
+        }
       );
     }
   }

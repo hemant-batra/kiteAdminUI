@@ -1,7 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../../services/common/validation.service';
-import {SessionService} from '../../../services/common/session.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {DataService} from '../../../services/common/data.service';
@@ -20,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               public dataService: DataService,
-              private sessionService: SessionService,
               public validationService: ValidationService,
               private navigationService: NavigationService,
               private authenticationService: AuthenticationService) {}
@@ -43,7 +41,7 @@ export class LoginComponent implements OnInit {
 
     this.startSpinner();
     this.authenticationService.doLogin(formGroup.getRawValue()).subscribe(
-      (response) =>  {
+      () =>  {
         this.stopSpinner();
         this.dataService.setUserName(this.loginForm.get('userName').value);
         this.navigationService.allowNavigation();

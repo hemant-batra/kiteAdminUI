@@ -16,7 +16,7 @@ export class BodyComponent {
               public sessionService: SessionService,
               private dataService: DataService) {}
 
-  menuClicked(menuCode: string, event: MouseEvent) {
+  menuClicked(event: MouseEvent) {
     this.navigationService.allowNavigation();
     if (this.navigationService.getActivatedMenu() !== null) {
       this.navigationService.getActivatedMenu().style.setProperty('height', '0px');
