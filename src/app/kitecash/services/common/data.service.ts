@@ -6,20 +6,25 @@ export class DataService {
 
   c = Constants;
 
+  private userRole: string = null;
   private userName: string = null;
   private fullName: string = null;
   private mobileNumber: string = null;
 
-  public setUserName(userName: string) {
-    this.userName = userName;
+  getUserRole() {
+    return this.userRole;
+  }
+
+  setUserRole(userRole: string) {
+    this.userRole = userRole;
   }
 
   public getUserName() {
     return this.userName;
   }
 
-  public setFullName(fullName: string) {
-    this.fullName = fullName;
+  public setUserName(userName: string) {
+    this.userName = userName;
   }
 
   public getFullName() {
@@ -27,13 +32,17 @@ export class DataService {
     return 'Hemant Batra';
   }
 
-  public setMobileNumber(mobileNumber: string) {
-    // this.mobileNumber = mobileNumber;
-    return '+91 9717763389';
+  public setFullName(fullName: string) {
+    this.fullName = fullName;
   }
 
   public getMobileNumber() {
     return this.mobileNumber;
+  }
+
+  public setMobileNumber(mobileNumber: string) {
+    // this.mobileNumber = mobileNumber;
+    return '+91 9717763389';
   }
 
   public getMessage(messageKey: string) {

@@ -1,13 +1,15 @@
 import {roles} from '../../constants/pages';
 import {isUndefined} from 'util';
+import {DataService} from './data.service';
 
 export class SessionService {
 
   private activatedMenu: HTMLDivElement = null;
   private sessionId: string = null;
   private validNavigation = false;
-  private userRole: string = null;
   private menus: {code: string; label: string; path: string; children: {code: string; label: string; path: string}[]}[] = null;
+
+  constructor(private dataService: DataService) {}
 
   getActivatedMenu() {
     return this.activatedMenu;
@@ -19,10 +21,6 @@ export class SessionService {
 
   isActive() {
     return this.sessionId != null;
-  }
-
-  setUserRole(userRole: string) {
-    this.userRole = userRole;
   }
 
   getSessionId() {
@@ -58,7 +56,7 @@ export class SessionService {
       return children;
     }
 
-    let filteredChildren = roles[this.userRole].find(role => role.code === menuCode).children;
+    let filteredChildren = roles[this.dataService.getUserRole()].find(role => role.code === menuCode).children;
     if (isUndefined(filteredChildren)) {
       return filteredChildren;
     }

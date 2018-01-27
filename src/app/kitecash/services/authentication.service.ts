@@ -21,7 +21,7 @@ export class AuthenticationService {
         (response) => {
           const additionalInfo = response['additionalInfo'];
           const userRole = additionalInfo.userRole;
-          this.sessionService.setUserRole(userRole);
+          this.dataService.setUserRole(userRole);
           this.sessionService.setMenus(roles[userRole].map(
             role => paths.find(
               path => path.code === role.code
