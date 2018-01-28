@@ -8,7 +8,7 @@
         [title]="dataService.getImageAltText('myProfile')"
         (mouseover)="invertImage('myProfile');"
         (mouseout)="restoreImage('myProfile');"
-        (click)="navigate('\myProfile')">
+        (click)="navigate('myProfile')">
             <img
               height="32px"
               width="32px"
@@ -16,7 +16,7 @@
               [title]="dataService.getImageAltText('myProfile')"
               [src]="dataService.getImageSrc('myProfile')"
               [alt]="dataService.getImageAltText('myProfile')"
-              (click)="navigate('\myProfile')"
+              (click)="navigate('myProfile')"
               #myProfile>
     </td>
     <td *ngIf="sessionService.isActive(); else singleCell"
@@ -25,7 +25,7 @@
         [title]="dataService.getImageAltText('changePassword')"
         (mouseover)="invertImage('changePassword');"
         (mouseout)="restoreImage('changePassword');"
-        (click)="navigate('\changePassword')">
+        (click)="navigate('changePassword')">
             <img
               height="32px"
               width="32px"
@@ -33,7 +33,7 @@
               [title]="dataService.getImageAltText('changePassword')"
               [src]="dataService.getImageSrc('changePassword')"
               [alt]="dataService.getImageAltText('changePassword')"
-              (click)="navigate('\changePassword')"
+              (click)="navigate('changePassword')"
               #changePassword>
     </td>
     <td *ngIf="sessionService.isActive(); else singleCell"
@@ -42,7 +42,7 @@
         [title]="dataService.getImageAltText('logout')"
         (mouseover)="invertImage('logout');"
         (mouseout)="restoreImage('logout');"
-        (click)="logOut()">
+        (click)="router.navigate(['logout'])">
               <img
                 height="32px"
                 width="32px"
@@ -50,7 +50,7 @@
                 [title]="dataService.getImageAltText('logout')"
                 [src]="dataService.getImageSrc('logout')"
                 [alt]="dataService.getImageAltText('logout')"
-                (click)="logOut()"
+                (click)="router.navigate(['logout'])"
                 #logout>
     </td>
     <td align="center" class="col-md-1">

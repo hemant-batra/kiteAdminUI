@@ -52,13 +52,4 @@ export class AuthenticationService {
         }
       );
   }
-
-  doLogout() {
-    if (this.sessionService.isActive()) {
-      this.httpClient.put(this.dataService.urls().LOGOUT, null).subscribe();
-      this.sessionService.setSessionId(null);
-      this.navigationService.setMenus([]);
-      console.log('----- Logout Successful -----');
-    }
-  }
 }

@@ -5,8 +5,10 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 // guards
-import {PageGuard} from './kitecash/guards/page-guard';
+import {AuthorizationGuard} from './kitecash/guards/authorization-guard';
 import {LoginGuard} from './kitecash/guards/login-guard';
+import {ForgotPasswordGuard} from './kitecash/guards/forgot-password-guard';
+import {LogoutGuard} from './kitecash/guards/logout-guard';
 // interceptors
 import {HttpRequestInterceptor} from './kitecash/interceptors/interceptor';
 // constants
@@ -37,14 +39,14 @@ import {MyProfileComponent} from './kitecash/components/auth/my-profile/my-profi
 
 const appRoutes = [
   { path: '', canActivate: [LoginGuard], component: LoginComponent },
-  { path: 'forgotPassword', component: ForgotPasswordComponent },
-  { path: 'logout', component: MessageComponent, data: {message: Constants.Messages.LOGOUT_MESSAGE} },
-  { path: 'expired', component: MessageComponent, data: {message: Constants.Messages.EXPIRY_MESSAGE} },
-  { path: 'invalid', component: MessageComponent, data: {message: Constants.Messages.BACK_BUTTON_MESSAGE} },
-  { path: 'myProfile', canActivate: [PageGuard], component: MyProfileComponent },
-  { path: 'changePassword', canActivate: [PageGuard], component: ChangePasswordComponent },
-  { path: 'admin', canActivateChild: [PageGuard], children: paths },
-  { path: '**', redirectTo: '/' }
+  { path: 'forgotPassword', canActivate: [ForgotPasswordGuard], component: ForgotPasswordComponent },
+  { path: 'unauthorized', component: MessageComponent, data: {message: Constants.Messages.UNAUTHORIZED_OPERATION} },
+  { path: 'logout', canActivate: [LogoutGuard], component: MessageComponent, data: {message: Constants.Messages.LOGOUT_MESSAGE} },
+  { path: 'expired', canActivate: [AuthorizationGuard], component: MessageComponent, data: {message: Constants.Messages.EXPIRY_MESSAGE} },
+  { path: 'myProfile', canActivate: [AuthorizationGuard], component: MyProfileComponent },
+  { path: 'changePassword', canActivate: [AuthorizationGuard], component: ChangePasswordComponent },
+  { path: 'admin', canActivateChild: [AuthorizationGuard], children: paths },
+  { path: '**', redirectTo: 'unauthorized' }
 ];
 
 @NgModule({
@@ -74,9 +76,11 @@ const appRoutes = [
     RouterModule
   ],
   providers: [
-    SessionService,
-    PageGuard,
     LoginGuard,
+    ForgotPasswordGuard,
+    LogoutGuard,
+    AuthorizationGuard,
+    SessionService,
     ValidationService,
     HttpService,
     TitleService,

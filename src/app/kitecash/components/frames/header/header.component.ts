@@ -1,5 +1,4 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {AuthenticationService} from '../../../services/authentication.service';
 import {Router} from '@angular/router';
 import {SessionService} from '../../../services/common/session.service';
 import {DataService} from '../../../services/common/data.service';
@@ -16,8 +15,7 @@ export class HeaderComponent {
   @ViewChild('changePassword') changePassword: ElementRef;
   @ViewChild('logout') logout: ElementRef;
 
-  constructor(private authenticationService: AuthenticationService,
-              private router: Router,
+  constructor(public router: Router,
               public sessionService: SessionService,
               public dataService: DataService,
               public navigationService: NavigationService) {}
@@ -30,11 +28,6 @@ export class HeaderComponent {
     }
     this.navigationService.allowNavigation();
     this.router.navigate([path]);
-  }
-
-  logOut() {
-    this.authenticationService.doLogout();
-    this.router.navigate(['/logout']);
   }
 
   invertImage(imageId: string) {

@@ -13,7 +13,7 @@ export const Constants = {
     NO_MENU_FOUND: 'No menu found for this user',
     NO_INTERNET: 'Please check your internet connection',
     EXPIRY_MESSAGE: 'Your session has expired, please login again',
-    BACK_BUTTON_MESSAGE: 'You have been logged out due to an invalid operation',
+    UNAUTHORIZED_OPERATION: 'You are not authorized to perform this operation',
     OLD_PASSWORD_REQUIRED_MESSAGE: 'Old Password is a required field',
     NEW_PASSWORD_REQUIRED_MESSAGE: 'New Password is a required field',
     CONFIRM_NEW_PASSWORD_REQUIRED_MESSAGE: 'Confirm New Password is a required field',
@@ -108,5 +108,5 @@ export const Constants = {
   RegEx: {
     EMAIL_ID: new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/),
     PASSWORD: new RegExp(/^((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,160})$/)
-  }
+  },
 };
