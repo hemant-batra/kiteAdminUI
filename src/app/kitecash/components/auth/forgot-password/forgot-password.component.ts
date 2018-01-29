@@ -14,7 +14,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit() {
     if (this.dataService.getUserName() === null) {
-      this.router.navigate(['']);
+      this.router.navigate(['unauthorized']);
     }
   }
 }
