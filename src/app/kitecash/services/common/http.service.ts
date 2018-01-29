@@ -12,7 +12,6 @@ export class HttpService {
               private dataService: DataService) {}
 
   public put(url: string, formGroup: FormGroup): Observable<string> {
-    console.log('HTTP PUT Request: ' + JSON.stringify(formGroup.getRawValue()));
     return this.httpClient.put(url, formGroup.getRawValue())
       .map(
         response => response['message']
@@ -25,7 +24,6 @@ export class HttpService {
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
-            console.log('HTTP PUT Error ' + err.message);
             return Observable.throw(this.dataService.messages().INTERNAL_SERVER_ERROR);
           }
         }
@@ -33,7 +31,6 @@ export class HttpService {
   }
 
   public post(url: string, formGroup: FormGroup): Observable<string> {
-    console.log('HTTP POST Request: ' + JSON.stringify(formGroup.getRawValue()));
     return this.httpClient.post(url, formGroup.getRawValue())
       .map(
         response => response['message']
@@ -46,7 +43,6 @@ export class HttpService {
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
-            console.log('HTTP POST Error ' + err.message);
             return Observable.throw(this.dataService.messages().INTERNAL_SERVER_ERROR);
           }
         }

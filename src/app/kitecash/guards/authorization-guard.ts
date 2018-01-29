@@ -17,7 +17,7 @@ export class AuthorizationGuard implements CanActivate, CanActivateChild {
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log('AdminGuard ' + this.sessionService.getSessionId());
+    console.log('AuthorizationGuard ' + this.sessionService.isActive());
     if (!this.sessionService.isActive()) {
       /* navigate to the login screen when the session
          is inactive irrespective of the page URL that
@@ -26,10 +26,8 @@ export class AuthorizationGuard implements CanActivate, CanActivateChild {
          2) Pressing the refresh button
          3) Opening the same page in a new window (CTRL + N)
        */
-      console.log('session is inactive');
       this.router.navigate(['unauthorized']);
     } else {
-      console.log('session is active and navigation is allowed');
       this.titleService.init(this.dataService.pageTitles().NULL);
     }
     return true;

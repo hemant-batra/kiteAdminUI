@@ -76,8 +76,6 @@ export class LoginComponent implements OnInit {
             return this.dataService.messages().NO_MENU_FOUND;
           }
           this.sessionService.setSessionId(additionalInfo.sessionId);
-          console.log('----- Login Successful -----');
-          console.log('Session ID = ' + this.sessionService.getSessionId());
           return null;
         }
       )
@@ -89,7 +87,6 @@ export class LoginComponent implements OnInit {
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
-            console.log('Login Error ' + err.message);
             return Observable.throw(this.dataService.messages().INTERNAL_SERVER_ERROR);
           }
         }

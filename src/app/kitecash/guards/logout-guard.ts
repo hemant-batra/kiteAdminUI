@@ -9,12 +9,10 @@ export class LogoutGuard implements CanActivate {
                private sessionService: SessionService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log('LogoutGuard ' + this.sessionService.getSessionId());
+    console.log('LogoutGuard ' + this.sessionService.isActive());
     if (this.sessionService.isActive()) {
-      console.log('session is active');
       this.sessionService.logout();
     } else {
-      console.log('session is inactive');
       this.router.navigate(['unauthorized']);
     }
     return true;

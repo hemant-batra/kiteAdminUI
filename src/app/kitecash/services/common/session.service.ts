@@ -28,6 +28,5 @@ export class SessionService {
     this.setSessionId(null);
     this.navigationService.setMenus([]);
     this.httpClient.put(this.dataService.urls().LOGOUT, null).subscribe();
-    console.log('----- Logout Successful -----');
   }
 }

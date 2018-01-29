@@ -22,7 +22,6 @@ export class BodyComponent implements OnInit {
 
   ngOnInit() {
     this.platformLocation.onPopState(x => {
-      console.log('Back button is pressed');
       this.sessionService.logout();
       this.router.navigate(['unauthorized']);
     });

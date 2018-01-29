@@ -23,7 +23,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       navigationService = <NavigationService>this.injector.get(NavigationService);
       dataService = <DataService>this.injector.get(DataService);
     } catch (err) {
-      console.log('Error in acquiring session ID inside HTTP interceptor: ' + err.message);
       return this.handler(httpRequest, next, sessionService, navigationService, dataService);
     }
     /*
@@ -45,7 +44,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         */
         if (err['status'] === 440) {
           if (httpRequest.url !== dataService.urls().LOGOUT) {
-            console.log('HttpRequestInterceptor session is expired in response');
             sessionService.setSessionId(null);
             navigationService.setMenus([]);
             this.router.navigate(['expired']);
