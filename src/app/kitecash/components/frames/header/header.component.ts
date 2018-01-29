@@ -18,10 +18,9 @@ export class HeaderComponent {
   constructor(public router: Router,
               public sessionService: SessionService,
               public dataService: DataService,
-              public navigationService: NavigationService) {}
+              private navigationService: NavigationService) {}
 
   prepareForNavigation() {
-    this.navigationService.allowNavigation();
     const activatedMenu = this.navigationService.getActivatedMenu();
     if (activatedMenu !== null) {
       activatedMenu.style.setProperty('height', '0px');

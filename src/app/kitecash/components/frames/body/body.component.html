@@ -9,7 +9,7 @@
               <table>
               <tr *ngFor="let subMenu of filterChildren(menu.code, menu.children)">
                 <td>
-                  <a id="submenu" (click)="navigationService.allowNavigation()" [routerLink]="'/admin/' + menu.path + '/' + subMenu.path" routerLinkActive="linkActive">{{subMenu.label}}</a>
+                  <a id="submenu" [routerLink]="'/admin/' + menu.path + '/' + subMenu.path" routerLinkActive="linkActive">{{subMenu.label}}</a>
                 </td>
               </tr>
               </table>

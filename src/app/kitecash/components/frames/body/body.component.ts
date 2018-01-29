@@ -1,23 +1,34 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavigationService} from '../../../services/common/navigation.service';
 import {isUndefined} from 'util';
 import {roles} from '../../../constants/pages';
 import {DataService} from '../../../services/common/data.service';
 import {SessionService} from '../../../services/common/session.service';
+import {PlatformLocation} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
-export class BodyComponent {
+export class BodyComponent implements OnInit {
 
   constructor(public navigationService: NavigationService,
               public sessionService: SessionService,
-              private dataService: DataService) {}
+              private dataService: DataService,
+              private platformLocation: PlatformLocation,
+              private router: Router) {}
+
+  ngOnInit() {
+    this.platformLocation.onPopState(x => {
+      console.log('Back button is pressed');
+      this.sessionService.logout();
+      this.router.navigate(['unauthorized']);
+    });
+  }
 
   menuClicked(event: MouseEvent) {
-    this.navigationService.allowNavigation();
     if (this.navigationService.getActivatedMenu() !== null) {
       this.navigationService.getActivatedMenu().style.setProperty('height', '0px');
       this.navigationService.getActivatedMenu().style.setProperty('z-index', '-1');

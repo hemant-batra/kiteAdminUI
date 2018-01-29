@@ -7,7 +7,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 // guards
 import {AuthorizationGuard} from './kitecash/guards/authorization-guard';
 import {LoginGuard} from './kitecash/guards/login-guard';
-import {ForgotPasswordGuard} from './kitecash/guards/forgot-password-guard';
 import {LogoutGuard} from './kitecash/guards/logout-guard';
 // interceptors
 import {HttpRequestInterceptor} from './kitecash/interceptors/interceptor';
@@ -38,7 +37,7 @@ import {MyProfileComponent} from './kitecash/components/auth/my-profile/my-profi
 
 const appRoutes = [
   { path: '', canActivate: [LoginGuard], component: LoginComponent },
-  { path: 'forgotPassword', canActivate: [ForgotPasswordGuard], component: ForgotPasswordComponent },
+  { path: 'forgotPassword', canActivate: [LoginGuard], component: ForgotPasswordComponent },
   { path: 'unauthorized', component: MessageComponent, data: {message: Constants.Messages.UNAUTHORIZED_OPERATION} },
   { path: 'logout', canActivate: [LogoutGuard], component: MessageComponent, data: {message: Constants.Messages.LOGOUT_MESSAGE} },
   { path: 'expired', canActivate: [AuthorizationGuard], component: MessageComponent, data: {message: Constants.Messages.EXPIRY_MESSAGE} },
@@ -76,7 +75,6 @@ const appRoutes = [
   ],
   providers: [
     LoginGuard,
-    ForgotPasswordGuard,
     LogoutGuard,
     AuthorizationGuard,
     SessionService,

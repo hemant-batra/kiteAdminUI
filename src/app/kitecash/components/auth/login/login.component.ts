@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
       () =>  {
         this.stopSpinner();
         this.dataService.setUserName(this.loginForm.get('userName').value);
-        this.navigationService.allowNavigation();
         this.router.navigate(['admin']);
       },
       (error) => {
