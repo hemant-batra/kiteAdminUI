@@ -15,7 +15,6 @@ import {HttpRequestInterceptor} from './kitecash/interceptors/interceptor';
 import {Constants} from './kitecash/constants/constants';
 import {paths} from './kitecash/constants/pages';
 // services
-import {AuthenticationService} from './kitecash/services/authentication.service';
 import {ValidationService} from './kitecash/services/common/validation.service';
 import {TitleService} from './kitecash/services/common/title.service';
 import {SessionService} from './kitecash/services/common/session.service';
@@ -84,7 +83,6 @@ const appRoutes = [
     ValidationService,
     HttpService,
     TitleService,
-    AuthenticationService,
     DataService,
     NavigationService,
     {

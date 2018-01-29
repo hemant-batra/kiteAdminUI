@@ -20,14 +20,13 @@ export class HeaderComponent {
               public dataService: DataService,
               public navigationService: NavigationService) {}
 
-  navigate(path: string) {
+  prepareForNavigation() {
+    this.navigationService.allowNavigation();
     const activatedMenu = this.navigationService.getActivatedMenu();
     if (activatedMenu !== null) {
       activatedMenu.style.setProperty('height', '0px');
       activatedMenu.style.setProperty('z-index', '-1');
     }
-    this.navigationService.allowNavigation();
-    this.router.navigate([path]);
   }
 
   invertImage(imageId: string) {

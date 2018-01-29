@@ -1,5 +1,6 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 import {Injectable, Injector} from '@angular/core';
 import {SessionService} from '../services/common/session.service';
 import {Router} from '@angular/router';

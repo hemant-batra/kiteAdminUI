@@ -8,7 +8,8 @@
         [title]="dataService.getImageAltText('myProfile')"
         (mouseover)="invertImage('myProfile');"
         (mouseout)="restoreImage('myProfile');"
-        (click)="navigate('myProfile')">
+        (click)="prepareForNavigation()"
+        [routerLink]="'myProfile'">
             <img
               height="32px"
               width="32px"
@@ -16,7 +17,8 @@
               [title]="dataService.getImageAltText('myProfile')"
               [src]="dataService.getImageSrc('myProfile')"
               [alt]="dataService.getImageAltText('myProfile')"
-              (click)="navigate('myProfile')"
+              (click)="prepareForNavigation()"
+              [routerLink]="'myProfile'"
               #myProfile>
     </td>
     <td *ngIf="sessionService.isActive(); else singleCell"
@@ -25,7 +27,8 @@
         [title]="dataService.getImageAltText('changePassword')"
         (mouseover)="invertImage('changePassword');"
         (mouseout)="restoreImage('changePassword');"
-        (click)="navigate('changePassword')">
+        (click)="prepareForNavigation()"
+        [routerLink]="'changePassword'">
             <img
               height="32px"
               width="32px"
@@ -33,7 +36,8 @@
               [title]="dataService.getImageAltText('changePassword')"
               [src]="dataService.getImageSrc('changePassword')"
               [alt]="dataService.getImageAltText('changePassword')"
-              (click)="navigate('changePassword')"
+              (click)="prepareForNavigation()"
+              [routerLink]="'changePassword'"
               #changePassword>
     </td>
     <td *ngIf="sessionService.isActive(); else singleCell"
@@ -42,7 +46,8 @@
         [title]="dataService.getImageAltText('logout')"
         (mouseover)="invertImage('logout');"
         (mouseout)="restoreImage('logout');"
-        (click)="router.navigate(['logout'])">
+        (click)="prepareForNavigation()"
+        [routerLink]="'logout'">
               <img
                 height="32px"
                 width="32px"
@@ -50,7 +55,8 @@
                 [title]="dataService.getImageAltText('logout')"
                 [src]="dataService.getImageSrc('logout')"
                 [alt]="dataService.getImageAltText('logout')"
-                (click)="router.navigate(['logout'])"
+                (click)="prepareForNavigation()"
+                [routerLink]="'logout'"
                 #logout>
     </td>
     <td align="center" class="col-md-1">
