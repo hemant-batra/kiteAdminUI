@@ -3,7 +3,23 @@ table {
 }
 th {
   width: 25%;
+  border: 1px solid lightgray;
+  padding: 2% 2% 2% 2%;
 }
 td {
-  padding: 1% 0% 1% 0%;
+  width: 40%;
+  border: 1px solid lightgray;
+  padding: 2% 2% 2% 2%;
+}
+td.even {
+  background-color: #fefefe;
+}
+td.odd {
+  background-color: #efefef;
+}
+th.even {
+  background-color: #fefefe;
+}
+th.odd {
+  background-color: #efefef;
 }
