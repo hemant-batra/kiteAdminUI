@@ -5,6 +5,7 @@ table.header {
 td {
   font-size: 30pt;
   color: white;
+  outline: none;
 }
 .format {
   text-shadow: 2px 2px #244d70;
@@ -15,4 +16,7 @@ td.link {
 td.link:hover {
   border: 1px solid white;
   background-color: white;
+}
+img {
+  outline: none;
 }
