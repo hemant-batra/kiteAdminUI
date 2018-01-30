@@ -6,7 +6,6 @@ export const Constants = {
     USERNAME_REQUIRED_MESSAGE: 'Please enter username',
     USERNAME_INVALID_PATTERN_MESSAGE: 'Username should be a valid email ID',
     PASSWORD_REQUIRED_MESSAGE: 'Please enter password',
-    PASSWORD_INVALID_PATTERN_MESSAGE: 'Password is not as per the policy',
     INTERNAL_SERVER_ERROR: 'Internal server error. Please contact system administrator',
     WELCOME_MESSAGE: 'Welcome {fullName}',
     LOGOUT_MESSAGE: 'You have successfully logged out from the application',
