@@ -1,7 +1,7 @@
 <table style="width:100%;">
   <tr><td colspan="2" style="font-size:18pt;">{{title}}</td></tr>
   <tr><td style="height: 60px;">
-    <span *ngIf="status===1"><img class="img-responsive" [src]="this.fs.data.getImageSrc('preloader')" [alt]="this.fs.data.getImageAltText('preloader')"></span>
+    <span *ngIf="status===1"><img class="img-responsive" [src]="this.fs.data.getImageSrc('preLoader')" [alt]="this.fs.data.getImageAltText('preLoader')"></span>
     <span *ngIf="status===2" class="glyphicon glyphicon-ok" style="color: green;"></span>
     <span *ngIf="status===3" class="glyphicon glyphicon-info-sign" style="color: orange;"></span>
     <span *ngIf="status>1">{{statusText}}</span>
