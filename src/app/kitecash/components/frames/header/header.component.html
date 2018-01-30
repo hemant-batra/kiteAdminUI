@@ -1,4 +1,4 @@
-<table class="panel-heading header">
+<table class="header">
   <tr>
     <td class="col-md-3 format" align="left">{{fs.data.TextLabel.APPLICATION_NAME}}</td>
     <td class="col-md-5">&nbsp;</td>
@@ -6,58 +6,85 @@
         align="center"
         class="col-md-1 link"
         [title]="fs.data.getImageAltText('myProfile')"
-        (mouseover)="invertImage('myProfile', true);"
-        (mouseout)="invertImage('myProfile', false);"
-        (click)="fs.navigator.deactivateMenu()"
-        [routerLink]="'myProfile'">
+        (mouseover)="toggleImage('myProfile');"
+        (mouseout)="toggleImage('myProfile');"
+        (click)="activateMenu(headerMenu.MY_PROFILE);"
+        [routerLink]="'myProfile'"
+        routerLinkActive="routerLinkActive">
             <img
               height="32px"
               width="32px"
               class="img-responsive"
+              style="display: block;"
               [title]="fs.data.getImageAltText('myProfile')"
               [src]="fs.data.getImageSrc('myProfile')"
               [alt]="fs.data.getImageAltText('myProfile')"
-              (click)="fs.navigator.deactivateMenu()"
-              [routerLink]="'myProfile'"
               #myProfile>
+            <img
+              height="32px"
+              width="32px"
+              class="img-responsive"
+              style="display: none;"
+              [title]="fs.data.getImageAltText('myProfile_inverted')"
+              [src]="fs.data.getImageSrc('myProfile_inverted')"
+              [alt]="fs.data.getImageAltText('myProfile_inverted')"
+              #myProfile_inverted>
     </td>
     <td *ngIf="fs.session.isActive(); else singleCell"
         align="center"
         class="col-md-1 link"
         [title]="fs.data.getImageAltText('changePassword')"
-        (mouseover)="invertImage('changePassword', true);"
-        (mouseout)="invertImage('changePassword', false);"
-        (click)="fs.navigator.deactivateMenu()"
-        [routerLink]="'changePassword'">
+        (mouseover)="toggleImage('changePassword');"
+        (mouseout)="toggleImage('changePassword');"
+        (click)="activateMenu(headerMenu.CHANGE_PASSWORD);"
+        [routerLink]="'changePassword'"
+        routerLinkActive="routerLinkActive">
             <img
               height="32px"
               width="32px"
               class="img-responsive"
+              style="display: block;"
               [title]="fs.data.getImageAltText('changePassword')"
               [src]="fs.data.getImageSrc('changePassword')"
               [alt]="fs.data.getImageAltText('changePassword')"
-              (click)="fs.navigator.deactivateMenu()"
-              [routerLink]="'changePassword'"
               #changePassword>
+            <img
+              height="32px"
+              width="32px"
+              class="img-responsive"
+              style="display: none;"
+              [title]="fs.data.getImageAltText('changePassword_inverted')"
+              [src]="fs.data.getImageSrc('changePassword_inverted')"
+              [alt]="fs.data.getImageAltText('changePassword_inverted')"
+              #changePassword_inverted>
     </td>
     <td *ngIf="fs.session.isActive(); else singleCell"
         align="center"
         class="col-md-1 link"
         [title]="fs.data.getImageAltText('logout')"
-        (mouseover)="invertImage('logout', true);"
-        (mouseout)="invertImage('logout', false);"
-        (click)="fs.navigator.deactivateMenu()"
-        [routerLink]="'logout'">
-              <img
-                height="32px"
-                width="32px"
-                class="img-responsive"
-                [title]="fs.data.getImageAltText('logout')"
-                [src]="fs.data.getImageSrc('logout')"
-                [alt]="fs.data.getImageAltText('logout')"
-                (click)="fs.navigator.deactivateMenu()"
-                [routerLink]="'logout'"
-                #logout>
+        (mouseover)="toggleImage('logout');"
+        (mouseout)="toggleImage('logout');"
+        (click)="activateMenu(headerMenu.LOGOUT);"
+        [routerLink]="'logout'"
+        routerLinkActive="routerLinkActive">
+            <img
+              height="32px"
+              width="32px"
+              class="img-responsive"
+              style="display: block;"
+              [title]="fs.data.getImageAltText('logout')"
+              [src]="fs.data.getImageSrc('logout')"
+              [alt]="fs.data.getImageAltText('logout')"
+              #logout>
+            <img
+              height="32px"
+              width="32px"
+              class="img-responsive"
+              style="display: none;"
+              [title]="fs.data.getImageAltText('logout_inverted')"
+              [src]="fs.data.getImageSrc('logout_inverted')"
+              [alt]="fs.data.getImageAltText('logout_inverted')"
+              #logout_inverted>
     </td>
     <td align="center"
         class="col-md-1"

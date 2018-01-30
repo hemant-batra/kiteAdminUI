@@ -3,6 +3,7 @@ import {isUndefined} from 'util';
 import {roles} from '../../../constants/pages';
 import {Router} from '@angular/router';
 import {FactoryService} from '../../../services/common/factory.service';
+import {HeaderMenu} from '../../../services/common/navigation.service';
 
 @Component({
   selector: 'app-body',
@@ -15,6 +16,7 @@ export class BodyComponent {
                private router: Router) {}
 
   menuClicked(event: MouseEvent, children: {code: string; label: string; path: string}[]) {
+    this.fs.navigator.setFrozenHeaderMenu(HeaderMenu.NONE, null, null);
     this.fs.navigator.deactivateMenu();
     this.fs.navigator.setActivatedMenu(<HTMLDivElement>(event['target']['nextElementSibling']));
     this.fs.navigator.getActivatedMenu().style.setProperty('height', this.fs.navigator.getActivatedMenu().children[0].clientHeight + 'px');
