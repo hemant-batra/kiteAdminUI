@@ -24,14 +24,15 @@ export class BodyComponent implements OnInit {
   }
 
   menuClicked(event: MouseEvent) {
-    if (this.fs.navigator.getActivatedMenu() !== null) {
-      this.fs.navigator.getActivatedMenu().style.setProperty('height', '0px');
-      this.fs.navigator.getActivatedMenu().style.setProperty('z-index', '-1');
+    const activeMenu = this.fs.navigator.getActivatedMenu();
+    if (activeMenu !== null) {
+      activeMenu.style.setProperty('height', '0px');
+      activeMenu.style.setProperty('z-index', '-1');
     }
     this.fs.navigator.setActivatedMenu(<HTMLDivElement>(event['target']['nextElementSibling']));
-    this.fs.navigator.getActivatedMenu().style.setProperty('height', this.fs.navigator.getActivatedMenu().children[0].clientHeight + 'px');
+    activeMenu.style.setProperty('height', activeMenu.children[0].clientHeight + 'px');
     setTimeout(() => {
-      this.fs.navigator.getActivatedMenu().style.setProperty('z-index', '0');
+      activeMenu.style.setProperty('z-index', '0');
     }, 500);
   }
 
