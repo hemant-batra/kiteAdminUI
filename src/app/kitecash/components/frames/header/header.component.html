@@ -6,9 +6,9 @@
         align="center"
         class="col-md-1 link"
         [title]="fs.data.getImageAltText('myProfile')"
-        (mouseover)="invertImage('myProfile');"
-        (mouseout)="restoreImage('myProfile');"
-        (click)="prepareForNavigation()"
+        (mouseover)="invertImage('myProfile', true);"
+        (mouseout)="invertImage('myProfile', false);"
+        (click)="fs.navigator.deactivateMenu()"
         [routerLink]="'myProfile'">
             <img
               height="32px"
@@ -17,7 +17,7 @@
               [title]="fs.data.getImageAltText('myProfile')"
               [src]="fs.data.getImageSrc('myProfile')"
               [alt]="fs.data.getImageAltText('myProfile')"
-              (click)="prepareForNavigation()"
+              (click)="fs.navigator.deactivateMenu()"
               [routerLink]="'myProfile'"
               #myProfile>
     </td>
@@ -25,9 +25,9 @@
         align="center"
         class="col-md-1 link"
         [title]="fs.data.getImageAltText('changePassword')"
-        (mouseover)="invertImage('changePassword');"
-        (mouseout)="restoreImage('changePassword');"
-        (click)="prepareForNavigation()"
+        (mouseover)="invertImage('changePassword', true);"
+        (mouseout)="invertImage('changePassword', false);"
+        (click)="fs.navigator.deactivateMenu()"
         [routerLink]="'changePassword'">
             <img
               height="32px"
@@ -36,7 +36,7 @@
               [title]="fs.data.getImageAltText('changePassword')"
               [src]="fs.data.getImageSrc('changePassword')"
               [alt]="fs.data.getImageAltText('changePassword')"
-              (click)="prepareForNavigation()"
+              (click)="fs.navigator.deactivateMenu()"
               [routerLink]="'changePassword'"
               #changePassword>
     </td>
@@ -44,9 +44,9 @@
         align="center"
         class="col-md-1 link"
         [title]="fs.data.getImageAltText('logout')"
-        (mouseover)="invertImage('logout');"
-        (mouseout)="restoreImage('logout');"
-        (click)="prepareForNavigation()"
+        (mouseover)="invertImage('logout', true);"
+        (mouseout)="invertImage('logout', false);"
+        (click)="fs.navigator.deactivateMenu()"
         [routerLink]="'logout'">
               <img
                 height="32px"
@@ -55,7 +55,7 @@
                 [title]="fs.data.getImageAltText('logout')"
                 [src]="fs.data.getImageSrc('logout')"
                 [alt]="fs.data.getImageAltText('logout')"
-                (click)="prepareForNavigation()"
+                (click)="fs.navigator.deactivateMenu()"
                 [routerLink]="'logout'"
                 #logout>
     </td>

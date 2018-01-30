@@ -21,4 +21,11 @@ export class NavigationService {
   setMenus(menus: {code: string; label: string; path: string; children: {code: string; label: string; path: string}[]}[]) {
     this.menus = menus;
   }
+
+  deactivateMenu() {
+    if (this.activatedMenu !== null) {
+      this.activatedMenu.style.setProperty('height', '0px');
+      this.activatedMenu.style.setProperty('z-index', '-1');
+    }
+  }
 }

@@ -24,10 +24,7 @@ export class BodyComponent implements OnInit {
   }
 
   menuClicked(event: MouseEvent, children: {code: string; label: string; path: string}[]) {
-    if (this.fs.navigator.getActivatedMenu() !== null) {
-      this.fs.navigator.getActivatedMenu().style.setProperty('height', '0px');
-      this.fs.navigator.getActivatedMenu().style.setProperty('z-index', '-1');
-    }
+    this.fs.navigator.deactivateMenu();
     this.fs.navigator.setActivatedMenu(<HTMLDivElement>(event['target']['nextElementSibling']));
     this.fs.navigator.getActivatedMenu().style.setProperty('height', this.fs.navigator.getActivatedMenu().children[0].clientHeight + 'px');
     setTimeout(() => {

@@ -16,19 +16,7 @@ export class HeaderComponent {
   constructor (public fs: FactoryService,
               public router: Router) {}
 
-  prepareForNavigation() {
-    const activatedMenu = this.fs.navigator.getActivatedMenu();
-    if (activatedMenu !== null) {
-      activatedMenu.style.setProperty('height', '0px');
-      activatedMenu.style.setProperty('z-index', '-1');
-    }
-  }
-
-  invertImage(imageId: string) {
-      this[imageId].nativeElement.setAttribute('src', this.fs.data.getImageSrc(imageId + '_inverted'));
-    }
-
-  restoreImage(imageId: string) {
-    this[imageId].nativeElement.setAttribute('src', this.fs.data.getImageSrc(imageId));
+  invertImage(imageId: string, invert: boolean) {
+    this[imageId].nativeElement.setAttribute('src', this.fs.data.getImageSrc(imageId + (invert ? '_inverted' : '')));
   }
 }

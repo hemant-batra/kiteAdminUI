@@ -4,12 +4,12 @@
       <table class="menuContainer">
         <tr *ngFor="let menu of fs.navigator.getMenus()">
           <td>
-           <a id="menu" (click)="menuClicked($event, menu.children);" [routerLink]="'/admin/' + menu.path" routerLinkActive="linkActive">{{menu.label}}</a>
+           <a id="menu" (click)="menuClicked($event, menu.children);" [routerLink]="['admin', menu.path]" routerLinkActive="linkActive">{{menu.label}}</a>
               <div class="animated">
               <table>
               <tr *ngFor="let subMenu of filterChildren(menu.code, menu.children)">
                 <td>
-                  <a id="submenu" [routerLink]="'/admin/' + menu.path + '/' + subMenu.path" routerLinkActive="linkActive">{{subMenu.label}}</a>
+                  <a id="submenu" [routerLink]="['admin', menu.path, subMenu.path]" routerLinkActive="linkActive">{{subMenu.label}}</a>
                 </td>
               </tr>
               </table>
