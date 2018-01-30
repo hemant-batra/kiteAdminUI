@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {isUndefined} from 'util';
 import {roles} from '../../../constants/pages';
-import {PlatformLocation} from '@angular/common';
 import {Router} from '@angular/router';
 import {FactoryService} from '../../../services/common/factory.service';
 
@@ -10,18 +9,10 @@ import {FactoryService} from '../../../services/common/factory.service';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
-export class BodyComponent implements OnInit {
+export class BodyComponent {
 
   constructor (public fs: FactoryService,
-              private platformLocation: PlatformLocation,
-              private router: Router) {}
-
-  ngOnInit() {
-    this.platformLocation.onPopState(() => {
-      this.fs.session.logout();
-      this.router.navigate(['unauthorized']);
-    });
-  }
+               private router: Router) {}
 
   menuClicked(event: MouseEvent, children: {code: string; label: string; path: string}[]) {
     this.fs.navigator.deactivateMenu();

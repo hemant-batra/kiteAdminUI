@@ -24,6 +24,10 @@ export class LoginComponent implements OnInit {
               private httpClient: HttpClient) {}
 
   ngOnInit() {
+    if (this.fs.navigator.isBackButtonPressed()) {
+      console.log('Back button was pressed');
+      this.router.navigate(['unauthorized']);
+    }
     this.loginForm = new FormGroup({
       'userName': new FormControl(null, [Validators.required, Validators.pattern(this.fs.data.RegEx.EMAIL_ID)]),
       'password': new FormControl(null, Validators.required)

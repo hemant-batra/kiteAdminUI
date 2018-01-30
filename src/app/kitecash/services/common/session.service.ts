@@ -25,8 +25,10 @@ export class SessionService {
   }
 
   logout() {
-    this.setSessionId(null);
-    this.navigationService.setMenus([]);
-    this.httpClient.put(this.dataService.URL.LOGOUT, null).subscribe();
+    if (this.isActive()) {
+      this.setSessionId(null);
+      this.navigationService.setMenus([]);
+      this.httpClient.put(this.dataService.URL.LOGOUT, null).subscribe();
+    }
   }
 }

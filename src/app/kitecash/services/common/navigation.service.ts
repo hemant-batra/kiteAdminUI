@@ -3,8 +3,21 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class NavigationService {
 
+  private backButtonPressed: boolean;
   private activatedMenu: HTMLDivElement = null;
   private menus: {code: string; label: string; path: string; children: {code: string; label: string; path: string}[]}[] = null;
+
+  isBackButtonPressed() {
+    return this.backButtonPressed;
+  }
+
+  setBackButtonPressed() {
+    this.backButtonPressed = true;
+  }
+
+  clearBackButtonPressed() {
+    this.backButtonPressed = false;
+  }
 
   getActivatedMenu() {
     return this.activatedMenu;

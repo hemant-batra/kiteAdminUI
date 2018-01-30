@@ -13,18 +13,11 @@ export class AuthorizationGuard implements CanActivate, CanActivateChild {
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log('AuthorizationGuard ' + this.fs.session.isActive());
-    if (!this.fs.session.isActive()) {
-      /* navigate to the login screen when the session
-         is inactive irrespective of the page URL that
-         the user is trying to open. This includes:
-         1) Opening a valid or invalid URL in the URL bar
-         2) Pressing the refresh button
-         3) Opening the same page in a new window (CTRL + N)
-       */
-      this.router.navigate(['unauthorized']);
-    } else {
+    console.log('Session active: ' + this.fs.session.isActive());
+    if (this.fs.session.isActive()) {
       this.fs.title.init(this.fs.data.PageTitle.NULL);
+    } else {
+      this.router.navigate(['unauthorized']);
     }
     return true;
   }
