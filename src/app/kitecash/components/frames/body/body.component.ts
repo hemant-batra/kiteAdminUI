@@ -23,17 +23,20 @@ export class BodyComponent implements OnInit {
     });
   }
 
-  menuClicked(event: MouseEvent) {
-    const activeMenu = this.fs.navigator.getActivatedMenu();
-    if (activeMenu !== null) {
-      activeMenu.style.setProperty('height', '0px');
-      activeMenu.style.setProperty('z-index', '-1');
+  menuClicked(event: MouseEvent, children: {code: string; label: string; path: string}[]) {
+    if (this.fs.navigator.getActivatedMenu() !== null) {
+      this.fs.navigator.getActivatedMenu().style.setProperty('height', '0px');
+      this.fs.navigator.getActivatedMenu().style.setProperty('z-index', '-1');
     }
     this.fs.navigator.setActivatedMenu(<HTMLDivElement>(event['target']['nextElementSibling']));
-    activeMenu.style.setProperty('height', activeMenu.children[0].clientHeight + 'px');
+    this.fs.navigator.getActivatedMenu().style.setProperty('height', this.fs.navigator.getActivatedMenu().children[0].clientHeight + 'px');
     setTimeout(() => {
-      activeMenu.style.setProperty('z-index', '0');
+      this.fs.navigator.getActivatedMenu().style.setProperty('z-index', '0');
     }, 500);
+    if (!isUndefined(children)) {
+      const array = this.fs.navigator.getActivatedMenu().children[0].children[0].children[0].children[0].children[0]['href'].split('/');
+      this.router.navigate(array.splice(3, array.length));
+    }
   }
 
   filterChildren(menuCode: string, children: {code: string; label: string; path: string}[]): {code: string; label: string; path: string}[] {
