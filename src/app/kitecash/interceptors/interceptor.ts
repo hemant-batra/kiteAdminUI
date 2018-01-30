@@ -7,6 +7,7 @@ import {SessionService} from '../services/common/session.service';
 import {Router} from '@angular/router';
 import {NavigationService} from '../services/common/navigation.service';
 import {DataService} from '../services/common/data.service';
+import {FactoryService} from '../services/common/factory.service';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -15,23 +16,19 @@ export class HttpRequestInterceptor implements HttpInterceptor {
                private router: Router) {}
 
   intercept (httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let sessionService: SessionService;
-    let navigationService: NavigationService;
-    let dataService: DataService;
+    let fs: FactoryService;
     try {
-      sessionService = <SessionService>this.injector.get(SessionService);
-      navigationService = <NavigationService>this.injector.get(NavigationService);
-      dataService = <DataService>this.injector.get(DataService);
+      fs = <FactoryService>this.injector.get(FactoryService);
     } catch (err) {
-      return this.handler(httpRequest, next, sessionService, navigationService, dataService);
+      return this.handler(httpRequest, next, fs.session, fs.navigator, fs.data);
     }
     /*
       intercept the HTTP request and add the authorization header to it
      */
     const authReq = httpRequest.clone({
-      headers: httpRequest.headers.set('Authorization', 'session ' + sessionService.getSessionId())
+      headers: httpRequest.headers.set('Authorization', 'session ' + fs.session.getSessionId())
     });
-    return this.handler(authReq, next, sessionService, navigationService, dataService);
+    return this.handler(authReq, next, fs.session, fs.navigator, fs.data);
   }
 
   private handler(httpRequest: HttpRequest<any>, next: HttpHandler, sessionService: SessionService, navigationService: NavigationService, dataService: DataService): Observable<HttpEvent<any>> {
@@ -43,7 +40,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
            the logout button
         */
         if (err['status'] === 440) {
-          if (httpRequest.url !== dataService.urls().LOGOUT) {
+          if (httpRequest.url !== dataService.URL.LOGOUT) {
             sessionService.setSessionId(null);
             navigationService.setMenus([]);
             this.router.navigate(['expired']);

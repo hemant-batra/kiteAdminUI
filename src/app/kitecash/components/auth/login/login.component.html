@@ -5,14 +5,14 @@
     <td width="20%">
       <table>
         <tr>
-          <td><img [src]="dataService.getImageSrc('kiteGreen')" [alt]="dataService.getImageAltText('kiteGreen')" class="img-responsive shake-slow"></td>
-          <td><img [src]="dataService.getImageSrc('kiteOrange')" [alt]="dataService.getImageAltText('kiteOrange')" class="img-responsive shake-slow"></td>
-          <td><img [src]="dataService.getImageSrc('kiteBlue')" [alt]="dataService.getImageAltText('kiteBlue')" class="img-responsive shake-slow"></td>
+          <td><img [src]="fs.data.getImageSrc('kiteGreen')" [alt]="fs.data.getImageAltText('kiteGreen')" class="img-responsive shake-slow"></td>
+          <td><img [src]="fs.data.getImageSrc('kiteOrange')" [alt]="fs.data.getImageAltText('kiteOrange')" class="img-responsive shake-slow"></td>
+          <td><img [src]="fs.data.getImageSrc('kiteBlue')" [alt]="fs.data.getImageAltText('kiteBlue')" class="img-responsive shake-slow"></td>
         </tr>
         <tr>
-          <td><img [src]="dataService.getImageSrc('kiteOrange')" [alt]="dataService.getImageAltText('kiteOrange')" class="img-responsive shake-slow"></td>
-          <td><img [src]="dataService.getImageSrc('kiteYellow')" [alt]="dataService.getImageAltText('kiteYellow')" class="img-responsive shake-slow"></td>
-          <td><img [src]="dataService.getImageSrc('kiteRed')" [alt]="dataService.getImageAltText('kiteRed')" class="img-responsive shake-slow"></td>
+          <td><img [src]="fs.data.getImageSrc('kiteOrange')" [alt]="fs.data.getImageAltText('kiteOrange')" class="img-responsive shake-slow"></td>
+          <td><img [src]="fs.data.getImageSrc('kiteYellow')" [alt]="fs.data.getImageAltText('kiteYellow')" class="img-responsive shake-slow"></td>
+          <td><img [src]="fs.data.getImageSrc('kiteRed')" [alt]="fs.data.getImageAltText('kiteRed')" class="img-responsive shake-slow"></td>
         </tr>
       </table>
     </td>
@@ -27,13 +27,13 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td width="40%" style="text-align: right;"><input type="email" placeholder="{{dataService.textLabels().ENTER_USERNAME}}" id="userName" class="form-control" formControlName="userName"></td>
-            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validationService.getUsernameValidationMessage(loginForm.get('userName'))}}</td>
+            <td width="40%" style="text-align: right;"><input type="email" placeholder="{{fs.data.TextLabel.ENTER_USERNAME}}" id="userName" class="form-control" formControlName="userName"></td>
+            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{fs.validator.getUsernameValidationMessage(loginForm.get('userName'))}}</td>
           </tr>
           <tr>
             <td width="20%"></td>
-            <td width="40%" style="text-align: right;"><input type="password" placeholder="{{dataService.textLabels().ENTER_PASSWORD}}" id="password" class="form-control" formControlName="password"></td>
-            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validationService.getPasswordValidationMessage(loginForm.get('password'))}}</td>
+            <td width="40%" style="text-align: right;"><input type="password" placeholder="{{fs.data.TextLabel.ENTER_PASSWORD}}" id="password" class="form-control" formControlName="password"></td>
+            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{fs.validator.getPasswordValidationMessage(loginForm.get('password'))}}</td>
           </tr>
           <tr>
             <td width="20%"></td>
@@ -41,9 +41,9 @@
               <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">
                 <span class="glyphicon glyphicon-log-in" #glyphicon></span>
                 &nbsp;
-                <span [innerHtml]="dataService.buttonLabels().LOGIN"></span></button>
+                <span [innerHtml]="fs.data.ButtonLabel.LOGIN"></span></button>
               &nbsp;
-              <button class="btn btn-default" type="button" [innerHtml]="dataService.buttonLabels().FORGOT_PASSWORD" (click)="forgotPassword();" [disabled]="!loginForm.get('userName').valid">
+              <button class="btn btn-default" type="button" [innerHtml]="fs.data.ButtonLabel.FORGOT_PASSWORD" (click)="forgotPassword();" [disabled]="!loginForm.get('userName').valid">
               </button>
             </td>
             <td width="40%" class="col-md-4"></td>

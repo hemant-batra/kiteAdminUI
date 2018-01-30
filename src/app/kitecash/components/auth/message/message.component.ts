@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data} from '@angular/router';
-import {DataService} from '../../../services/common/data.service';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-message',
@@ -10,8 +10,8 @@ import {DataService} from '../../../services/common/data.service';
 export class MessageComponent implements OnInit {
 
   errorMessage: string;
-  constructor(private activatedRoute: ActivatedRoute,
-              public dataService: DataService) {}
+  constructor (public fs: FactoryService,
+              private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(

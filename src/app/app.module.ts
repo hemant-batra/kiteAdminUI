@@ -20,6 +20,7 @@ import {SessionService} from './kitecash/services/common/session.service';
 import {HttpService} from './kitecash/services/common/http.service';
 import {DataService} from './kitecash/services/common/data.service';
 import {NavigationService} from './kitecash/services/common/navigation.service';
+import {FactoryService} from './kitecash/services/common/factory.service';
 // components
 import {AppComponent} from './kitecash/components/app.component';
 import {HeaderComponent} from './kitecash/components/frames/header/header.component';
@@ -83,6 +84,7 @@ const appRoutes = [
     TitleService,
     DataService,
     NavigationService,
+    FactoryService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,

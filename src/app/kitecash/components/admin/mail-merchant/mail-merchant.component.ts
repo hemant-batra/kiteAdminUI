@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TitleService} from '../../../services/common/title.service';
-import {DataService} from '../../../services/common/data.service';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-mail-merchant',
@@ -9,17 +8,16 @@ import {DataService} from '../../../services/common/data.service';
 })
 export class MailMerchantComponent implements OnInit {
 
-  constructor (private titleService: TitleService,
-               public dataService: DataService) {}
+  constructor (public fs: FactoryService) {}
 
   ngOnInit() {
-    this.titleService.init('MAIL_MERCHANT');
+    this.fs.title.init('MAIL_MERCHANT');
   }
 
   onSubmit() {
-    this.titleService.showSpinner();
+    this.fs.title.showSpinner();
     setTimeout(() => {
-      this.titleService.setSuccess('Transaction has been successfully processed');
+      this.fs.title.setSuccess('Transaction has been successfully processed');
     }, 2000);
   }
 }

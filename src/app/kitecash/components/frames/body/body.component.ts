@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationService} from '../../../services/common/navigation.service';
 import {isUndefined} from 'util';
 import {roles} from '../../../constants/pages';
-import {DataService} from '../../../services/common/data.service';
-import {SessionService} from '../../../services/common/session.service';
 import {PlatformLocation} from '@angular/common';
 import {Router} from '@angular/router';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-body',
@@ -14,28 +12,26 @@ import {Router} from '@angular/router';
 })
 export class BodyComponent implements OnInit {
 
-  constructor(public navigationService: NavigationService,
-              public sessionService: SessionService,
-              private dataService: DataService,
+  constructor (public fs: FactoryService,
               private platformLocation: PlatformLocation,
               private router: Router) {}
 
   ngOnInit() {
-    this.platformLocation.onPopState(x => {
-      this.sessionService.logout();
+    this.platformLocation.onPopState(() => {
+      this.fs.session.logout();
       this.router.navigate(['unauthorized']);
     });
   }
 
   menuClicked(event: MouseEvent) {
-    if (this.navigationService.getActivatedMenu() !== null) {
-      this.navigationService.getActivatedMenu().style.setProperty('height', '0px');
-      this.navigationService.getActivatedMenu().style.setProperty('z-index', '-1');
+    if (this.fs.navigator.getActivatedMenu() !== null) {
+      this.fs.navigator.getActivatedMenu().style.setProperty('height', '0px');
+      this.fs.navigator.getActivatedMenu().style.setProperty('z-index', '-1');
     }
-    this.navigationService.setActivatedMenu(<HTMLDivElement>(event['target']['nextElementSibling']));
-    this.navigationService.getActivatedMenu().style.setProperty('height', this.navigationService.getActivatedMenu().children[0].clientHeight + 'px');
+    this.fs.navigator.setActivatedMenu(<HTMLDivElement>(event['target']['nextElementSibling']));
+    this.fs.navigator.getActivatedMenu().style.setProperty('height', this.fs.navigator.getActivatedMenu().children[0].clientHeight + 'px');
     setTimeout(() => {
-      this.navigationService.getActivatedMenu().style.setProperty('z-index', '0');
+      this.fs.navigator.getActivatedMenu().style.setProperty('z-index', '0');
     }, 500);
   }
 
@@ -44,7 +40,7 @@ export class BodyComponent implements OnInit {
       return children;
     }
 
-    let filteredChildren = roles[this.dataService.getUserRole()].find(role => role.code === menuCode).children;
+    let filteredChildren = roles[this.fs.data.getUserRole()].find(role => role.code === menuCode).children;
     if (isUndefined(filteredChildren)) {
       return filteredChildren;
     }

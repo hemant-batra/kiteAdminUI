@@ -6,9 +6,9 @@ import {NavigationService} from './navigation.service';
 @Injectable()
 export class SessionService {
 
-  constructor (private httpClient: HttpClient,
-               private dataService: DataService,
-               private navigationService: NavigationService) {}
+  constructor (private dataService: DataService,
+               private navigationService: NavigationService,
+               private httpClient: HttpClient) {}
 
   private sessionId: string = null;
 
@@ -27,6 +27,6 @@ export class SessionService {
   logout() {
     this.setSessionId(null);
     this.navigationService.setMenus([]);
-    this.httpClient.put(this.dataService.urls().LOGOUT, null).subscribe();
+    this.httpClient.put(this.dataService.URL.LOGOUT, null).subscribe();
   }
 }

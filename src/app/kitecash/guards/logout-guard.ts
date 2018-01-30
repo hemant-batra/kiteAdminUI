@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {SessionService} from '../services/common/session.service';
+import {FactoryService} from '../services/common/factory.service';
 
 @Injectable()
 export class LogoutGuard implements CanActivate {
 
-  constructor (private router: Router,
-               private sessionService: SessionService) {}
+  constructor (public fs: FactoryService,
+               private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log('LogoutGuard ' + this.sessionService.isActive());
-    if (this.sessionService.isActive()) {
-      this.sessionService.logout();
+    console.log('LogoutGuard ' + this.fs.session.isActive());
+    if (this.fs.session.isActive()) {
+      this.fs.session.logout();
     } else {
       this.router.navigate(['unauthorized']);
     }

@@ -1,8 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {SessionService} from '../../../services/common/session.service';
-import {DataService} from '../../../services/common/data.service';
-import {NavigationService} from '../../../services/common/navigation.service';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-header',
@@ -15,13 +13,11 @@ export class HeaderComponent {
   @ViewChild('changePassword') changePassword: ElementRef;
   @ViewChild('logout') logout: ElementRef;
 
-  constructor(public router: Router,
-              public sessionService: SessionService,
-              public dataService: DataService,
-              private navigationService: NavigationService) {}
+  constructor (public fs: FactoryService,
+              public router: Router) {}
 
   prepareForNavigation() {
-    const activatedMenu = this.navigationService.getActivatedMenu();
+    const activatedMenu = this.fs.navigator.getActivatedMenu();
     if (activatedMenu !== null) {
       activatedMenu.style.setProperty('height', '0px');
       activatedMenu.style.setProperty('z-index', '-1');
@@ -29,10 +25,10 @@ export class HeaderComponent {
   }
 
   invertImage(imageId: string) {
-      this[imageId].nativeElement.setAttribute('src', this.dataService.getImageSrc(imageId + '_inverted'));
+      this[imageId].nativeElement.setAttribute('src', this.fs.data.getImageSrc(imageId + '_inverted'));
     }
 
   restoreImage(imageId: string) {
-    this[imageId].nativeElement.setAttribute('src', this.dataService.getImageSrc(imageId));
+    this[imageId].nativeElement.setAttribute('src', this.fs.data.getImageSrc(imageId));
   }
 }

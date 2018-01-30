@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TitleService} from '../../../services/common/title.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {HttpService} from '../../../services/common/http.service';
-import {ValidationService} from '../../../services/common/validation.service';
-import {DataService} from '../../../services/common/data.service';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-change-password',
@@ -14,13 +11,10 @@ export class ChangePasswordComponent implements OnInit {
 
   changePasswordForm: FormGroup;
 
-  constructor(private titleService: TitleService,
-              private httpService: HttpService,
-              public validationService: ValidationService,
-              public dataService: DataService) {}
+  constructor (public fs: FactoryService) {}
 
   ngOnInit() {
-    this.titleService.init('CHANGE_PASSWORD');
+    this.fs.title.init('CHANGE_PASSWORD');
     this.changePasswordForm = new FormGroup({
       'oldPassword': new FormControl(null, [Validators.required]),
       'newPassword': new FormControl(null, [Validators.required]),
@@ -30,21 +24,21 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit() {
     if (this.changePasswordForm.get('newPassword').value !== this.changePasswordForm.get('confirmNewPassword').value) {
-      this.titleService.setError(this.dataService.messages().NEW_AND_CONFIRM_NEW_PASSWORDS_MISMATCH);
+      this.fs.title.setError(this.fs.data.Message.NEW_AND_CONFIRM_NEW_PASSWORDS_MISMATCH);
     } else {
       const form = new FormGroup({
         'oldPassword': this.changePasswordForm.get('oldPassword'),
         'newPassword': this.changePasswordForm.get('newPassword')
       });
-      this.titleService.showSpinner();
-      this.httpService.post(this.dataService.urls().CHANGE_PASSWORD, form).subscribe(
+      this.fs.title.showSpinner();
+      this.fs.http.post(this.fs.data.URL.CHANGE_PASSWORD, form).subscribe(
         () => {
-          const message = this.dataService.messages().PASSWORD_CHANGE_SUCCESSFUL;
-          this.titleService.setSuccess(message);
+          const message = this.fs.data.Message.PASSWORD_CHANGE_SUCCESSFUL;
+          this.fs.title.setSuccess(message);
           this.changePasswordForm.reset();
         },
         error => {
-          this.titleService.setError(error);
+          this.fs.title.setError(error);
           this.changePasswordForm.reset();
         }
       );

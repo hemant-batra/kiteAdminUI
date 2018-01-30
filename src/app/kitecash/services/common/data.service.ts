@@ -11,6 +11,30 @@ export class DataService {
   private fullName: string = null;
   private mobileNumber: string = null;
 
+  public Message = this.c.Messages;
+  public TextLabel = this.c.TextLabels;
+  public ButtonLabel = this.c.ButtonLabels;
+  public DropDownOption = this.c.DropDownOptions;
+  public PageTitle = this.c.PageTitles;
+  public URL = this.c.URL;
+  public RegEx = this.c.RegEx;
+
+  public getMessageWithParams(messageKey: string, params: {paramName: string; paramValue: string}[]) {
+    let message = this.c.Messages[messageKey];
+    for (const param of params) {
+      message = message.replace('{' + param.paramName + '}', param.paramValue);
+    }
+    return message;
+  }
+
+  public getImageSrc(imageKey: string) {
+    return this.c.Images[imageKey]['src'];
+  }
+
+  public getImageAltText(imageKey: string) {
+    return this.c.Images[imageKey]['altText'];
+  }
+
   getUserRole() {
     return this.userRole;
   }
@@ -43,49 +67,5 @@ export class DataService {
 
   public setMobileNumber(mobileNumber: string) {
     this.mobileNumber = mobileNumber;
-  }
-
-  public messages() {
-    return this.c.Messages;
-  }
-
-  public getMessageWithParams(messageKey: string, params: {paramName: string; paramValue: string}[]) {
-    let message = this.c.Messages[messageKey];
-    for (const param of params) {
-      message = message.replace('{' + param.paramName + '}', param.paramValue);
-    }
-    return message;
-  }
-
-  public textLabels() {
-    return this.c.TextLabels;
-  }
-
-  public buttonLabels() {
-    return this.c.ButtonLabels;
-  }
-
-  public dropDownOptions() {
-    return this.c.DropDownOptions;
-  }
-
-  public pageTitles() {
-    return this.c.PageTitles;
-  }
-
-  public urls() {
-    return this.c.URL;
-  }
-
-  public getImageSrc(imageKey: string) {
-    return this.c.Images[imageKey]['src'];
-  }
-
-  public getImageAltText(imageKey: string) {
-    return this.c.Images[imageKey]['altText'];
-  }
-
-  public regEx() {
-    return this.c.RegEx;
   }
 }

@@ -1,11 +1,11 @@
 <table class="panel-heading header">
   <tr>
-    <td class="col-md-3 format" align="left">{{dataService.textLabels().APPLICATION_NAME}}</td>
+    <td class="col-md-3 format" align="left">{{fs.data.TextLabel.APPLICATION_NAME}}</td>
     <td class="col-md-5">&nbsp;</td>
-    <td *ngIf="sessionService.isActive(); else singleCell"
+    <td *ngIf="fs.session.isActive(); else singleCell"
         align="center"
         class="col-md-1 link"
-        [title]="dataService.getImageAltText('myProfile')"
+        [title]="fs.data.getImageAltText('myProfile')"
         (mouseover)="invertImage('myProfile');"
         (mouseout)="restoreImage('myProfile');"
         (click)="prepareForNavigation()"
@@ -14,17 +14,17 @@
               height="32px"
               width="32px"
               class="img-responsive"
-              [title]="dataService.getImageAltText('myProfile')"
-              [src]="dataService.getImageSrc('myProfile')"
-              [alt]="dataService.getImageAltText('myProfile')"
+              [title]="fs.data.getImageAltText('myProfile')"
+              [src]="fs.data.getImageSrc('myProfile')"
+              [alt]="fs.data.getImageAltText('myProfile')"
               (click)="prepareForNavigation()"
               [routerLink]="'myProfile'"
               #myProfile>
     </td>
-    <td *ngIf="sessionService.isActive(); else singleCell"
+    <td *ngIf="fs.session.isActive(); else singleCell"
         align="center"
         class="col-md-1 link"
-        [title]="dataService.getImageAltText('changePassword')"
+        [title]="fs.data.getImageAltText('changePassword')"
         (mouseover)="invertImage('changePassword');"
         (mouseout)="restoreImage('changePassword');"
         (click)="prepareForNavigation()"
@@ -33,17 +33,17 @@
               height="32px"
               width="32px"
               class="img-responsive"
-              [title]="dataService.getImageAltText('changePassword')"
-              [src]="dataService.getImageSrc('changePassword')"
-              [alt]="dataService.getImageAltText('changePassword')"
+              [title]="fs.data.getImageAltText('changePassword')"
+              [src]="fs.data.getImageSrc('changePassword')"
+              [alt]="fs.data.getImageAltText('changePassword')"
               (click)="prepareForNavigation()"
               [routerLink]="'changePassword'"
               #changePassword>
     </td>
-    <td *ngIf="sessionService.isActive(); else singleCell"
+    <td *ngIf="fs.session.isActive(); else singleCell"
         align="center"
         class="col-md-1 link"
-        [title]="dataService.getImageAltText('logout')"
+        [title]="fs.data.getImageAltText('logout')"
         (mouseover)="invertImage('logout');"
         (mouseout)="restoreImage('logout');"
         (click)="prepareForNavigation()"
@@ -52,23 +52,23 @@
                 height="32px"
                 width="32px"
                 class="img-responsive"
-                [title]="dataService.getImageAltText('logout')"
-                [src]="dataService.getImageSrc('logout')"
-                [alt]="dataService.getImageAltText('logout')"
+                [title]="fs.data.getImageAltText('logout')"
+                [src]="fs.data.getImageSrc('logout')"
+                [alt]="fs.data.getImageAltText('logout')"
                 (click)="prepareForNavigation()"
                 [routerLink]="'logout'"
                 #logout>
     </td>
     <td align="center"
         class="col-md-1"
-        [title]="dataService.getImageAltText('kiteLogoBig')">
+        [title]="fs.data.getImageAltText('kiteLogoBig')">
               <img
                 height="32px"
                 width="32px"
                 class="img-responsive"
-                [title]="dataService.getImageAltText('kiteLogoBig')"
-                [src]="dataService.getImageSrc('kiteLogoBig')"
-                [alt]="dataService.getImageAltText('kiteLogoBig')">
+                [title]="fs.data.getImageAltText('kiteLogoBig')"
+                [src]="fs.data.getImageSrc('kiteLogoBig')"
+                [alt]="fs.data.getImageAltText('kiteLogoBig')">
     </td>
   </tr>
 </table>

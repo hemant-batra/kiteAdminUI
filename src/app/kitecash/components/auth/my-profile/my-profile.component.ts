@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DataService} from '../../../services/common/data.service';
-import {TitleService} from '../../../services/common/title.service';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -9,11 +8,10 @@ import {TitleService} from '../../../services/common/title.service';
 })
 export class MyProfileComponent implements OnInit {
 
-  constructor(public dataService: DataService,
-              private titleService: TitleService) {}
+  constructor (public fs: FactoryService) {}
 
   ngOnInit() {
-    this.titleService.init('MY_PROFILE');
+    this.fs.title.init('MY_PROFILE');
   }
 
 }

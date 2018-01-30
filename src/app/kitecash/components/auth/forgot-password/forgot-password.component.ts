@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {DataService} from '../../../services/common/data.service';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,11 +9,11 @@ import {DataService} from '../../../services/common/data.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  constructor(private dataService: DataService,
+  constructor (public fs: FactoryService,
               private router: Router) {}
 
   ngOnInit() {
-    if (this.dataService.getUserName() === null) {
+    if (this.fs.data.getUserName() === null) {
       this.router.navigate(['unauthorized']);
     }
   }

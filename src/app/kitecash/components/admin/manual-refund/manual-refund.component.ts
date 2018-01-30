@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TitleService} from '../../../services/common/title.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {HttpService} from '../../../services/common/http.service';
-import {ValidationService} from '../../../services/common/validation.service';
-import {DataService} from '../../../services/common/data.service';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-manual-refund',
@@ -14,13 +11,10 @@ export class ManualRefundComponent implements OnInit {
 
   manualRefundForm: FormGroup;
 
-  constructor (private titleService: TitleService,
-               private httpService: HttpService,
-               public validationService: ValidationService,
-               public dataService: DataService) {}
+  constructor (public fs: FactoryService) {}
 
   ngOnInit() {
-    this.titleService.init('MANUAL_REFUND');
+    this.fs.title.init('MANUAL_REFUND');
     this.manualRefundForm = new FormGroup({
       'mobileNumber': new FormControl(null, [Validators.required, Validators.pattern(new RegExp(/^[0-9]{10,10}$/))]),
       'systemAccountNumber': new FormControl(null, [Validators.required]),
@@ -34,14 +28,14 @@ export class ManualRefundComponent implements OnInit {
   }
 
   onSubmit() {
-    this.titleService.showSpinner();
-    this.httpService.post(this.dataService.urls().MANUAL_REFUND, this.manualRefundForm).subscribe(
+    this.fs.title.showSpinner();
+    this.fs.http.post(this.fs.data.URL.MANUAL_REFUND, this.manualRefundForm).subscribe(
       response => {
-        this.titleService.setSuccess(response);
+        this.fs.title.setSuccess(response);
         this.manualRefundForm.reset();
         },
       error => {
-        this.titleService.setError(error);
+        this.fs.title.setError(error);
         this.manualRefundForm.reset();
       }
     );

@@ -4,7 +4,7 @@ import {DataService} from './data.service';
 @Injectable()
 export class TitleService {
 
-  constructor(private dataService: DataService) {}
+  constructor (private dataService: DataService) {}
 
   private status: number;
   private statusText: string = null;
@@ -31,7 +31,7 @@ export class TitleService {
   }
 
   private setTitle(titleCode: string) {
-    this.titleService = this.dataService.pageTitles()[titleCode];
+    this.titleService = this.dataService.PageTitle[titleCode];
     this._titleEventEmitter.emit(this.titleService);
   }
 

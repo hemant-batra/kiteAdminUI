@@ -8,7 +8,7 @@ import {DataService} from './data.service';
 @Injectable()
 export class HttpService {
 
-  constructor(private httpClient: HttpClient,
+  constructor (private httpClient: HttpClient,
               private dataService: DataService) {}
 
   public put(url: string, formGroup: FormGroup): Observable<string> {
@@ -20,11 +20,11 @@ export class HttpService {
         (error) => {
           try {
             if (error['error'].errorList == null) {
-              return Observable.throw(this.dataService.messages().NO_INTERNET);
+              return Observable.throw(this.dataService.Message.NO_INTERNET);
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
-            return Observable.throw(this.dataService.messages().INTERNAL_SERVER_ERROR);
+            return Observable.throw(this.dataService.Message.INTERNAL_SERVER_ERROR);
           }
         }
       );
@@ -39,11 +39,11 @@ export class HttpService {
         (error) => {
           try {
             if (error['error'].errorList == null) {
-              return Observable.throw(this.dataService.messages().NO_INTERNET);
+              return Observable.throw(this.dataService.Message.NO_INTERNET);
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
-            return Observable.throw(this.dataService.messages().INTERNAL_SERVER_ERROR);
+            return Observable.throw(this.dataService.Message.INTERNAL_SERVER_ERROR);
           }
         }
       );

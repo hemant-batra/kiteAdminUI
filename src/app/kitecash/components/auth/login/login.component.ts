@@ -1,15 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import 'rxjs/add/operator/map';
-import {ValidationService} from '../../../services/common/validation.service';
 import {Router} from '@angular/router';
-import {DataService} from '../../../services/common/data.service';
-import {NavigationService} from '../../../services/common/navigation.service';
-import {SessionService} from '../../../services/common/session.service';
 import {HttpClient} from '@angular/common/http';
 import {paths, roles} from '../../../constants/pages';
 import {isUndefined} from 'util';
 import {Observable} from 'rxjs/Observable';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-login',
@@ -22,16 +19,13 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private router: Router,
-              private httpClient: HttpClient,
-              private sessionService: SessionService,
-              public dataService: DataService,
-              public validationService: ValidationService,
-              private navigationService: NavigationService) {}
+  constructor (public fs: FactoryService,
+              private router: Router,
+              private httpClient: HttpClient) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      'userName': new FormControl(null, [Validators.required, Validators.pattern(this.dataService.regEx().EMAIL_ID)]),
+      'userName': new FormControl(null, [Validators.required, Validators.pattern(this.fs.data.RegEx.EMAIL_ID)]),
       'password': new FormControl(null, Validators.required)
     });
   }
@@ -49,7 +43,7 @@ export class LoginComponent implements OnInit {
     this.doLogin(formGroup.getRawValue()).subscribe(
       () =>  {
         this.stopSpinner();
-        this.dataService.setUserName(this.loginForm.get('userName').value);
+        this.fs.data.setUserName(this.loginForm.get('userName').value);
         this.router.navigate(['admin']);
       },
       (error) => {
@@ -61,21 +55,21 @@ export class LoginComponent implements OnInit {
   }
 
   private doLogin(jsObj) {
-    return this.httpClient.post(this.dataService.urls().LOGIN, jsObj)
+    return this.httpClient.post(this.fs.data.URL.LOGIN, jsObj)
       .map(
         (response) => {
           const additionalInfo = response['additionalInfo'];
           const userRole = additionalInfo.userRole;
-          this.dataService.setUserRole(userRole);
-          this.navigationService.setMenus(roles[userRole].map(
+          this.fs.data.setUserRole(userRole);
+          this.fs.navigator.setMenus(roles[userRole].map(
             role => paths.find(
               path => path.code === role.code
             )
           ));
-          if (this.navigationService.getMenus().length === 0) {
-            return this.dataService.messages().NO_MENU_FOUND;
+          if (this.fs.navigator.getMenus().length === 0) {
+            return this.fs.data.Message.NO_MENU_FOUND;
           }
-          this.sessionService.setSessionId(additionalInfo.sessionId);
+          this.fs.session.setSessionId(additionalInfo.sessionId);
           return null;
         }
       )
@@ -83,11 +77,11 @@ export class LoginComponent implements OnInit {
         (error) => {
           try {
             if (isUndefined(error['error'].errorList)) {
-              return Observable.throw(this.dataService.messages().NO_INTERNET);
+              return Observable.throw(this.fs.data.Message.NO_INTERNET);
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
-            return Observable.throw(this.dataService.messages().INTERNAL_SERVER_ERROR);
+            return Observable.throw(this.fs.data.Message.INTERNAL_SERVER_ERROR);
           }
         }
       );
@@ -106,7 +100,7 @@ export class LoginComponent implements OnInit {
   }
 
   forgotPassword() {
-    this.dataService.setUserName(this.loginForm.get('userName').value);
+    this.fs.data.setUserName(this.loginForm.get('userName').value);
     this.router.navigate(['forgotPassword']);
   }
 }

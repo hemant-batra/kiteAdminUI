@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {DataService} from '../../../services/common/data.service';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,5 +7,5 @@ import {DataService} from '../../../services/common/data.service';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  constructor(public dataService: DataService) {}
+  constructor (public fs: FactoryService) {}
 }

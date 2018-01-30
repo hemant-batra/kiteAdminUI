@@ -5,7 +5,7 @@ import {DataService} from './data.service';
 @Injectable()
 export class ValidationService {
 
-  constructor(private dataService: DataService) {}
+  constructor (private dataService: DataService) {}
 
   public getUsernameValidationMessage(userName: FormControl) {
     if (userName.untouched) {
@@ -16,10 +16,10 @@ export class ValidationService {
       return;
     }
     if (errors['required']) {
-      return this.dataService.messages().USERNAME_REQUIRED_MESSAGE;
+      return this.dataService.Message.USERNAME_REQUIRED_MESSAGE;
     }
     if (errors['pattern']) {
-      return this.dataService.messages().USERNAME_INVALID_PATTERN_MESSAGE;
+      return this.dataService.Message.USERNAME_INVALID_PATTERN_MESSAGE;
     }
   }
 
@@ -32,7 +32,7 @@ export class ValidationService {
       return;
     }
     if (errors['required']) {
-      return this.dataService.messages().PASSWORD_REQUIRED_MESSAGE;
+      return this.dataService.Message.PASSWORD_REQUIRED_MESSAGE;
     }
   }
 
@@ -45,7 +45,7 @@ export class ValidationService {
       return null;
     }
     if (errors['required']) {
-      return this.dataService.messages()[messageKey];
+      return this.dataService.Message[messageKey];
     }
     return null;
   }
@@ -59,10 +59,10 @@ export class ValidationService {
       return null;
     }
     if (errors['required']) {
-      return this.dataService.messages().MOBILE_NUMBER_REQUIRED_MESSAGE;
+      return this.dataService.Message.MOBILE_NUMBER_REQUIRED_MESSAGE;
     }
     if (errors['pattern']) {
-      return this.dataService.messages().MOBILE_NUMBER_PATTERN_MESSAGE;
+      return this.dataService.Message.MOBILE_NUMBER_PATTERN_MESSAGE;
     }
     return null;
   }
@@ -76,10 +76,10 @@ export class ValidationService {
       return null;
     }
     if (errors['required']) {
-      return this.dataService.messages().AMOUNT_REQUIRED_MESSAGE;
+      return this.dataService.Message.AMOUNT_REQUIRED_MESSAGE;
     }
     if (errors['pattern']) {
-      return this.dataService.messages().AMOUNT_NUMERIC_MESSAGE;
+      return this.dataService.Message.AMOUNT_NUMERIC_MESSAGE;
     }
     return null;
   }

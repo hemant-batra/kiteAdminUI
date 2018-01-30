@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TitleService} from '../../../services/common/title.service';
 import {Subscription} from 'rxjs/Subscription';
-import {DataService} from '../../../services/common/data.service';
+import {FactoryService} from '../../../services/common/factory.service';
 
 @Component({
   selector: 'app-title',
@@ -10,8 +9,7 @@ import {DataService} from '../../../services/common/data.service';
 })
 export class TitleComponent implements OnInit, OnDestroy {
 
-  constructor (private titleService: TitleService,
-               public dataService: DataService) {}
+  constructor (public fs: FactoryService) {}
 
   status: number;
   statusText: string;
@@ -22,13 +20,13 @@ export class TitleComponent implements OnInit, OnDestroy {
   private titleSubscription: Subscription;
 
   ngOnInit() {
-    this.statusSubscription = this.titleService.emitter.status.subscribe(
+    this.statusSubscription = this.fs.title.emitter.status.subscribe(
       status => this.status = status
     );
-    this.statusTextSubscription = this.titleService.emitter.statusText.subscribe(
+    this.statusTextSubscription = this.fs.title.emitter.statusText.subscribe(
       statusText => this.statusText = statusText
     );
-    this.titleSubscription = this.titleService.emitter.title.subscribe(
+    this.titleSubscription = this.fs.title.emitter.title.subscribe(
       title => this.title = title
     );
   }

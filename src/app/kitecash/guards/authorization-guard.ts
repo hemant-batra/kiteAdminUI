@@ -1,24 +1,20 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot} from '@angular/router';
-import {TitleService} from '../services/common/title.service';
-import {SessionService} from '../services/common/session.service';
-import {DataService} from '../services/common/data.service';
+import {FactoryService} from '../services/common/factory.service';
 
 @Injectable()
 export class AuthorizationGuard implements CanActivate, CanActivateChild {
 
-  constructor (private router: Router,
-               private titleService: TitleService,
-               private sessionService: SessionService,
-               private dataService: DataService) {}
+  constructor (public fs: FactoryService,
+               private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     return this.canActivateChild(route, state);
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log('AuthorizationGuard ' + this.sessionService.isActive());
-    if (!this.sessionService.isActive()) {
+    console.log('AuthorizationGuard ' + this.fs.session.isActive());
+    if (!this.fs.session.isActive()) {
       /* navigate to the login screen when the session
          is inactive irrespective of the page URL that
          the user is trying to open. This includes:
@@ -28,7 +24,7 @@ export class AuthorizationGuard implements CanActivate, CanActivateChild {
        */
       this.router.navigate(['unauthorized']);
     } else {
-      this.titleService.init(this.dataService.pageTitles().NULL);
+      this.fs.title.init(this.fs.data.PageTitle.NULL);
     }
     return true;
   }

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {DataService} from '../../services/common/data.service';
+import {FactoryService} from '../../services/common/factory.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,6 +8,6 @@ import {DataService} from '../../services/common/data.service';
 })
 export class AdminComponent {
 
- constructor(public dataService: DataService) {}
+ constructor (public fs: FactoryService) {}
 
 }

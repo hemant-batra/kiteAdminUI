@@ -1,20 +1,20 @@
 <form (ngSubmit)="onSubmit();">
   <table>
     <tr>
-      <td><label for="name">{{dataService.textLabels().MERCHANT_NAME}}</label></td>
+      <td><label for="name">{{fs.data.TextLabel.MERCHANT_NAME}}</label></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td><input type="text" class="form-control" name="name" id="name"></td>
     </tr>
     <tr>
-      <td><label for="emailId">{{dataService.textLabels().MERCHANT_EMAIL_ID}}</label></td>
+      <td><label for="emailId">{{fs.data.TextLabel.MERCHANT_EMAIL_ID}}</label></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td><input type="text" class="form-control" name="emailId" id="emailId"></td>
     </tr>
     <tr><td colspan="3">&nbsp;</td></tr>
     <tr>
       <td colspan="3" align="center">
-        <button type="submit" class="btn btn-primary">{{dataService.buttonLabels().SEND}}</button>
-        <button type="reset" class="btn btn-default" (click)="ngOnInit()">{{dataService.buttonLabels().RESET}}</button>
+        <button type="submit" class="btn btn-primary">{{fs.data.ButtonLabel.SEND}}</button>
+        <button type="reset" class="btn btn-default" (click)="ngOnInit()">{{fs.data.ButtonLabel.RESET}}</button>
       </td>
     </tr>
   </table>
