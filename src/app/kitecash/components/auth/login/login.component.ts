@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     const formGroup = new FormGroup({
       'identifier': new FormGroup({
         'idType': new FormControl('PHONE'),
-        'idValue': new FormControl('9873009342', [Validators.required, Validators.pattern(new RegExp(/^[0-9]{10,10}$/))]),
+        'idValue': new FormControl('9873009342', [Validators.required, Validators.pattern(this.fs.data.RegEx.EMAIL_ID)]),
       }),
       'password': new FormControl('Admpass1#', Validators.required)
     });

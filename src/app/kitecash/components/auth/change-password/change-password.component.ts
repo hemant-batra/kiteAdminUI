@@ -17,8 +17,8 @@ export class ChangePasswordComponent implements OnInit {
     this.fs.title.init('CHANGE_PASSWORD');
     this.changePasswordForm = new FormGroup({
       'oldPassword': new FormControl(null, [Validators.required]),
-      'newPassword': new FormControl(null, [Validators.required]),
-      'confirmNewPassword': new FormControl(null, [Validators.required])
+      'newPassword': new FormControl(null, [Validators.required, Validators.pattern(this.fs.data.RegEx.PASSWORD)]),
+      'confirmNewPassword': new FormControl(null, [Validators.required, Validators.pattern(this.fs.data.RegEx.PASSWORD)])
     });
   }
 

@@ -36,6 +36,22 @@ export class ValidationService {
     }
   }
 
+  public getChangePasswordValidationMessage(password: FormControl, messageKey: string) {
+    if (password.untouched) {
+      return;
+    }
+    const errors = password['errors'];
+    if (errors === null) {
+      return;
+    }
+    if (errors['required']) {
+      return this.dataService.Message[messageKey];
+    }
+    if (errors['pattern']) {
+      return this.dataService.Message.PASSWORD_INVALID_PATTERN_MESSAGE;
+    }
+  }
+
   public getRequiredMessage(control: FormControl, messageKey: string): string {
     if (control.untouched) {
       return;
