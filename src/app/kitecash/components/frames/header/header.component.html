@@ -1,7 +1,7 @@
 <table class="panel-heading header">
   <tr>
-    <td class="col-md-4 format" align="left">{{dataService.textLabels().APPLICATION_NAME}}</td>
-    <td class="col-md-4">&nbsp;</td>
+    <td class="col-md-3 format" align="left">{{dataService.textLabels().APPLICATION_NAME}}</td>
+    <td class="col-md-5">&nbsp;</td>
     <td *ngIf="sessionService.isActive(); else singleCell"
         align="center"
         class="col-md-1 link"
@@ -59,8 +59,17 @@
                 [routerLink]="'logout'"
                 #logout>
     </td>
-    <td align="center" class="col-md-1">
-      <img class="img-responsive" [src]="dataService.getImageSrc('kiteLogoBig')" [alt]="dataService.getImageAltText('kiteLogoBig')">
+    <td
+        align="center"
+        class="col-md-1"
+        [title]="dataService.getImageAltText('kiteLogoBig')">
+      <img
+        height="32px"
+        width="32px"
+        class="img-responsive"
+        [title]="dataService.getImageAltText('kiteLogoBig')"
+        [src]="dataService.getImageSrc('kiteLogoBig')"
+        [alt]="dataService.getImageAltText('kiteLogoBig')">
     </td>
   </tr>
 </table>

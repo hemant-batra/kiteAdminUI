@@ -3,11 +3,11 @@ table.header {
   width: 100%;
 }
 td {
-  font-size: 30pt;
   color: white;
   outline: none;
 }
 .format {
+  font-size: 30pt;
   text-shadow: 2px 2px #244d70;
 }
 td.link {

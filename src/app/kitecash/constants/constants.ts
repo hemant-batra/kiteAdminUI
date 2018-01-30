@@ -92,7 +92,7 @@ export const Constants = {
     kiteRed: {src: '/assets/images/kite_red.png', altText: 'Red Kite'},
     kiteYellow: {src: '/assets/images/kite_yellow.png', altText: 'Yellow Kite'},
     kiteLogo: {src: '/assets/images/KiteLogo.png', altText: 'Kite Logo'},
-    kiteLogoBig: {src: '/assets/images/KiteLogoBig.png', altText: 'Big Kite Logo'},
+    kiteLogoBig: {src: '/assets/images/KiteLogoBig.png', altText: 'Kite'},
     ripple: {src: '/assets/images/Ripple.gif', altText: 'Loading...'},
     preloader_gif: {src: '/assets/images/preloader.gif', altText: 'Loading...'},
     preloader: {src: '/assets/images/preloader.svg', altText: 'Loading...'},
