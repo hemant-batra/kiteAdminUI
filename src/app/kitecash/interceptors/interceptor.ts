@@ -42,7 +42,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         if (err['status'] === 440) {
           if (httpRequest.url !== dataService.URL.LOGOUT) {
             sessionService.setSessionId(null);
-            navigationService.setMenus([]);
+            navigationService.SideMenu.setContents([]);
             this.router.navigate(['expired']);
           }
         }

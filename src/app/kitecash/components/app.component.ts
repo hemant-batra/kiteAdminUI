@@ -12,7 +12,7 @@ export class AppComponent {
                private platformLocation: PlatformLocation) {
     this.platformLocation.onPopState(() => {
       console.log('Back button is pressed');
-      this.fs.navigator.setBackButtonPressed();
+      this.fs.navigator.BrowserBackButton.setPressed();
       this.fs.session.logout();
     });
   }

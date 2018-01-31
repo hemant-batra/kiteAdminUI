@@ -16,9 +16,17 @@ td.link {
 td.link:hover {
   background-color: white;
 }
-img {
+img.show {
+  display: block;
   outline: none;
+  cursor: pointer;
+}
+img.hide {
+  display: none;
+  outline: none;
+  cursor: pointer;
 }
 .routerLinkActive {
   background-color: white;
+  cursor: pointer;
 }

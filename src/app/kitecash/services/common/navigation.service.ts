@@ -1,68 +1,71 @@
 import {ElementRef, Injectable} from '@angular/core';
 import {isUndefined} from 'util';
 
-export enum HeaderMenu {
-  NONE, MY_PROFILE, CHANGE_PASSWORD, LOGOUT
-}
-
 @Injectable()
 export class NavigationService {
 
-  private frozenHeaderMenu: HeaderMenu;
-  private frozenHeaderMenuImage: ElementRef;
-  private frozenHeaderMenuImage_inverted: ElementRef;
-  private backButtonPressed: boolean;
-  private activatedMenu: HTMLDivElement = null;
-  private menus: {code: string; label: string; path: string; children: {code: string; label: string; path: string}[]}[] = null;
-
-  setFrozenHeaderMenu(frozenHeaderMenu: HeaderMenu, frozenHeaderMenuImage: ElementRef, frozenHeaderMenuImage_inverted: ElementRef) {
-    this.frozenHeaderMenu = frozenHeaderMenu;
-    if (this.frozenHeaderMenuImage !== null && !isUndefined(this.frozenHeaderMenuImage)) {
-      this.frozenHeaderMenuImage.nativeElement.style.display = 'block';
+  BrowserBackButton = new class {
+    private pressed: boolean;
+    isPressed() {
+      return this.pressed;
     }
-    if (this.frozenHeaderMenuImage_inverted !== null && !isUndefined(this.frozenHeaderMenuImage_inverted)) {
-      this.frozenHeaderMenuImage_inverted.nativeElement.style.display = 'none';
+    setPressed() {
+      this.pressed = true;
     }
-    this.frozenHeaderMenuImage = frozenHeaderMenuImage;
-    this.frozenHeaderMenuImage_inverted = frozenHeaderMenuImage_inverted;
-  }
-
-  getFrozenHeaderMenu() {
-    return this.frozenHeaderMenu;
-  }
-
-  isBackButtonPressed() {
-    return this.backButtonPressed;
-  }
-
-  setBackButtonPressed() {
-    this.backButtonPressed = true;
-  }
-
-  clearBackButtonPressed() {
-    this.backButtonPressed = false;
-  }
-
-  getActivatedMenu() {
-    return this.activatedMenu;
-  }
-
-  setActivatedMenu(activatedMenu: HTMLDivElement) {
-    this.activatedMenu = activatedMenu;
-  }
-
-  getMenus() {
-    return this.menus;
-  }
-
-  setMenus(menus: {code: string; label: string; path: string; children: {code: string; label: string; path: string}[]}[]) {
-    this.menus = menus;
-  }
-
-  deactivateMenu() {
-    if (this.activatedMenu !== null) {
-      this.activatedMenu.style.setProperty('height', '0px');
-      this.activatedMenu.style.setProperty('z-index', '-1');
+    clearPressed() {
+      this.pressed = false;
     }
-  }
+  };
+
+
+  HeaderMenu = new class {
+    private active: {imageId: string; image: HTMLImageElement; image_inverted: HTMLImageElement};
+    activate(headerMenu: {imageId: string; image: HTMLImageElement; image_inverted: HTMLImageElement}) {
+      this.restore();
+      this.active = headerMenu;
+    }
+    reset() {
+      this.restore();
+      this.active = {imageId: null, image: null, image_inverted: null};
+    }
+    isActive(imageId: string) {
+      return this.active.imageId === imageId;
+    }
+    private restore() {
+      if (this.active !== null && !isUndefined(this.active)) {
+        if (this.active.image !== null && !isUndefined(this.active.image)) {
+          this.active.image.classList.remove('hide');
+          this.active.image.classList.add('show');
+        }
+        if (this.active.image_inverted !== null && !isUndefined(this.active.image_inverted)) {
+          this.active.image_inverted.classList.remove('show');
+          this.active.image_inverted.classList.add('hide');
+        }
+      }
+    }
+  };
+
+
+  SideMenu = new class {
+    private active: HTMLDivElement = null;
+    private content: {code: string; label: string; path: string; children: {code: string; label: string; path: string}[]}[] = null;
+    getContents() {
+      return this.content;
+    }
+    setContents(content: {code: string; label: string; path: string; children: {code: string; label: string; path: string}[]}[]) {
+      this.content = content;
+    }
+    getActivated() {
+      return this.active;
+    }
+    activate(menu: HTMLDivElement) {
+      this.active = menu;
+    }
+    deactivate() {
+      if (this.active !== null) {
+        this.active.style.setProperty('height', '0px');
+        this.active.style.setProperty('z-index', '-1');
+      }
+    }
+  };
 }

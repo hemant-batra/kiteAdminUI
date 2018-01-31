@@ -1,90 +1,24 @@
-<table class="header">
+<table class="header" *ngIf="fs.session.isActive(); else inActive">
   <tr>
     <td class="col-md-3 format" align="left">{{fs.data.TextLabel.APPLICATION_NAME}}</td>
     <td class="col-md-5">&nbsp;</td>
-    <td *ngIf="fs.session.isActive(); else singleCell"
+    <td *ngFor="let imageId of ['myProfile','changePassword','logout']"
         align="center"
         class="col-md-1 link"
-        [title]="fs.data.getImageAltText('myProfile')"
-        (mouseover)="toggleImage('myProfile');"
-        (mouseout)="toggleImage('myProfile');"
-        (click)="activateMenu(headerMenu.MY_PROFILE);"
-        [routerLink]="'myProfile'"
+        [title]="fs.data.getImageAltText(imageId)"
+        (mouseover)="toggleImage(imageId);"
+        (mouseout)="toggleImage(imageId);"
+        (click)="activateMenu(imageId);"
+        [routerLink]="imageId"
         routerLinkActive="routerLinkActive">
-            <img
+            <img *ngFor="let element of [{imageSubId: '', class: 'show'},{imageSubId: '_inverted', class: 'hide'}]"
               height="32px"
               width="32px"
-              class="img-responsive"
-              style="display: block;"
-              [title]="fs.data.getImageAltText('myProfile')"
-              [src]="fs.data.getImageSrc('myProfile')"
-              [alt]="fs.data.getImageAltText('myProfile')"
-              #myProfile>
-            <img
-              height="32px"
-              width="32px"
-              class="img-responsive"
-              style="display: none;"
-              [title]="fs.data.getImageAltText('myProfile_inverted')"
-              [src]="fs.data.getImageSrc('myProfile_inverted')"
-              [alt]="fs.data.getImageAltText('myProfile_inverted')"
-              #myProfile_inverted>
-    </td>
-    <td *ngIf="fs.session.isActive(); else singleCell"
-        align="center"
-        class="col-md-1 link"
-        [title]="fs.data.getImageAltText('changePassword')"
-        (mouseover)="toggleImage('changePassword');"
-        (mouseout)="toggleImage('changePassword');"
-        (click)="activateMenu(headerMenu.CHANGE_PASSWORD);"
-        [routerLink]="'changePassword'"
-        routerLinkActive="routerLinkActive">
-            <img
-              height="32px"
-              width="32px"
-              class="img-responsive"
-              style="display: block;"
-              [title]="fs.data.getImageAltText('changePassword')"
-              [src]="fs.data.getImageSrc('changePassword')"
-              [alt]="fs.data.getImageAltText('changePassword')"
-              #changePassword>
-            <img
-              height="32px"
-              width="32px"
-              class="img-responsive"
-              style="display: none;"
-              [title]="fs.data.getImageAltText('changePassword_inverted')"
-              [src]="fs.data.getImageSrc('changePassword_inverted')"
-              [alt]="fs.data.getImageAltText('changePassword_inverted')"
-              #changePassword_inverted>
-    </td>
-    <td *ngIf="fs.session.isActive(); else singleCell"
-        align="center"
-        class="col-md-1 link"
-        [title]="fs.data.getImageAltText('logout')"
-        (mouseover)="toggleImage('logout');"
-        (mouseout)="toggleImage('logout');"
-        (click)="activateMenu(headerMenu.LOGOUT);"
-        [routerLink]="'logout'"
-        routerLinkActive="routerLinkActive">
-            <img
-              height="32px"
-              width="32px"
-              class="img-responsive"
-              style="display: block;"
-              [title]="fs.data.getImageAltText('logout')"
-              [src]="fs.data.getImageSrc('logout')"
-              [alt]="fs.data.getImageAltText('logout')"
-              #logout>
-            <img
-              height="32px"
-              width="32px"
-              class="img-responsive"
-              style="display: none;"
-              [title]="fs.data.getImageAltText('logout_inverted')"
-              [src]="fs.data.getImageSrc('logout_inverted')"
-              [alt]="fs.data.getImageAltText('logout_inverted')"
-              #logout_inverted>
+              class="img-responsive {{element.class}}"
+              [id]="imageId + element.imageSubId"
+              [title]="fs.data.getImageAltText(imageId + element.imageSubId)"
+              [src]="fs.data.getImageSrc(imageId + element.imageSubId)"
+              [alt]="fs.data.getImageAltText(imageId + element.imageSubId)">
     </td>
     <td align="center"
         class="col-md-1"
@@ -99,4 +33,22 @@
     </td>
   </tr>
 </table>
-<ng-template #singleCell><td class="col-md-1"></td></ng-template>
+<ng-template #inActive>
+  <table class="header">
+    <tr>
+      <td class="col-md-3 format" align="left">{{fs.data.TextLabel.APPLICATION_NAME}}</td>
+      <td class="col-md-8">&nbsp;</td>
+      <td align="center"
+          class="col-md-1"
+          [title]="fs.data.getImageAltText('kiteLogoBig')">
+        <img
+          height="32px"
+          width="32px"
+          class="img-responsive"
+          [title]="fs.data.getImageAltText('kiteLogoBig')"
+          [src]="fs.data.getImageSrc('kiteLogoBig')"
+          [alt]="fs.data.getImageAltText('kiteLogoBig')">
+      </td>
+    </tr>
+  </table>
+</ng-template>

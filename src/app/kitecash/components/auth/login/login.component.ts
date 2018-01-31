@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
               private httpClient: HttpClient) {}
 
   ngOnInit() {
-    if (this.fs.navigator.isBackButtonPressed()) {
+    if (this.fs.navigator.BrowserBackButton.isPressed()) {
       console.log('Back button was pressed');
       this.router.navigate(['unauthorized']);
     }
@@ -65,12 +65,12 @@ export class LoginComponent implements OnInit {
           const additionalInfo = response['additionalInfo'];
           const userRole = additionalInfo.userRole;
           this.fs.data.setUserRole(userRole);
-          this.fs.navigator.setMenus(roles[userRole].map(
+          this.fs.navigator.SideMenu.setContents(roles[userRole].map(
             role => paths.find(
               path => path.code === role.code
             )
           ));
-          if (this.fs.navigator.getMenus().length === 0) {
+          if (this.fs.navigator.SideMenu.getContents().length === 0) {
             return this.fs.data.Message.NO_MENU_FOUND;
           }
           this.fs.session.setSessionId(additionalInfo.sessionId);

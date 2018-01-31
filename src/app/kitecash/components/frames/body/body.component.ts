@@ -3,7 +3,6 @@ import {isUndefined} from 'util';
 import {roles} from '../../../constants/pages';
 import {Router} from '@angular/router';
 import {FactoryService} from '../../../services/common/factory.service';
-import {HeaderMenu} from '../../../services/common/navigation.service';
 
 @Component({
   selector: 'app-body',
@@ -16,15 +15,15 @@ export class BodyComponent {
                private router: Router) {}
 
   menuClicked(event: MouseEvent, children: {code: string; label: string; path: string}[]) {
-    this.fs.navigator.setFrozenHeaderMenu(HeaderMenu.NONE, null, null);
-    this.fs.navigator.deactivateMenu();
-    this.fs.navigator.setActivatedMenu(<HTMLDivElement>(event['target']['nextElementSibling']));
-    this.fs.navigator.getActivatedMenu().style.setProperty('height', this.fs.navigator.getActivatedMenu().children[0].clientHeight + 'px');
+    this.fs.navigator.HeaderMenu.reset();
+    this.fs.navigator.SideMenu.deactivate();
+    this.fs.navigator.SideMenu.activate(<HTMLDivElement>(event['target']['nextElementSibling']));
+    this.fs.navigator.SideMenu.getActivated().style.setProperty('height', this.fs.navigator.SideMenu.getActivated().children[0].clientHeight + 'px');
     setTimeout(() => {
-      this.fs.navigator.getActivatedMenu().style.setProperty('z-index', '0');
+      this.fs.navigator.SideMenu.getActivated().style.setProperty('z-index', '0');
     }, 500);
     if (!isUndefined(children)) {
-      const array = this.fs.navigator.getActivatedMenu().children[0].children[0].children[0].children[0].children[0]['href'].split('/');
+      const array = this.fs.navigator.SideMenu.getActivated().children[0].children[0].children[0].children[0].children[0]['href'].split('/');
       this.router.navigate(array.splice(3, array.length));
     }
   }

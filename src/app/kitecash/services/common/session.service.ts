@@ -27,7 +27,7 @@ export class SessionService {
   logout() {
     if (this.isActive()) {
       this.setSessionId(null);
-      this.navigationService.setMenus([]);
+      this.navigationService.SideMenu.setContents([]);
       this.httpClient.put(this.dataService.URL.LOGOUT, null).subscribe();
     }
   }

@@ -14,7 +14,7 @@ export class MessageComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.fs.navigator.clearBackButtonPressed();
+    this.fs.navigator.BrowserBackButton.clearPressed();
     this.activatedRoute.data.subscribe(
       (data: Data) =>  {
         this.errorMessage = data['message'];
