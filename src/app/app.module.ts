@@ -10,7 +10,6 @@ import {LogoutGuard} from './kitecash/guards/logout-guard';
 // interceptors
 import {HttpRequestInterceptor} from './kitecash/interceptors/interceptor';
 // constants
-import {Constants} from './kitecash/constants/constants';
 import {paths} from './kitecash/constants/pages';
 // services
 import {ValidationService} from './kitecash/services/common/validation.service';
@@ -19,6 +18,7 @@ import {SessionService} from './kitecash/services/common/session.service';
 import {HttpService} from './kitecash/services/common/http.service';
 import {DataService} from './kitecash/services/common/data.service';
 import {NavigationService} from './kitecash/services/common/navigation.service';
+import {ConstantsService} from './kitecash/services/common/constants.service';
 import {FactoryService} from './kitecash/services/common/factory.service';
 // components
 import {AppComponent} from './kitecash/components/app.component';
@@ -38,9 +38,9 @@ import {MyProfileComponent} from './kitecash/components/auth/my-profile/my-profi
 const appRoutes = [
   { path: '', component: LoginComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
-  { path: 'unauthorized', component: MessageComponent, data: {message: Constants.Messages.UNAUTHORIZED_OPERATION} },
-  { path: 'logout', canActivate: [LogoutGuard], component: MessageComponent, data: {message: Constants.Messages.LOGOUT_MESSAGE} },
-  { path: 'expired', canActivate: [AuthorizationGuard], component: MessageComponent, data: {message: Constants.Messages.EXPIRY_MESSAGE} },
+  { path: 'unauthorized', component: MessageComponent, data: {messageCode: 'UNAUTHORIZED_OPERATION'} },
+  { path: 'logout', canActivate: [LogoutGuard], component: MessageComponent, data: {messageCode: 'LOGOUT_MESSAGE'} },
+  { path: 'expired', canActivate: [AuthorizationGuard], component: MessageComponent, data: {messageCode: 'EXPIRY_MESSAGE'} },
   { path: 'myProfile', canActivate: [AuthorizationGuard], component: MyProfileComponent },
   { path: 'changePassword', canActivate: [AuthorizationGuard], component: ChangePasswordComponent },
   { path: 'admin', canActivateChild: [AuthorizationGuard], children: paths },
@@ -82,6 +82,7 @@ const appRoutes = [
     TitleService,
     DataService,
     NavigationService,
+    ConstantsService,
     FactoryService,
     {
       provide: HTTP_INTERCEPTORS,

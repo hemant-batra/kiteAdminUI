@@ -8,4 +8,5 @@ import {FactoryService} from '../../../services/common/factory.service';
 })
 export class FooterComponent {
   constructor (public fs: FactoryService) {}
+  c = this.fs.constants.getFooterConstants();
 }

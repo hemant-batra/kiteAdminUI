@@ -2,7 +2,7 @@
   <tr *ngIf="fs.session.isActive(); else notAuthenticated">
     <td>
       <table class="menuContainer">
-        <tr *ngFor="let menu of fs.navigator.SideMenu.getContents()">
+        <tr *ngFor="let menu of fs.navigator.getSideMenu().getContents()">
           <td>
            <a id="menu" (click)="menuClicked($event, menu.children);" [routerLink]="['admin', menu.path]" routerLinkActive="linkActive">{{menu.label}}</a>
               <div class="animated">

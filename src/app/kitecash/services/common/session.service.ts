@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {DataService} from './data.service';
+import {ConstantsService} from './constants.service';
 import {NavigationService} from './navigation.service';
 
 @Injectable()
 export class SessionService {
 
-  constructor (private dataService: DataService,
+  constructor (private constantsService: ConstantsService,
                private navigationService: NavigationService,
                private httpClient: HttpClient) {}
 
@@ -27,9 +27,9 @@ export class SessionService {
   logout() {
     if (this.isActive()) {
       this.setSessionId(null);
-      this.navigationService.SideMenu.setContents([]);
-      this.navigationService.HeaderMenu.reset();
-      this.httpClient.put(this.dataService.URL.LOGOUT, null).subscribe();
+      this.navigationService.getSideMenu().setContents([]);
+      this.navigationService.getHeaderMenu().reset();
+      this.httpClient.put(this.constantsService.getMiscellaneousConstants().URL.LOGOUT, null).subscribe();
     }
   }
 }

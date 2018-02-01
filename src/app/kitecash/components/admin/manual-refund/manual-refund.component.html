@@ -1,48 +1,48 @@
 <form [formGroup]="manualRefundForm" (ngSubmit)="onSubmit();">
   <table>
     <tr>
-      <td><label for="systemAccountNumber">{{fs.data.TextLabel.SYSTEM_ACCOUNT_NUMBER}}</label><span style="color:red;">*</span></td>
+      <td><label for="systemAccountNumber">{{c.TextLabel.SYSTEM_ACCOUNT_NUMBER}}</label><span style="color:red;">*</span></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td>
         <select name="systemAccountNumber" id="systemAccountNumber" class="form-control" formControlName="systemAccountNumber">
-          <option value="">{{fs.data.DropDownOption.PLEASE_SELECT}}</option>
+          <option value="">{{fs.constants.getMiscellaneousConstants().DropDownOption.PLEASE_SELECT}}</option>
           <option value="1">Value 1</option>
           <option value="2">Value 2</option>
         </select>
       </td>
-      <td class="errorMessage">&nbsp;{{fs.validator.getRequiredMessage(manualRefundForm.get('systemAccountNumber'),'SYSTEM_ACCOUNT_NUMBER_REQUIRED_MESSAGE')}}</td>
+      <td class="errorMessage">&nbsp;{{g.required(manualRefundForm.get('systemAccountNumber'),c.Message.SYSTEM_ACCOUNT_NUMBER_REQUIRED_MESSAGE)}}</td>
     </tr>
     <tr>
-      <td><label for="refundType">{{fs.data.TextLabel.REFUND_TYPE}}</label><span style="color:red;">*</span></td>
+      <td><label for="refundType">{{c.TextLabel.REFUND_TYPE}}</label><span style="color:red;">*</span></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td>
         <select name="refundType" id="refundType" class="form-control" formControlName="refundType">
-          <option value="">{{fs.data.DropDownOption.PLEASE_SELECT}}</option>
-          <option *ngFor="let option of fs.data.DropDownOption.REFUND_TYPE" value="{{option.value}}">{{option.label}}</option>
+          <option value="">{{fs.constants.getMiscellaneousConstants().DropDownOption.PLEASE_SELECT}}</option>
+          <option *ngFor="let option of c.DropDownOption.REFUND_TYPE" value="{{option.value}}">{{option.label}}</option>
         </select>
       </td>
-      <td class="errorMessage">&nbsp;{{fs.validator.getRequiredMessage(manualRefundForm.get('refundType'),'REFUND_TYPE_REQUIRED_MESSAGE')}}</td>
+      <td class="errorMessage">&nbsp;{{g.required(manualRefundForm.get('refundType'),c.Message.REFUND_TYPE_REQUIRED_MESSAGE)}}</td>
     </tr>
     <tr>
-      <td><label for="mobileNumber">{{fs.data.TextLabel.MOBILE_NUMBER}}</label><span style="color:red;">*</span></td>
+      <td><label for="mobileNumber">{{c.TextLabel.MOBILE_NUMBER}}</label><span style="color:red;">*</span></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td><input type="text" class="form-control" name="mobileNumber" id="mobileNumber" formControlName="mobileNumber" maxlength="10"></td>
-      <td class="errorMessage">&nbsp;{{fs.validator.getMobileNumberValidationMessage(manualRefundForm.get('mobileNumber'))}}</td>
+      <td class="errorMessage">&nbsp;{{v.mobileNumber(manualRefundForm.get('mobileNumber'))}}</td>
     </tr>
     <tr>
-      <td><label for="transactionId">{{fs.data.TextLabel.TRANSACTION_ID}}</label><span style="color:red;">*</span></td>
+      <td><label for="transactionId">{{c.TextLabel.TRANSACTION_ID}}</label><span style="color:red;">*</span></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td><input type="text" class="form-control" name="transactionId" id="transactionId" formControlName="transactionId"></td>
-      <td class="errorMessage">&nbsp;{{fs.validator.getRequiredMessage(manualRefundForm.get('transactionId'),'TRANSACTION_ID_REQUIRED_MESSAGE')}}</td>
+      <td class="errorMessage">&nbsp;{{g.required(manualRefundForm.get('transactionId'),c.Message.TRANSACTION_ID_REQUIRED_MESSAGE)}}</td>
     </tr>
     <tr>
-      <td><label for="amount">{{fs.data.TextLabel.AMOUNT}}</label><span style="color:red;">*</span></td>
+      <td><label for="amount">{{c.TextLabel.AMOUNT}}</label><span style="color:red;">*</span></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td><input type="text" class="form-control" name="amount" id="amount" formControlName="amount"></td>
-      <td class="errorMessage">&nbsp;{{fs.validator.getAmountValidationMessage(manualRefundForm.get('amount'))}}</td>
+      <td class="errorMessage">&nbsp;{{v.amount(manualRefundForm.get('amount'))}}</td>
     </tr>
     <tr>
-      <td><label for="remarks">{{fs.data.TextLabel.REMARKS}}</label></td>
+      <td><label for="remarks">{{c.TextLabel.REMARKS}}</label></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td><textarea class="form-control" name="remarks" id="remarks" formControlName="remarks" maxlength="50"></textarea></td>
       <td>&nbsp;{{getRemainingCharacters()}}</td>
@@ -50,8 +50,8 @@
     <tr><td colspan="4">&nbsp;</td></tr>
     <tr>
       <td colspan="3" align="center">
-        <button type="submit" class="btn btn-primary" [disabled]="!manualRefundForm.valid">{{fs.data.ButtonLabel.SUBMIT}}</button>
-        <button type="reset" class="btn btn-default" (click)="ngOnInit()">{{fs.data.ButtonLabel.RESET}}</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!manualRefundForm.valid">{{c.ButtonLabel.SUBMIT}}</button>
+        <button type="reset" class="btn btn-default" (click)="ngOnInit()">{{c.ButtonLabel.RESET}}</button>
       </td>
       <td></td>
     </tr>

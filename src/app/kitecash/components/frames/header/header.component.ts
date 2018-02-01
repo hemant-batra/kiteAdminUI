@@ -11,24 +11,26 @@ export class HeaderComponent {
 
   constructor (public fs: FactoryService,
                public router: Router) {
-    this.fs.navigator.HeaderMenu.reset();
+    this.fs.navigator.getHeaderMenu().reset();
   }
 
+  c = this.fs.constants.getHeaderConstants();
+
   activateMenu(imageId: string) {
-    if (!this.fs.navigator.HeaderMenu.isActive(imageId)) {
-      this.fs.navigator.SideMenu.deactivate();
-      this.fs.navigator.HeaderMenu.activate({
+    if (!this.fs.navigator.getHeaderMenu().isActive(imageId)) {
+      this.fs.navigator.getSideMenu().deactivate();
+      this.fs.navigator.getHeaderMenu().activate({
         imageId: imageId,
-        image: this.image(imageId),
-        image_inverted: this.image(imageId + '_inverted')
+        image: <HTMLImageElement>document.getElementById(imageId),
+        image_inverted: <HTMLImageElement>document.getElementById(imageId + '_INVERTED')
       });
     }
   }
 
   toggleImage(imageId: string) {
-    if (!this.fs.navigator.HeaderMenu.isActive(imageId)) {
-      const imageClassList = this.image(imageId).classList;
-      const invertedImageClassList = this.image(imageId + '_inverted').classList;
+    if (!this.fs.navigator.getHeaderMenu().isActive(imageId)) {
+      const imageClassList = document.getElementById(imageId).classList;
+      const invertedImageClassList = document.getElementById(imageId + '_INVERTED').classList;
       if (imageClassList.contains('hide')) {
         imageClassList.remove('hide');
         imageClassList.add('show');
@@ -41,9 +43,5 @@ export class HeaderComponent {
         invertedImageClassList.add('show');
       }
     }
-  }
-
-  private image(imageId): HTMLImageElement {
-    return <HTMLImageElement>document.getElementById(imageId);
   }
 }

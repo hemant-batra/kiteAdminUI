@@ -1,11 +1,6 @@
 <table align="left"><tr>
   <td style="width: 10%">&nbsp;</td>
   <td style="width: 90%"><h3>
-    {{fs.data.getMessageWithParams('WELCOME_MESSAGE',
-    [{
-      paramName: 'fullName',
-      paramValue: fs.data.getFullName()
-    }]
-    )}}
+    {{c.Message.WELCOME_MESSAGE(fs.data.getFullName())}}
   </h3></td>
 </tr></table>

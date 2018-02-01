@@ -15,15 +15,15 @@ export class BodyComponent {
                private router: Router) {}
 
   menuClicked(event: MouseEvent, children: {code: string; label: string; path: string}[]) {
-    this.fs.navigator.HeaderMenu.reset();
-    this.fs.navigator.SideMenu.deactivate();
-    this.fs.navigator.SideMenu.activate(<HTMLDivElement>(event['target']['nextElementSibling']));
-    this.fs.navigator.SideMenu.getActivated().style.setProperty('height', this.fs.navigator.SideMenu.getActivated().children[0].clientHeight + 'px');
+    this.fs.navigator.getHeaderMenu().reset();
+    this.fs.navigator.getSideMenu().deactivate();
+    this.fs.navigator.getSideMenu().activate(<HTMLDivElement>(event['target']['nextElementSibling']));
+    this.fs.navigator.getSideMenu().getActivated().style.setProperty('height', this.fs.navigator.getSideMenu().getActivated().children[0].clientHeight + 'px');
     setTimeout(() => {
-      this.fs.navigator.SideMenu.getActivated().style.setProperty('z-index', '0');
+      this.fs.navigator.getSideMenu().getActivated().style.setProperty('z-index', '0');
     }, 500);
     if (!isUndefined(children)) {
-      const array = this.fs.navigator.SideMenu.getActivated().children[0].children[0].children[0].children[0].children[0]['href'].split('/');
+      const array = this.fs.navigator.getSideMenu().getActivated().children[0].children[0].children[0].children[0].children[0]['href'].split('/');
       this.router.navigate(array.splice(3, array.length));
     }
   }

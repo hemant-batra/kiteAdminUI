@@ -11,6 +11,8 @@ export class TitleComponent implements OnInit, OnDestroy {
 
   constructor (public fs: FactoryService) {}
 
+  c = this.fs.constants.getTitleConstants();
+
   status: number;
   statusText: string;
   title: string;

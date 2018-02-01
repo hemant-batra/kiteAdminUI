@@ -15,7 +15,7 @@ export class AuthorizationGuard implements CanActivate, CanActivateChild {
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     console.log('Session active: ' + this.fs.session.isActive());
     if (this.fs.session.isActive()) {
-      this.fs.title.init(this.fs.data.PageTitle.NULL);
+      this.fs.title.init(this.fs.constants.getMiscellaneousConstants().PageTitle.NULL);
     } else {
       this.router.navigate(['unauthorized']);
     }

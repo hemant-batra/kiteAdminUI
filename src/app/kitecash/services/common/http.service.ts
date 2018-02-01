@@ -3,13 +3,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
-import {DataService} from './data.service';
+import {ConstantsService} from './constants.service';
 
 @Injectable()
 export class HttpService {
 
   constructor (private httpClient: HttpClient,
-              private dataService: DataService) {}
+               private constantsService: ConstantsService) {}
 
   public put(url: string, formGroup: FormGroup): Observable<string> {
     return this.httpClient.put(url, formGroup.getRawValue())
@@ -20,11 +20,11 @@ export class HttpService {
         (error) => {
           try {
             if (error['error'].errorList == null) {
-              return Observable.throw(this.dataService.Message.NO_INTERNET);
+              return Observable.throw(this.constantsService.getMiscellaneousConstants().Message.NO_INTERNET);
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
-            return Observable.throw(this.dataService.Message.INTERNAL_SERVER_ERROR);
+            return Observable.throw(this.constantsService.getMiscellaneousConstants().Message.INTERNAL_SERVER_ERROR);
           }
         }
       );
@@ -39,11 +39,11 @@ export class HttpService {
         (error) => {
           try {
             if (error['error'].errorList == null) {
-              return Observable.throw(this.dataService.Message.NO_INTERNET);
+              return Observable.throw(this.constantsService.getMiscellaneousConstants().Message.NO_INTERNET);
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
-            return Observable.throw(this.dataService.Message.INTERNAL_SERVER_ERROR);
+            return Observable.throw(this.constantsService.getMiscellaneousConstants().Message.INTERNAL_SERVER_ERROR);
           }
         }
       );

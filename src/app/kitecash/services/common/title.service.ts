@@ -1,14 +1,11 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {DataService} from './data.service';
 
 @Injectable()
 export class TitleService {
 
-  constructor (private dataService: DataService) {}
-
   private status: number;
   private statusText: string = null;
-  private titleService: string = null;
+  private title: string = null;
 
   private _statusEventEmitter = new EventEmitter();
   private _statusTextEventEmitter = new EventEmitter();
@@ -30,9 +27,9 @@ export class TitleService {
     this._statusTextEventEmitter.emit(this.statusText);
   }
 
-  private setTitle(titleCode: string) {
-    this.titleService = this.dataService.PageTitle[titleCode];
-    this._titleEventEmitter.emit(this.titleService);
+  private setTitle(title: string) {
+    this.title = title;
+    this._titleEventEmitter.emit(this.title);
   }
 
   showSpinner() {
@@ -50,8 +47,8 @@ export class TitleService {
     this.setStatusText(message);
   }
 
-  init(titleCode: string) {
-    this.setTitle(titleCode);
+  init(title: string) {
+    this.setTitle(title);
     this.setStatus(0);
     this.setStatusText(null);
   }

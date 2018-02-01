@@ -23,13 +23,16 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private httpClient: HttpClient) {}
 
+  c = this.fs.constants.getLoginConstants();
+  v = this.fs.validator.getLoginValidations();
+
   ngOnInit() {
-    if (this.fs.navigator.BrowserBackButton.isPressed()) {
+    if (this.fs.navigator.getBrowserBackButton().isPressed()) {
       console.log('Back button was pressed');
       this.router.navigate(['unauthorized']);
     }
     this.loginForm = new FormGroup({
-      'userName': new FormControl(null, [Validators.required, Validators.pattern(this.fs.data.RegEx.EMAIL_ID)]),
+      'userName': new FormControl(null, [Validators.required, Validators.pattern(this.c.RegularExpression.EMAIL_ID)]),
       'password': new FormControl(null, Validators.required)
     });
   }
@@ -38,19 +41,24 @@ export class LoginComponent implements OnInit {
     const formGroup = new FormGroup({
       'identifier': new FormGroup({
         'idType': new FormControl('PHONE'),
-        'idValue': new FormControl('9873009342', [Validators.required, Validators.pattern(this.fs.data.RegEx.EMAIL_ID)]),
+        'idValue': new FormControl('9873009342', [Validators.required, Validators.pattern(this.c.RegularExpression.EMAIL_ID)]),
       }),
       'password': new FormControl('Admpass1#', Validators.required)
     });
 
     this.startSpinner();
     this.doLogin(formGroup.getRawValue()).subscribe(
-      () =>  {
+      response =>  {
         this.stopSpinner();
-        this.fs.data.setUserName(this.loginForm.get('userName').value);
-        this.router.navigate(['admin']);
+        if (response === null) {
+          this.fs.data.setUserName(this.loginForm.get('userName').value);
+          this.router.navigate(['admin']);
+        } else {
+          this.loginForm.reset();
+          this.loginForm.setErrors({'serverError': response});
+        }
       },
-      (error) => {
+      error => {
         this.stopSpinner();
         this.loginForm.reset();
         this.loginForm.setErrors({'serverError': error});
@@ -59,33 +67,33 @@ export class LoginComponent implements OnInit {
   }
 
   private doLogin(jsObj) {
-    return this.httpClient.post(this.fs.data.URL.LOGIN, jsObj)
+    return this.httpClient.post(this.c.URL.LOGIN, jsObj)
       .map(
-        (response) => {
+        response => {
           const additionalInfo = response['additionalInfo'];
           const userRole = additionalInfo.userRole;
           this.fs.data.setUserRole(userRole);
-          this.fs.navigator.SideMenu.setContents(roles[userRole].map(
+          this.fs.navigator.getSideMenu().setContents(roles[userRole].map(
             role => paths.find(
               path => path.code === role.code
             )
           ));
-          if (this.fs.navigator.SideMenu.getContents().length === 0) {
-            return this.fs.data.Message.NO_MENU_FOUND;
+          if (!this.fs.navigator.getSideMenu().hasContents()) {
+            return this.c.Message.NO_MENU_FOUND;
           }
           this.fs.session.setSessionId(additionalInfo.sessionId);
           return null;
         }
       )
       .catch(
-        (error) => {
+        error => {
           try {
             if (isUndefined(error['error'].errorList)) {
-              return Observable.throw(this.fs.data.Message.NO_INTERNET);
+              return Observable.throw(this.fs.constants.getMiscellaneousConstants().Message.NO_INTERNET);
             }
             return Observable.throw(error['error'].errorList[0].errorMessage);
           } catch (err) {
-            return Observable.throw(this.fs.data.Message.INTERNAL_SERVER_ERROR);
+            return Observable.throw(this.fs.constants.getMiscellaneousConstants().Message.INTERNAL_SERVER_ERROR);
           }
         }
       );

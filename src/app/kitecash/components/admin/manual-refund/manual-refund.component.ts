@@ -13,12 +13,16 @@ export class ManualRefundComponent implements OnInit {
 
   constructor (public fs: FactoryService) {}
 
+  c = this.fs.constants.getManualRefundConstants();
+  v = this.fs.validator.getManualRefundValidations();
+  g = this.fs.validator.getGenericValidations();
+
   ngOnInit() {
-    this.fs.title.init('MANUAL_REFUND');
+    this.fs.title.init(this.c.PageTitle.MANUAL_REFUND);
     this.manualRefundForm = new FormGroup({
-      'mobileNumber': new FormControl(null, [Validators.required, Validators.pattern(new RegExp(/^[0-9]{10,10}$/))]),
+      'mobileNumber': new FormControl(null, [Validators.required, Validators.pattern(this.c.RegularExpression.MOBILE_NUMBER)]),
       'systemAccountNumber': new FormControl(null, [Validators.required]),
-      'amount': new FormControl(null, [Validators.required, Validators.pattern(new RegExp(/^[1-9]\d*(\.\d+)?$/))]),
+      'amount': new FormControl(null, [Validators.required, Validators.pattern(this.c.RegularExpression.AMOUNT)]),
       'refundType': new FormControl(null, [Validators.required]),
       'transactionId': new FormControl(null, [Validators.required]),
       'remarks': new FormControl(null)
@@ -29,7 +33,7 @@ export class ManualRefundComponent implements OnInit {
 
   onSubmit() {
     this.fs.title.showSpinner();
-    this.fs.http.post(this.fs.data.URL.MANUAL_REFUND, this.manualRefundForm).subscribe(
+    this.fs.http.post(this.c.URL.MANUAL_REFUND, this.manualRefundForm).subscribe(
       response => {
         this.fs.title.setSuccess(response);
         this.manualRefundForm.reset();

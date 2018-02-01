@@ -1,53 +1,58 @@
 <table class="header" *ngIf="fs.session.isActive(); else inActive">
   <tr>
-    <td class="col-md-3 format" align="left">{{fs.data.TextLabel.APPLICATION_NAME}}</td>
+    <td class="col-md-3 format" align="left">{{c.TextLabel.APPLICATION_NAME}}</td>
     <td class="col-md-5">&nbsp;</td>
-    <td *ngFor="let imageId of ['myProfile','changePassword','logout']"
+    <td *ngFor="let outerElement of [
+            {imageId: 'MY_PROFILE', routerLink: 'myProfile'},
+            {imageId: 'CHANGE_PASSWORD', routerLink: 'changePassword'},
+            {imageId: 'LOGOUT', routerLink: 'logout'}]"
         align="center"
         class="col-md-1 link"
-        [title]="fs.data.getImageAltText(imageId)"
-        (mouseover)="toggleImage(imageId);"
-        (mouseout)="toggleImage(imageId);"
-        (click)="activateMenu(imageId);"
-        [routerLink]="imageId"
+        [title]="c.Image.AlternateText[outerElement.imageId]"
+        (mouseover)="toggleImage(outerElement.imageId);"
+        (mouseout)="toggleImage(outerElement.imageId);"
+        (click)="activateMenu(outerElement.imageId);"
+        [routerLink]="outerElement.routerLink"
         routerLinkActive="routerLinkActive">
-            <img *ngFor="let element of [{imageSubId: '', class: 'show'},{imageSubId: '_inverted', class: 'hide'}]"
+            <img *ngFor="let innerElement of [
+                        {imageId: '', cssClass: 'show'},
+                        {imageId: '_INVERTED', cssClass: 'hide'}]"
               height="32px"
               width="32px"
-              class="img-responsive {{element.class}}"
-              [id]="imageId + element.imageSubId"
-              [title]="fs.data.getImageAltText(imageId + element.imageSubId)"
-              [src]="fs.data.getImageSrc(imageId + element.imageSubId)"
-              [alt]="fs.data.getImageAltText(imageId + element.imageSubId)">
+              class="img-responsive {{innerElement.cssClass}}"
+              [id]="outerElement.imageId + innerElement.imageId"
+              [title]="c.Image.AlternateText[outerElement.imageId + innerElement.imageId]"
+              [src]="c.Image.Source[outerElement.imageId + innerElement.imageId]"
+              [alt]="c.Image.AlternateText[outerElement.imageId + innerElement.imageId]">
     </td>
     <td align="center"
         class="col-md-1"
-        [title]="fs.data.getImageAltText('kiteLogoBig')">
+        [title]="c.Image.AlternateText.KITE_LOGO_BIG">
               <img
                 height="32px"
                 width="32px"
                 class="img-responsive"
-                [title]="fs.data.getImageAltText('kiteLogoBig')"
-                [src]="fs.data.getImageSrc('kiteLogoBig')"
-                [alt]="fs.data.getImageAltText('kiteLogoBig')">
+                [title]="c.Image.AlternateText.KITE_LOGO_BIG"
+                [src]="c.Image.Source.KITE_LOGO_BIG"
+                [alt]="c.Image.AlternateText.KITE_LOGO_BIG">
     </td>
   </tr>
 </table>
 <ng-template #inActive>
   <table class="header">
     <tr>
-      <td class="col-md-3 format" align="left">{{fs.data.TextLabel.APPLICATION_NAME}}</td>
+      <td class="col-md-3 format" align="left">{{c.TextLabel.APPLICATION_NAME}}</td>
       <td class="col-md-8">&nbsp;</td>
       <td align="center"
           class="col-md-1"
-          [title]="fs.data.getImageAltText('kiteLogoBig')">
+          [title]="c.Image.AlternateText.KITE_LOGO_BIG">
         <img
           height="32px"
           width="32px"
           class="img-responsive"
-          [title]="fs.data.getImageAltText('kiteLogoBig')"
-          [src]="fs.data.getImageSrc('kiteLogoBig')"
-          [alt]="fs.data.getImageAltText('kiteLogoBig')">
+          [title]="c.Image.AlternateText.KITE_LOGO_BIG"
+          [src]="c.Image.Source.KITE_LOGO_BIG"
+          [alt]="c.Image.AlternateText.KITE_LOGO_BIG">
       </td>
     </tr>
   </table>

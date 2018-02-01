@@ -1,10 +1,10 @@
-import {ElementRef, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {isUndefined} from 'util';
 
 @Injectable()
 export class NavigationService {
 
-  BrowserBackButton = new class {
+  private BrowserBackButton = new class {
     private pressed: boolean;
     isPressed() {
       return this.pressed;
@@ -17,8 +17,7 @@ export class NavigationService {
     }
   };
 
-
-  HeaderMenu = new class {
+  private HeaderMenu = new class {
     private active: {imageId: string; image: HTMLImageElement; image_inverted: HTMLImageElement};
     activate(headerMenu: {imageId: string; image: HTMLImageElement; image_inverted: HTMLImageElement}) {
       this.restore();
@@ -45,10 +44,12 @@ export class NavigationService {
     }
   };
 
-
-  SideMenu = new class {
+  private SideMenu = new class {
     private active: HTMLDivElement = null;
     private content: {code: string; label: string; path: string; children: {code: string; label: string; path: string}[]}[] = null;
+    hasContents() {
+      return !(this.content === null || isUndefined(this.content));
+    }
     getContents() {
       return this.content;
     }
@@ -68,4 +69,16 @@ export class NavigationService {
       }
     }
   };
+
+  public getBrowserBackButton() {
+    return this.BrowserBackButton;
+  }
+
+  public getHeaderMenu() {
+    return this.HeaderMenu;
+  }
+
+  public getSideMenu() {
+    return this.SideMenu;
+  }
 }
