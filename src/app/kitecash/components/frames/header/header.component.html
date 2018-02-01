@@ -1,6 +1,6 @@
 <table class="header" *ngIf="fs.session.isActive(); else inActive">
   <tr>
-    <td class="col-md-3 format" align="left">{{c.TextLabel.APPLICATION_NAME}}</td>
+    <td class="col-md-3 format" align="left">{{constants.TextLabel.APPLICATION_NAME}}</td>
     <td class="col-md-5">&nbsp;</td>
     <td *ngFor="let outerElement of [
             {imageId: 'MY_PROFILE', routerLink: 'myProfile'},
@@ -8,7 +8,7 @@
             {imageId: 'LOGOUT', routerLink: 'logout'}]"
         align="center"
         class="col-md-1 link"
-        [title]="c.Image.AlternateText[outerElement.imageId]"
+        [title]="constants.Image.AlternateText[outerElement.imageId]"
         (mouseover)="toggleImage(outerElement.imageId);"
         (mouseout)="toggleImage(outerElement.imageId);"
         (click)="activateMenu(outerElement.imageId);"
@@ -21,38 +21,38 @@
               width="32px"
               class="img-responsive {{innerElement.cssClass}}"
               [id]="outerElement.imageId + innerElement.imageId"
-              [title]="c.Image.AlternateText[outerElement.imageId + innerElement.imageId]"
-              [src]="c.Image.Source[outerElement.imageId + innerElement.imageId]"
-              [alt]="c.Image.AlternateText[outerElement.imageId + innerElement.imageId]">
+              [title]="constants.Image.AlternateText[outerElement.imageId + innerElement.imageId]"
+              [src]="constants.Image.Source[outerElement.imageId + innerElement.imageId]"
+              [alt]="constants.Image.AlternateText[outerElement.imageId + innerElement.imageId]">
     </td>
     <td align="center"
         class="col-md-1"
-        [title]="c.Image.AlternateText.KITE_LOGO_BIG">
+        [title]="constants.Image.AlternateText.KITE_LOGO_BIG">
               <img
                 height="32px"
                 width="32px"
                 class="img-responsive"
-                [title]="c.Image.AlternateText.KITE_LOGO_BIG"
-                [src]="c.Image.Source.KITE_LOGO_BIG"
-                [alt]="c.Image.AlternateText.KITE_LOGO_BIG">
+                [title]="constants.Image.AlternateText.KITE_LOGO_BIG"
+                [src]="constants.Image.Source.KITE_LOGO_BIG"
+                [alt]="constants.Image.AlternateText.KITE_LOGO_BIG">
     </td>
   </tr>
 </table>
 <ng-template #inActive>
   <table class="header">
     <tr>
-      <td class="col-md-3 format" align="left">{{c.TextLabel.APPLICATION_NAME}}</td>
+      <td class="col-md-3 format" align="left">{{constants.TextLabel.APPLICATION_NAME}}</td>
       <td class="col-md-8">&nbsp;</td>
       <td align="center"
           class="col-md-1"
-          [title]="c.Image.AlternateText.KITE_LOGO_BIG">
+          [title]="constants.Image.AlternateText.KITE_LOGO_BIG">
         <img
           height="32px"
           width="32px"
           class="img-responsive"
-          [title]="c.Image.AlternateText.KITE_LOGO_BIG"
-          [src]="c.Image.Source.KITE_LOGO_BIG"
-          [alt]="c.Image.AlternateText.KITE_LOGO_BIG">
+          [title]="constants.Image.AlternateText.KITE_LOGO_BIG"
+          [src]="constants.Image.Source.KITE_LOGO_BIG"
+          [alt]="constants.Image.AlternateText.KITE_LOGO_BIG">
       </td>
     </tr>
   </table>

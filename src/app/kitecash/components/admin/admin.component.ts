@@ -10,6 +10,6 @@ export class AdminComponent {
 
  constructor (public fs: FactoryService) {}
 
- c = this.fs.constants.getAdminConstants();
+ constants = this.fs.constants.getAdminConstants();
 
 }

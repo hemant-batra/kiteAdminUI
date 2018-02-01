@@ -5,14 +5,14 @@
     <td width="20%">
       <table>
         <tr>
-          <td><img [src]="c.Image.Source.KITE_GREEN" [alt]="c.Image.AlternateText.KITE_GREEN" class="img-responsive shake-slow"></td>
-          <td><img [src]="c.Image.Source.KITE_ORANGE" [alt]="c.Image.AlternateText.KITE_ORANGE" class="img-responsive shake-slow"></td>
-          <td><img [src]="c.Image.Source.KITE_BLUE" [alt]="c.Image.AlternateText.KITE_BLUE" class="img-responsive shake-slow"></td>
+          <td><img [src]="constants.Image.Source.KITE_GREEN" [alt]="constants.Image.AlternateText.KITE_GREEN" class="img-responsive shake-slow"></td>
+          <td><img [src]="constants.Image.Source.KITE_ORANGE" [alt]="constants.Image.AlternateText.KITE_ORANGE" class="img-responsive shake-slow"></td>
+          <td><img [src]="constants.Image.Source.KITE_BLUE" [alt]="constants.Image.AlternateText.KITE_BLUE" class="img-responsive shake-slow"></td>
         </tr>
         <tr>
-          <td><img [src]="c.Image.Source.KITE_ORANGE" [alt]="c.Image.AlternateText.KITE_ORANGE" class="img-responsive shake-slow"></td>
-          <td><img [src]="c.Image.Source.KITE_YELLOW" [alt]="c.Image.AlternateText.KITE_YELLOW" class="img-responsive shake-slow"></td>
-          <td><img [src]="c.Image.Source.KITE_RED" [alt]="c.Image.AlternateText.KITE_RED" class="img-responsive shake-slow"></td>
+          <td><img [src]="constants.Image.Source.KITE_ORANGE" [alt]="constants.Image.AlternateText.KITE_ORANGE" class="img-responsive shake-slow"></td>
+          <td><img [src]="constants.Image.Source.KITE_YELLOW" [alt]="constants.Image.AlternateText.KITE_YELLOW" class="img-responsive shake-slow"></td>
+          <td><img [src]="constants.Image.Source.KITE_RED" [alt]="constants.Image.AlternateText.KITE_RED" class="img-responsive shake-slow"></td>
         </tr>
       </table>
     </td>
@@ -27,13 +27,13 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td width="40%" style="text-align: right;"><input type="email" placeholder="{{c.TextLabel.ENTER_USERNAME}}" id="userName" class="form-control" formControlName="userName"></td>
-            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{v.userName(loginForm.get('userName'))}}</td>
+            <td width="40%" style="text-align: right;"><input type="email" placeholder="{{constants.TextLabel.ENTER_USERNAME}}" id="userName" class="form-control" formControlName="userName"></td>
+            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validator.userName(loginForm.get('userName'))}}</td>
           </tr>
           <tr>
             <td width="20%"></td>
-            <td width="40%" style="text-align: right;"><input type="password" placeholder="{{c.TextLabel.ENTER_PASSWORD}}" id="password" class="form-control" formControlName="password"></td>
-            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{v.password(loginForm.get('password'))}}</td>
+            <td width="40%" style="text-align: right;"><input type="password" placeholder="{{constants.TextLabel.ENTER_PASSWORD}}" id="password" class="form-control" formControlName="password"></td>
+            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validator.password(loginForm.get('password'))}}</td>
           </tr>
           <tr>
             <td width="20%"></td>
@@ -41,9 +41,9 @@
               <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">
                 <span class="glyphicon glyphicon-log-in" #glyphicon></span>
                 &nbsp;
-                <span [innerHtml]="c.ButtonLabel.LOGIN"></span></button>
+                <span [innerHtml]="constants.ButtonLabel.LOGIN"></span></button>
               &nbsp;
-              <button class="btn btn-default" type="button" [innerHtml]="c.ButtonLabel.FORGOT_PASSWORD" (click)="forgotPassword();" [disabled]="!loginForm.get('userName').valid">
+              <button class="btn btn-default" type="button" [innerHtml]="constants.ButtonLabel.FORGOT_PASSWORD" (click)="forgotPassword();" [disabled]="!loginForm.get('userName').valid">
               </button>
             </td>
             <td width="40%" class="col-md-4"></td>

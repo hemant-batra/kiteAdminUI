@@ -10,10 +10,10 @@ export class MailMerchantComponent implements OnInit {
 
   constructor (public fs: FactoryService) {}
 
-  c = this.fs.constants.getMailMerchantConstants();
+  constants = this.fs.constants.getMailMerchantConstants();
 
   ngOnInit() {
-    this.fs.title.init(this.c.PageTitle.MAIL_MERCHANT);
+    this.fs.title.init(this.constants.PageTitle.MAIL_MERCHANT);
   }
 
   onSubmit() {

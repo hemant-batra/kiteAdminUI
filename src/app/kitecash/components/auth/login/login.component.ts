@@ -23,15 +23,15 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private httpClient: HttpClient) {}
 
-  c = this.fs.constants.getLoginConstants();
-  v = this.fs.validator.getLoginValidations();
+  constants = this.fs.constants.getLoginConstants();
+  validator = this.fs.validator.getLoginValidations();
 
   ngOnInit() {
     if (this.fs.navigator.getBrowserBackButton().isPressed()) {
       this.router.navigate(['unauthorized']);
     }
     this.loginForm = new FormGroup({
-      'userName': new FormControl(null, [Validators.required, Validators.pattern(this.c.RegularExpression.EMAIL_ID)]),
+      'userName': new FormControl(null, [Validators.required, Validators.pattern(this.constants.RegularExpression.EMAIL_ID)]),
       'password': new FormControl(null, Validators.required)
     });
   }
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     const formGroup = new FormGroup({
       'identifier': new FormGroup({
         'idType': new FormControl('PHONE'),
-        'idValue': new FormControl('9873009342', [Validators.required, Validators.pattern(this.c.RegularExpression.EMAIL_ID)]),
+        'idValue': new FormControl('9873009342', [Validators.required, Validators.pattern(this.constants.RegularExpression.EMAIL_ID)]),
       }),
       'password': new FormControl('Admpass1#', Validators.required)
     });
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
   }
 
   private doLogin(jsObj) {
-    return this.httpClient.post(this.c.URL.LOGIN, jsObj)
+    return this.httpClient.post(this.constants.URL.LOGIN, jsObj)
       .map(
         response => {
           const additionalInfo = response['additionalInfo'];
@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
             )
           ));
           if (!this.fs.navigator.getSideMenu().hasContents()) {
-            return this.c.Message.NO_MENU_FOUND;
+            return this.constants.Message.NO_MENU_FOUND;
           }
           this.fs.session.setSessionId(additionalInfo.sessionId);
           return null;

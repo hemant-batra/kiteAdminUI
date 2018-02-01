@@ -13,31 +13,31 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor (public fs: FactoryService) {}
 
-  c = this.fs.constants.getChangePasswordConstants();
-  v = this.fs.validator.getChangePasswordValidations();
-  g = this.fs.validator.getGenericValidations();
+  constants = this.fs.constants.getChangePasswordConstants();
+  validator = this.fs.validator.getChangePasswordValidations();
+  genericValidator = this.fs.validator.getGenericValidations();
 
   ngOnInit() {
-    this.fs.title.init(this.c.PageTitle.CHANGE_PASSWORD);
+    this.fs.title.init(this.constants.PageTitle.CHANGE_PASSWORD);
     this.changePasswordForm = new FormGroup({
       'oldPassword': new FormControl(null, [Validators.required]),
-      'newPassword': new FormControl(null, [Validators.required, Validators.pattern(this.c.RegularExpression.PASSWORD)]),
-      'confirmNewPassword': new FormControl(null, [Validators.required, Validators.pattern(this.c.RegularExpression.PASSWORD)])
+      'newPassword': new FormControl(null, [Validators.required, Validators.pattern(this.constants.RegularExpression.PASSWORD)]),
+      'confirmNewPassword': new FormControl(null, [Validators.required, Validators.pattern(this.constants.RegularExpression.PASSWORD)])
     });
   }
 
   onSubmit() {
     if (this.changePasswordForm.get('newPassword').value !== this.changePasswordForm.get('confirmNewPassword').value) {
-      this.fs.title.setError(this.c.Message.NEW_AND_CONFIRM_NEW_PASSWORDS_MISMATCH);
+      this.fs.title.setError(this.constants.Message.NEW_AND_CONFIRM_NEW_PASSWORDS_MISMATCH);
     } else {
       const form = new FormGroup({
         'oldPassword': this.changePasswordForm.get('oldPassword'),
         'newPassword': this.changePasswordForm.get('newPassword')
       });
       this.fs.title.showSpinner();
-      this.fs.http.post(this.c.URL.CHANGE_PASSWORD, form).subscribe(
+      this.fs.http.post(this.constants.URL.CHANGE_PASSWORD, form).subscribe(
         () => {
-          const message = this.c.Message.PASSWORD_CHANGE_SUCCESSFUL;
+          const message = this.constants.Message.PASSWORD_CHANGE_SUCCESSFUL;
           this.fs.title.setSuccess(message);
           this.changePasswordForm.reset();
         },

@@ -13,13 +13,13 @@ export class MessageComponent implements OnInit {
   constructor (public fs: FactoryService,
                private activatedRoute: ActivatedRoute) {}
 
-  c = this.fs.constants.getMessageConstants();
+  constants = this.fs.constants.getMessageConstants();
 
   ngOnInit() {
     this.fs.navigator.getBrowserBackButton().clearPressed();
     this.activatedRoute.data.subscribe(
       (data: Data) =>  {
-        this.errorMessage = this.c.Message[data['messageCode']];
+        this.errorMessage = this.constants.Message[data['messageCode']];
       }
     );
   }

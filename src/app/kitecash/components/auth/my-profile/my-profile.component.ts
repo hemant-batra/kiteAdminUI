@@ -10,10 +10,10 @@ export class MyProfileComponent implements OnInit {
 
   constructor (public fs: FactoryService) {}
 
-  c = this.fs.constants.getMyProfileConstants();
+  constants = this.fs.constants.getMyProfileConstants();
 
   ngOnInit() {
-    this.fs.title.init(this.c.PageTitle.MY_PROFILE);
+    this.fs.title.init(this.constants.PageTitle.MY_PROFILE);
   }
 
 }

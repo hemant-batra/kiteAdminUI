@@ -14,7 +14,7 @@ export class HeaderComponent {
     this.fs.navigator.getHeaderMenu().reset();
   }
 
-  c = this.fs.constants.getHeaderConstants();
+  constants = this.fs.constants.getHeaderConstants();
 
   activateMenu(imageId: string) {
     if (!this.fs.navigator.getHeaderMenu().isActive(imageId)) {
