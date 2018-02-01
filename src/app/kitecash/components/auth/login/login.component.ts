@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.fs.navigator.getBrowserBackButton().isPressed()) {
-      console.log('Back button was pressed');
       this.router.navigate(['unauthorized']);
     }
     this.loginForm = new FormGroup({

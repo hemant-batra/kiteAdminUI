@@ -11,7 +11,6 @@ export class AppComponent {
   constructor (private fs: FactoryService,
                private platformLocation: PlatformLocation) {
     this.platformLocation.onPopState(() => {
-      console.log('Back button is pressed');
       this.fs.navigator.getBrowserBackButton().setPressed();
       this.fs.session.logout();
     });
