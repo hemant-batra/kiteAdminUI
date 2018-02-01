@@ -22,6 +22,7 @@ export class MessageComponent implements OnInit {
         this.errorMessage = this.constants.Message[data['messageCode']];
       }
     );
+    this.fs.data.setUserName(null);
   }
 
 }

@@ -10,11 +10,17 @@ import {FactoryService} from '../../../services/common/factory.service';
 export class ForgotPasswordComponent implements OnInit {
 
   constructor (public fs: FactoryService,
-               private router: Router) {}
+               public router: Router) {}
+
+  constants = this.fs.constants.getForgotPasswordConstants();
 
   ngOnInit() {
     if (this.fs.navigator.getBrowserBackButton().isPressed() || this.fs.data.getUserName() === null) {
       this.router.navigate(['unauthorized']);
     }
+  }
+
+  submit() {
+
   }
 }

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['unauthorized']);
     }
     this.loginForm = new FormGroup({
-      'userName': new FormControl(null, [Validators.required, Validators.pattern(this.constants.RegularExpression.EMAIL_ID)]),
+      'userName': new FormControl(this.fs.data.getUserName(), [Validators.required, Validators.pattern(this.constants.RegularExpression.EMAIL_ID)]),
       'password': new FormControl(null, Validators.required)
     });
   }

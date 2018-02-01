@@ -66,11 +66,31 @@ export class ConstantsService {
   private ForgotPasswordComponent = {
       PageTitle: {},
       TextLabel: {},
-      ButtonLabel: {},
-      Message: {},
+      ButtonLabel: {
+        CONFIRM: 'Confirm',
+        BACK: 'Back'
+      },
+      Message: {
+        CONFIRM_FORGOT_PASSWORD_MESSAGE: 'Your password will be reset and an email containing the new password will be sent to your registered email ID'
+      },
       DropDownOption: {},
       URL: {},
-      Image: {},
+      Image: {
+        Source: {
+          KITE_GREEN: '/assets/images/kite_green.png',
+          KITE_ORANGE: '/assets/images/kite_orange.png',
+          KITE_BLUE: '/assets/images/kite_blue.png',
+          KITE_YELLOW: '/assets/images/kite_yellow.png',
+          KITE_RED: '/assets/images/kite_red.png'
+        },
+        AlternateText: {
+          KITE_GREEN: 'Green Kite',
+          KITE_ORANGE: 'Orange Kite',
+          KITE_BLUE: 'Blue Kite',
+          KITE_YELLOW: 'Yellow Kite',
+          KITE_RED: 'Red Kite'
+        }
+      },
       RegularExpression: {}
     };
 
