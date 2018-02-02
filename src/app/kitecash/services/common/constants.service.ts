@@ -42,22 +42,7 @@ export class ConstantsService {
       URL: {
         LOGIN: environment.serverUrl + '/login'
       },
-      Image: {
-        Source: {
-          KITE_GREEN: '/assets/images/kite_green.png',
-          KITE_ORANGE: '/assets/images/kite_orange.png',
-          KITE_BLUE: '/assets/images/kite_blue.png',
-          KITE_YELLOW: '/assets/images/kite_yellow.png',
-          KITE_RED: '/assets/images/kite_red.png'
-        },
-        AlternateText: {
-          KITE_GREEN: 'Green Kite',
-          KITE_ORANGE: 'Orange Kite',
-          KITE_BLUE: 'Blue Kite',
-          KITE_YELLOW: 'Yellow Kite',
-          KITE_RED: 'Red Kite'
-        }
-      },
+      Image: {},
       RegularExpression: {
         EMAIL_ID: new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)
       },
@@ -75,22 +60,7 @@ export class ConstantsService {
       },
       DropDownOption: {},
       URL: {},
-      Image: {
-        Source: {
-          KITE_GREEN: '/assets/images/kite_green.png',
-          KITE_ORANGE: '/assets/images/kite_orange.png',
-          KITE_BLUE: '/assets/images/kite_blue.png',
-          KITE_YELLOW: '/assets/images/kite_yellow.png',
-          KITE_RED: '/assets/images/kite_red.png'
-        },
-        AlternateText: {
-          KITE_GREEN: 'Green Kite',
-          KITE_ORANGE: 'Orange Kite',
-          KITE_BLUE: 'Blue Kite',
-          KITE_YELLOW: 'Yellow Kite',
-          KITE_RED: 'Red Kite'
-        }
-      },
+      Image: {},
       RegularExpression: {}
     };
 
@@ -254,9 +224,19 @@ export class ConstantsService {
       Image: {
         Source: {
           KITE_ICON: '/assets/images/KiteLogo.png',
+          KITE_GREEN: '/assets/images/kite_green.png',
+          KITE_ORANGE: '/assets/images/kite_orange.png',
+          KITE_BLUE: '/assets/images/kite_blue.png',
+          KITE_YELLOW: '/assets/images/kite_yellow.png',
+          KITE_RED: '/assets/images/kite_red.png'
         },
         AlternateText: {
           KITE_ICON: 'Kite',
+          KITE_GREEN: 'Green Kite',
+          KITE_ORANGE: 'Orange Kite',
+          KITE_BLUE: 'Blue Kite',
+          KITE_YELLOW: 'Yellow Kite',
+          KITE_RED: 'Red Kite'
         }
       },
       RegularExpression: {}

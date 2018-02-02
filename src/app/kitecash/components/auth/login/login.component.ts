@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['unauthorized']);
     }
     this.loginForm = new FormGroup({
-      'userName': new FormControl(this.fs.data.getUserName(), [Validators.required, Validators.pattern(this.constants.RegularExpression.EMAIL_ID)]),
+      'userName': new FormControl(null, [Validators.required, Validators.pattern(this.constants.RegularExpression.EMAIL_ID)]),
       'password': new FormControl(null, Validators.required)
     });
   }
@@ -50,17 +50,14 @@ export class LoginComponent implements OnInit {
       response =>  {
         this.stopSpinner();
         if (response === null) {
-          this.fs.data.setUserName(this.loginForm.get('userName').value);
           this.router.navigate(['admin']);
         } else {
-          this.loginForm.reset();
-          this.loginForm.setErrors({'serverError': response});
+          this.loginForm.setErrors({'serverMessage': response});
         }
       },
       error => {
         this.stopSpinner();
-        this.loginForm.reset();
-        this.loginForm.setErrors({'serverError': error});
+        this.loginForm.setErrors({'serverMessage': error});
       }
     );
   }
@@ -111,7 +108,6 @@ export class LoginComponent implements OnInit {
   }
 
   forgotPassword() {
-    this.fs.data.setUserName(this.loginForm.get('userName').value);
-    this.router.navigate(['forgotPassword']);
+
   }
 }

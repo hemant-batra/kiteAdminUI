@@ -15,7 +15,7 @@ export class ForgotPasswordComponent implements OnInit {
   constants = this.fs.constants.getForgotPasswordConstants();
 
   ngOnInit() {
-    if (this.fs.navigator.getBrowserBackButton().isPressed() || this.fs.data.getUserName() === null) {
+    if (this.fs.navigator.getBrowserBackButton().isPressed()) {
       this.router.navigate(['unauthorized']);
     }
   }

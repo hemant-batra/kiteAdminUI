@@ -1,42 +1,29 @@
-<br><br><br><br><br>
 <table width="100%">
+  <tr><td colspan="3">&nbsp;</td></tr>
+  <tr><td colspan="3">&nbsp;</td></tr>
+  <tr><td colspan="3">&nbsp;</td></tr>
   <tr>
-    <td width="15%">&nbsp;</td>
-    <td width="20%">
-      <table>
-        <tr>
-          <td><img [src]="constants.Image.Source.KITE_GREEN" [alt]="constants.Image.AlternateText.KITE_GREEN" class="img-responsive shake-slow"></td>
-          <td><img [src]="constants.Image.Source.KITE_ORANGE" [alt]="constants.Image.AlternateText.KITE_ORANGE" class="img-responsive shake-slow"></td>
-          <td><img [src]="constants.Image.Source.KITE_BLUE" [alt]="constants.Image.AlternateText.KITE_BLUE" class="img-responsive shake-slow"></td>
-        </tr>
-        <tr>
-          <td><img [src]="constants.Image.Source.KITE_ORANGE" [alt]="constants.Image.AlternateText.KITE_ORANGE" class="img-responsive shake-slow"></td>
-          <td><img [src]="constants.Image.Source.KITE_YELLOW" [alt]="constants.Image.AlternateText.KITE_YELLOW" class="img-responsive shake-slow"></td>
-          <td><img [src]="constants.Image.Source.KITE_RED" [alt]="constants.Image.AlternateText.KITE_RED" class="img-responsive shake-slow"></td>
-        </tr>
-      </table>
-    </td>
-    <td width="5%">&nbsp;</td>
+    <td width="25%">&nbsp;</td>
     <td width="50%">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit();">
         <table width="100%">
           <tr>
-            <td width="20%"></td>
-            <td width="40%" class="errorMessage">&nbsp;{{loginForm.getError('serverError')}}&nbsp;</td>
-            <td width="40%"></td>
+            <td width="30%"></td>
+            <td width="40%" class="errorMessage">&nbsp;{{loginForm.getError('serverMessage')}}&nbsp;</td>
+            <td width="30%"></td>
           </tr>
           <tr>
-            <td width="20%"></td>
+            <td width="30%"></td>
             <td width="40%" style="text-align: right;"><input type="email" placeholder="{{constants.TextLabel.ENTER_USERNAME}}" id="userName" class="form-control" formControlName="userName"></td>
-            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validator.userName(loginForm.get('userName'))}}</td>
+            <td width="30%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validator.userName(loginForm.get('userName'))}}</td>
           </tr>
           <tr>
-            <td width="20%"></td>
+            <td width="30%"></td>
             <td width="40%" style="text-align: right;"><input type="password" placeholder="{{constants.TextLabel.ENTER_PASSWORD}}" id="password" class="form-control" formControlName="password"></td>
-            <td width="40%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validator.password(loginForm.get('password'))}}</td>
+            <td width="30%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validator.password(loginForm.get('password'))}}</td>
           </tr>
           <tr>
-            <td width="20%"></td>
+            <td width="30%"></td>
             <td width="40%" style="text-align: center;">
               <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">
                 <span class="glyphicon glyphicon-log-in" #glyphicon></span>
@@ -46,13 +33,11 @@
               <button class="btn btn-default" type="button" [innerHtml]="constants.ButtonLabel.FORGOT_PASSWORD" (click)="forgotPassword();" [disabled]="!loginForm.get('userName').valid">
               </button>
             </td>
-            <td width="40%" class="col-md-4"></td>
+            <td width="30%" class="col-md-4"></td>
           </tr>
-          <tr><td colspan="3"></td></tr>
-          <tr><td colspan="3"></td></tr>
         </table>
       </form>
     </td>
-    <td width="10%">&nbsp;</td>
+    <td width="25%">&nbsp;</td>
   </tr>
 </table>
