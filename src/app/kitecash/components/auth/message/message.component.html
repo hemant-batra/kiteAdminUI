@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <h3>{{errorMessage}}</h3>
+    <h3>{{this.fs.data.getMessage()}}</h3>
   </div>
   <div class="row" align="center">
-    <button class="btn btn-primary" type="button" routerLink="">{{constants.ButtonLabel.LOGIN}}</button>
+    <button class="btn btn-primary" type="button" routerLink="">{{this.fs.constants.getMessageConstants().ButtonLabel.LOGIN}}</button>
   </div>
 </div>

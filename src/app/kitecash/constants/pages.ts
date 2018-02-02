@@ -1,6 +1,9 @@
 import {AdminComponent} from '../components/admin/admin.component';
 import {ManualRefundComponent} from '../components/admin/manual-refund/manual-refund.component';
 import {MailMerchantComponent} from '../components/admin/mail-merchant/mail-merchant.component';
+import {MyProfileComponent} from '../components/auth/my-profile/my-profile.component';
+import {ChangePasswordComponent} from '../components/auth/change-password/change-password.component';
+import {LogoutComponent} from '../components/auth/logout/logout.component';
 
 /*
   this constant contains the display name of the menu item, its url path
@@ -9,6 +12,9 @@ import {MailMerchantComponent} from '../components/admin/mail-merchant/mail-merc
  */
 export const paths = [
   {code: 'home', label: '', path: '', component: AdminComponent},
+  {code: 'myProfile', label: 'My Profile', path: 'myProfile', component: MyProfileComponent},
+  {code: 'changePassword', label: 'Change Password', path: 'changePassword', component: ChangePasswordComponent},
+  {code: 'logout', label: 'Logout', path: 'logout', component: LogoutComponent},
   {code: 'manualRefund', label: 'Manual Refund', path: 'manualRefund', component: ManualRefundComponent},
   {code: 'sendMailToMerchant', label: 'Send Mail to Merchant', path: 'sendMailToMerchant', component: MailMerchantComponent},
   {code: 'agentList', label: 'Agent List', path: 'agentList', component: AdminComponent, children: [

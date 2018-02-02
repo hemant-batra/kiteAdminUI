@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterSta
 import {FactoryService} from '../services/common/factory.service';
 
 @Injectable()
-export class AuthorizationGuard implements CanActivate, CanActivateChild {
+export class BackButtonGuard implements CanActivate, CanActivateChild {
 
   constructor (public fs: FactoryService,
                private router: Router) {}
@@ -13,10 +13,11 @@ export class AuthorizationGuard implements CanActivate, CanActivateChild {
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.fs.session.isActive()) {
-      this.fs.title.init(this.fs.constants.getMiscellaneousConstants().PageTitle.NULL);
-    } else {
-      this.router.navigate(['unauthorized']);
+    this.fs.title.init(this.fs.constants.getMiscellaneousConstants().PageTitle.NULL);
+    if (this.fs.navigator.getBrowserBackButton().isPressed()) {
+      console.log('back button was pressed');
+      this.fs.navigator.getBrowserBackButton().clearPressed();
+      this.fs.navigator.unauthorize(this.router);
     }
     return true;
   }

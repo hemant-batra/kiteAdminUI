@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Data} from '@angular/router';
 import {FactoryService} from '../../../services/common/factory.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-message',
@@ -9,19 +9,13 @@ import {FactoryService} from '../../../services/common/factory.service';
 })
 export class MessageComponent implements OnInit {
 
-  errorMessage: string;
   constructor (public fs: FactoryService,
-               private activatedRoute: ActivatedRoute) {}
-
-  constants = this.fs.constants.getMessageConstants();
+               private router: Router) {}
 
   ngOnInit() {
-    this.fs.navigator.getBrowserBackButton().clearPressed();
-    this.activatedRoute.data.subscribe(
-      (data: Data) =>  {
-        this.errorMessage = this.constants.Message[data['messageCode']];
-      }
-    );
+    if (this.fs.data.getMessage() === null) {
+      this.fs.navigator.unauthorize(this.router);
+    }
   }
 
 }

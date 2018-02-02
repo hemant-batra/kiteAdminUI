@@ -51,18 +51,25 @@ export class ConstantsService {
 
   private ForgotPasswordComponent = {
       PageTitle: {},
-      TextLabel: {},
+      TextLabel: {
+        NEW_PASSWORD: 'New Password',
+        CONFIRM_NEW_PASSWORD: 'Confirm New Password'
+      },
       ButtonLabel: {
-        CONFIRM: 'Confirm',
-        BACK: 'Back'
+        CHANGE: 'Change',
+        RESET: 'Reset'
       },
       Message: {
-        CONFIRM_FORGOT_PASSWORD_MESSAGE: 'Your password will be reset and an email containing the new password will be sent to your registered email ID'
+        PASSWORD_REQUIRED: 'This is a required field',
+        PASSWORD_PATTERN: 'Password is not as per policy',
+        NEW_AND_CONFIRM_NEW_PASSWORDS_MISMATCH: 'New Password and Confirm New Password values do not match'
       },
       DropDownOption: {},
       URL: {},
       Image: {},
-      RegularExpression: {}
+      RegularExpression: {
+        PASSWORD: new RegExp(/^((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,160})$/)
+      }
     };
 
   private MyProfileComponent = {
@@ -123,7 +130,8 @@ export class ConstantsService {
       Message: {
         LOGOUT_MESSAGE: 'You have successfully logged out from the application',
         EXPIRY_MESSAGE: 'Your session has expired, please login again',
-        UNAUTHORIZED_OPERATION: 'You are not authorized to perform this operation'
+        PASSWORD_CHANGED: 'Your password has been successfully changed',
+        PAGE_NOT_FOUND: 'The page that you are trying to access does not exist'
       },
       DropDownOption: {},
       URL: {},
@@ -141,6 +149,21 @@ export class ConstantsService {
       Image: {},
       RegularExpression: {}
     };
+
+  private UnauthorizedComponent = {
+    PageTitle: {},
+    TextLabel: {},
+    ButtonLabel: {
+      LOGIN: 'Login'
+    },
+    Message: {
+      UNAUTHORIZED_OPERATION: 'You are not authorized to perform this operation'
+    },
+    DropDownOption: {},
+    URL: {},
+    Image: {},
+    RegularExpression: {}
+  };
 
   private FooterComponent = {
       PageTitle: {},
@@ -360,5 +383,9 @@ export class ConstantsService {
 
   public getManualRefundConstants() {
     return this.ManualRefundComponent;
+  }
+
+  public getUnauthorizedConstants() {
+    return this.UnauthorizedComponent;
   }
 }

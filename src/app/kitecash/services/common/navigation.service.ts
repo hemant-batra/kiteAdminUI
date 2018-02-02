@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {isUndefined} from 'util';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class NavigationService {
@@ -80,5 +81,13 @@ export class NavigationService {
 
   public getSideMenu() {
     return this.SideMenu;
+  }
+
+  public unauthorize(router: Router) {
+    router.navigate(['unauthorized']);
+  }
+
+  public showMessage(router: Router) {
+    router.navigate(['message']);
   }
 }

@@ -38,10 +38,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         */
         if (err['status'] === 440) {
           if (httpRequest.url !== factoryService.constants.getMiscellaneousConstants().URL.LOGOUT) {
-            factoryService.session.setSessionId(null);
-            factoryService.navigator.getSideMenu().setContents([]);
-            factoryService.navigator.getHeaderMenu().reset();
-            this.router.navigate(['expired']);
+            factoryService.data.setMessage(factoryService.constants.getMessageConstants().Message.EXPIRY_MESSAGE);
+            factoryService.navigator.showMessage(this.router);
           }
         }
         return Observable.throw(err);

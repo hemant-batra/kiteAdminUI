@@ -7,6 +7,7 @@ export class DataService {
     private userName: string = null;
     private fullName: string = null;
     private mobileNumber: string = null;
+    private message: string = null;
 
     public getUserRole() {
       return this.userRole;
@@ -39,4 +40,12 @@ export class DataService {
     public setMobileNumber(mobileNumber: string) {
       this.mobileNumber = mobileNumber;
     }
+
+  public getMessage() {
+    return this.message;
+  }
+
+  public setMessage(message: string) {
+    this.message = message;
+  }
 }

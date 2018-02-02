@@ -5,8 +5,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 // guards
-import {AuthorizationGuard} from './kitecash/guards/authorization-guard';
-import {LogoutGuard} from './kitecash/guards/logout-guard';
+import {SessionGuard} from './kitecash/guards/session-guard';
+import {BackButtonGuard} from './kitecash/guards/back-button-guard';
 // interceptors
 import {HttpRequestInterceptor} from './kitecash/interceptors/interceptor';
 // constants
@@ -34,17 +34,19 @@ import {ChangePasswordComponent} from './kitecash/components/auth/change-passwor
 import {ForgotPasswordComponent} from './kitecash/components/auth/forgot-password/forgot-password.component';
 import {LoginComponent} from './kitecash/components/auth/login/login.component';
 import {MyProfileComponent} from './kitecash/components/auth/my-profile/my-profile.component';
+import {LogoutComponent} from './kitecash/components/auth/logout/logout.component';
+import {UnauthorizedComponent} from './kitecash/components/auth/unauthorized/unauthorized.component';
 
 const appRoutes = [
-  { path: '', component: LoginComponent },
-  { path: 'forgotPassword', component: ForgotPasswordComponent },
-  { path: 'unauthorized', component: MessageComponent, data: {messageCode: 'UNAUTHORIZED_OPERATION'} },
-  { path: 'logout', canActivate: [LogoutGuard], component: MessageComponent, data: {messageCode: 'LOGOUT_MESSAGE'} },
-  { path: 'expired', canActivate: [AuthorizationGuard], component: MessageComponent, data: {messageCode: 'EXPIRY_MESSAGE'} },
-  { path: 'myProfile', canActivate: [AuthorizationGuard], component: MyProfileComponent },
-  { path: 'changePassword', canActivate: [AuthorizationGuard], component: ChangePasswordComponent },
-  { path: 'admin', canActivateChild: [AuthorizationGuard], children: paths },
-  { path: '**', redirectTo: 'unauthorized' }
+  {path: '', canActivate: [BackButtonGuard], component: LoginComponent}, // always allow
+  {path: 'resetPassword', children: [
+    {path: '', canActivate: [BackButtonGuard], component: UnauthorizedComponent}, // never allow
+    {path: '**', canActivate: [BackButtonGuard], component: ForgotPasswordComponent} // allow only when the unique id is present and is valid
+  ]},
+  {path: 'admin', canActivateChild: [BackButtonGuard, SessionGuard], children: paths}, // allow only when session is active
+  {path: 'message', canActivate: [BackButtonGuard], component: MessageComponent}, // allow only when set true in navigator
+  {path: 'unauthorized', canActivate: [BackButtonGuard], component: UnauthorizedComponent}, // always allow
+  {path: '**', redirectTo: 'unauthorized'} // never allow
 ];
 
 @NgModule({
@@ -61,7 +63,9 @@ const appRoutes = [
     ChangePasswordComponent,
     ForgotPasswordComponent,
     LoginComponent,
-    MyProfileComponent
+    LogoutComponent,
+    MyProfileComponent,
+    UnauthorizedComponent
   ],
   imports: [
     HttpClientModule,
@@ -74,8 +78,8 @@ const appRoutes = [
     RouterModule
   ],
   providers: [
-    LogoutGuard,
-    AuthorizationGuard,
+    SessionGuard,
+    BackButtonGuard,
     SessionService,
     ValidationService,
     HttpService,

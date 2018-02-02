@@ -12,7 +12,7 @@
         (mouseover)="toggleImage(outerElement.imageId);"
         (mouseout)="toggleImage(outerElement.imageId);"
         (click)="activateMenu(outerElement.imageId);"
-        [routerLink]="outerElement.routerLink"
+        [routerLink]="'admin/' + outerElement.routerLink"
         routerLinkActive="routerLinkActive">
             <img *ngFor="let innerElement of [
                         {imageId: '', cssClass: 'show'},

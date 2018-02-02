@@ -28,9 +28,6 @@ export class LoginComponent implements OnInit {
   validator = this.fs.validator.getLoginValidations();
 
   ngOnInit() {
-    if (this.fs.navigator.getBrowserBackButton().isPressed()) {
-      this.router.navigate(['unauthorized']);
-    }
     this.messageClass = 'errorMessage';
     this.loginForm = new FormGroup({
       'userName': new FormControl(null, [Validators.required, Validators.pattern(this.constants.RegularExpression.EMAIL_ID)]),

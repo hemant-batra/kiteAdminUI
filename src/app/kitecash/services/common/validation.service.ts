@@ -8,12 +8,14 @@ export class ValidationService {
   constructor (public constantsService: ConstantsService) {
     this.generic = new this.Generic(constantsService);
     this.loginComponent = new this.LoginComponent(constantsService);
+    this.forgotPasswordComponent = new this.ForgotPasswordComponent(constantsService);
     this.changePasswordComponent = new this.ChangePasswordComponent(constantsService);
     this.manualRefundComponent = new this.ManualRefundComponent(constantsService);
   }
 
   private generic: any;
   private loginComponent: any;
+  private forgotPasswordComponent: any;
   private changePasswordComponent: any;
   private manualRefundComponent: any;
 
@@ -63,6 +65,41 @@ export class ValidationService {
       }
       if (errors['required']) {
         return this.m.PASSWORD_REQUIRED_MESSAGE;
+      }
+    }
+  };
+
+  private ForgotPasswordComponent = class {
+    constructor (private constantsService: ConstantsService) {}
+    private m = this.constantsService.getForgotPasswordConstants().Message;
+    public newPassword(password: FormControl) {
+      if (password.untouched) {
+        return;
+      }
+      const errors = password['errors'];
+      if (errors === null) {
+        return;
+      }
+      if (errors['required']) {
+        return this.m.PASSWORD_REQUIRED;
+      }
+      if (errors['pattern']) {
+        return this.m.PASSWORD_PATTERN;
+      }
+    }
+    public confirmNewPassword(password: FormControl) {
+      if (password.untouched) {
+        return;
+      }
+      const errors = password['errors'];
+      if (errors === null) {
+        return;
+      }
+      if (errors['required']) {
+        return this.m.PASSWORD_REQUIRED;
+      }
+      if (errors['pattern']) {
+        return this.m.PASSWORD_PATTERN;
       }
     }
   };
@@ -145,6 +182,9 @@ export class ValidationService {
   }
   public getLoginValidations() {
     return this.loginComponent;
+  }
+  public getForgotPasswordValidations() {
+    return this.forgotPasswordComponent;
   }
   public getChangePasswordValidations() {
     return this.changePasswordComponent;
