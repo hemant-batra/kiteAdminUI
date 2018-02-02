@@ -10,10 +10,11 @@ import {Router} from '@angular/router';
 export class LogoutComponent implements OnInit {
 
   constructor (public fs: FactoryService,
-               private router: Router) {}
-
-  ngOnInit() {
+               private router: Router) {
     this.fs.session.logout();
+  }
+
+  ngOnInit () {
     this.fs.data.setMessage(this.fs.constants.getMessageConstants().Message.LOGOUT_MESSAGE);
     this.fs.navigator.showMessage(this.router);
   }
