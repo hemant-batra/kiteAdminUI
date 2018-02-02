@@ -37,6 +37,7 @@ export class ConstantsService {
         USERNAME_REQUIRED_MESSAGE: 'Please enter username',
         USERNAME_INVALID_PATTERN_MESSAGE: 'Username should be a valid email ID',
         PASSWORD_REQUIRED_MESSAGE: 'Please enter password',
+        FORGOT_PASSWORD_EMAIL_SENT: 'An email has been sent to your registered email ID with a link to change your password'
       },
       DropDownOption: {},
       URL: {

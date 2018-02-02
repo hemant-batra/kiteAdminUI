@@ -10,5 +10,17 @@ td {
   text-align: center;
   font-weight: normal;
   color: red;
+  height: 80px;
+}
+.infoMessage {
+  text-align: center;
+  font-weight: normal;
+  color: black;
+  height: 80px;
+}
+.validationMessage {
+  text-align: center;
+  font-weight: normal;
+  color: red;
   height: 40px;
 }

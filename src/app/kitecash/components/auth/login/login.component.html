@@ -1,26 +1,23 @@
 <table width="100%">
   <tr><td colspan="3">&nbsp;</td></tr>
   <tr><td colspan="3">&nbsp;</td></tr>
-  <tr><td colspan="3">&nbsp;</td></tr>
   <tr>
     <td width="25%">&nbsp;</td>
     <td width="50%">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit();">
         <table width="100%">
           <tr>
-            <td width="30%"></td>
-            <td width="40%" class="errorMessage">&nbsp;{{loginForm.getError('serverMessage')}}&nbsp;</td>
-            <td width="30%"></td>
+            <td colspan="3" [class]="messageClass" style="vertical-align: bottom;">&nbsp;{{loginForm.getError('serverMessage')}}&nbsp;</td>
           </tr>
           <tr>
             <td width="30%"></td>
             <td width="40%" style="text-align: right;"><input type="email" placeholder="{{constants.TextLabel.ENTER_USERNAME}}" id="userName" class="form-control" formControlName="userName"></td>
-            <td width="30%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validator.userName(loginForm.get('userName'))}}</td>
+            <td width="30%" style="text-align: left;" class="validationMessage">&nbsp;&nbsp;{{validator.userName(loginForm.get('userName'))}}</td>
           </tr>
           <tr>
             <td width="30%"></td>
             <td width="40%" style="text-align: right;"><input type="password" placeholder="{{constants.TextLabel.ENTER_PASSWORD}}" id="password" class="form-control" formControlName="password"></td>
-            <td width="30%" style="text-align: left;" class="errorMessage">&nbsp;&nbsp;{{validator.password(loginForm.get('password'))}}</td>
+            <td width="30%" style="text-align: left;" class="validationMessage">&nbsp;&nbsp;{{validator.password(loginForm.get('password'))}}</td>
           </tr>
           <tr>
             <td width="30%"></td>

@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('glyphicon') glyphicon: ElementRef;
 
   loginForm: FormGroup;
+  messageClass: string;
 
   constructor (public fs: FactoryService,
               private router: Router,
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
     if (this.fs.navigator.getBrowserBackButton().isPressed()) {
       this.router.navigate(['unauthorized']);
     }
+    this.messageClass = 'errorMessage';
     this.loginForm = new FormGroup({
       'userName': new FormControl(null, [Validators.required, Validators.pattern(this.constants.RegularExpression.EMAIL_ID)]),
       'password': new FormControl(null, Validators.required)
@@ -44,7 +46,7 @@ export class LoginComponent implements OnInit {
       }),
       'password': new FormControl('Admpass1#', Validators.required)
     });
-
+    this.messageClass = 'errorMessage';
     this.startSpinner();
     this.doLogin(formGroup.getRawValue()).subscribe(
       response =>  {
@@ -52,11 +54,13 @@ export class LoginComponent implements OnInit {
         if (response === null) {
           this.router.navigate(['admin']);
         } else {
+          this.loginForm.reset();
           this.loginForm.setErrors({'serverMessage': response});
         }
       },
       error => {
         this.stopSpinner();
+        this.loginForm.reset();
         this.loginForm.setErrors({'serverMessage': error});
       }
     );
@@ -108,6 +112,8 @@ export class LoginComponent implements OnInit {
   }
 
   forgotPassword() {
-
+    this.messageClass = 'infoMessage';
+    this.loginForm.reset();
+    this.loginForm.setErrors({'serverMessage': this.constants.Message.FORGOT_PASSWORD_EMAIL_SENT});
   }
 }
